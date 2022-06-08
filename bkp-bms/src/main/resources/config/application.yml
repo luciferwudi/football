@@ -36,7 +36,7 @@ server:
 # 数据库连接测试
 jdbc:
 
-  # Mysql 数据库配置01
+  # Mysql 数据库配置
   type: mysql
   driver: com.mysql.jdbc.Driver
 #  driver: com.mysql.cj.jdbc.Driver
