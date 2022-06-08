@@ -5,12 +5,16 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import static java.lang.Thread.sleep;
 import static sun.util.logging.LoggingSupport.log;
 
 public class JsoupTest {
     public static void main(String[] args) throws  Exception{
         String htmltest="https://zx.500.com/jczq/kaijiang.php?playid=2&d=2020-08-16";
         JsoupTest.demo1(htmltest);
+//        System.out.println("开始");
+//        sleep(5000);
+//        System.out.println("等待了五秒");
     }
 
     public static void demo1(String url) throws Exception {
