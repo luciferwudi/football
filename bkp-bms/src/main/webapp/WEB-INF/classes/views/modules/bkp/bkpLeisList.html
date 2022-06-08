@@ -1,0 +1,148 @@
+<% layout('/layouts/default.html', {title: 'bkp_leis管理', libs: ['dataGrid']}){ %>
+<div class="main-content">
+	<div class="box box-main">
+		<div class="box-header">
+			<div class="box-title">
+				<i class="fa icon-notebook"></i> ${text('bkp_leis管理')}
+			</div>
+			<div class="box-tools pull-right">
+				<a href="#" class="btn btn-default" id="btnSearch" title="${text('查询')}"><i class="fa fa-filter"></i> ${text('查询')}</a>
+				<% if(hasPermi('bkp:bkpLeis:edit')){ %>
+					<a href="${ctx}/bkp/bkpLeis/form" class="btn btn-default btnTool" title="${text('新增bkp_leis')}"><i class="fa fa-plus"></i> ${text('新增')}</a>
+				<% } %>
+			</div>
+		</div>
+		<div class="box-body">
+			<#form:form id="searchForm" model="${bkpLeis}" action="${ctx}/bkp/bkpLeis/listData" method="post" class="form-inline hide"
+					data-page-no="${parameter.pageNo}" data-page-size="${parameter.pageSize}" data-order-by="${parameter.orderBy}">
+				<div class="form-group">
+					<label class="control-label">${text('主队')}：</label>
+					<div class="control-inline">
+						<#form:input path="hometeam" maxlength="70" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('时间用作比较')}：</label>
+					<div class="control-inline">
+						<#form:input path="time" maxlength="70" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('客队')}：</label>
+					<div class="control-inline">
+						<#form:input path="vistteam" maxlength="70" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('联赛')}：</label>
+					<div class="control-inline">
+						<#form:input path="league" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('主队获胜概率')}：</label>
+					<div class="control-inline">
+						<#form:input path="homeprobabilityofwinning" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('主队历史交战胜率')}：</label>
+					<div class="control-inline">
+						<#form:input path="homehistoricalwinrate" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('主队最近6场进球数')}：</label>
+					<div class="control-inline">
+						<#form:input path="homenumberofgoals" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('主队最近6场失球数')}：</label>
+					<div class="control-inline">
+						<#form:input path="homeconceded" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('客队获胜概率')}：</label>
+					<div class="control-inline">
+						<#form:input path="vistprobabilityofwinning" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('客队历史交战胜率')}：</label>
+					<div class="control-inline">
+						<#form:input path="visthistoricalwinrate" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('客队最近6场进球数')}：</label>
+					<div class="control-inline">
+						<#form:input path="vistnumberofgoals" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('客队最近6场失球数')}：</label>
+					<div class="control-inline">
+						<#form:input path="vistconceded" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary btn-sm">${text('查询')}</button>
+					<button type="reset" class="btn btn-default btn-sm">${text('重置')}</button>
+				</div>
+			</#form:form>
+			<table id="dataGrid"></table>
+			<div id="dataGridPage"></div>
+		</div>
+	</div>
+</div>
+<% } %>
+<script>
+// 初始化DataGrid对象
+$('#dataGrid').dataGrid({
+	searchForm: $("#searchForm"),
+	columnModel: [
+		{header:'${text("主队")}', name:'hometeam', index:'a.hometeam', width:150, align:"left", frozen:true, formatter: function(val, obj, row, act){
+			return '<a href="${ctx}/bkp/bkpLeis/form?id='+row.id+'" class="btnList" data-title="${text("编辑bkp_leis")}">'+(val||row.id)+'</a>';
+		}},
+		{header:'${text("时间用作比较")}', name:'time', index:'a.time', width:150, align:"left"},
+		{header:'${text("客队")}', name:'vistteam', index:'a.vistteam', width:150, align:"left"},
+		{header:'${text("联赛")}', name:'league', index:'a.league', width:150, align:"left"},
+		{header:'${text("主队获胜概率")}', name:'homeprobabilityofwinning', index:'a.homeprobabilityofwinning', width:150, align:"left"},
+		{header:'${text("主队历史交战胜率")}', name:'homehistoricalwinrate', index:'a.homehistoricalwinrate', width:150, align:"left"},
+		{header:'${text("主队最近6场进球数")}', name:'homenumberofgoals', index:'a.homenumberofgoals', width:150, align:"left"},
+		{header:'${text("主队最近6场失球数")}', name:'homeconceded', index:'a.homeconceded', width:150, align:"left"},
+		{header:'${text("客队获胜概率")}', name:'vistprobabilityofwinning', index:'a.vistprobabilityofwinning', width:150, align:"left"},
+		{header:'${text("客队历史交战胜率")}', name:'visthistoricalwinrate', index:'a.visthistoricalwinrate', width:150, align:"left"},
+		{header:'${text("客队最近6场进球数")}', name:'vistnumberofgoals', index:'a.vistnumberofgoals', width:150, align:"left"},
+		{header:'${text("主队有利情报1")}', name:'zdyl1', index:'a.zdyl1', width:150, align:"left"},
+		{header:'${text("主队有利情报2")}', name:'zdyl2', index:'a.zdyl2', width:150, align:"left"},
+		{header:'${text("主队有利情报3")}', name:'zdyl3', index:'a.zdyl3', width:150, align:"left"},
+		{header:'${text("主队不利情报1")}', name:'zdbl1', index:'a.zdbl1', width:150, align:"left"},
+		{header:'${text("主队不利情报2")}', name:'zdbl2', index:'a.zdbl2', width:150, align:"left"},
+		{header:'${text("主队不利情报3")}', name:'zdbl3', index:'a.zdbl3', width:150, align:"left"},
+		{header:'${text("中立情报1")}', name:'klqb1', index:'a.klqb1', width:150, align:"left"},
+		{header:'${text("中立情报2")}', name:'klqb2', index:'a.klqb2', width:150, align:"left"},
+		{header:'${text("中立情报3")}', name:'klqb3', index:'a.klqb3', width:150, align:"left"},
+		{header:'${text("客队有利情报1")}', name:'kdyl1', index:'a.kdyl1', width:150, align:"left"},
+		{header:'${text("客队有利情报2")}', name:'kdyl2', index:'a.kdyl2', width:150, align:"left"},
+		{header:'${text("客队有利情报3")}', name:'kdyl3', index:'a.kdyl3', width:150, align:"left"},
+		{header:'${text("客队不利情报1")}', name:'kdbl1', index:'a.kdbl1', width:150, align:"left"},
+		{header:'${text("客队不利情报2")}', name:'kdbl2', index:'a.kdbl2', width:150, align:"left"},
+		{header:'${text("客队不利情报3")}', name:'kdbl3', index:'a.kdbl3', width:150, align:"left"},
+		{header:'${text("操作")}', name:'actions', width:120, sortable:false, title:false, formatter: function(val, obj, row, act){
+			var actions = [];
+			<% if(hasPermi('bkp:bkpLeis:edit')){ %>
+				actions.push('<a href="${ctx}/bkp/bkpLeis/form?id='+row.id+'" class="btnList" title="${text("编辑bkp_leis")}"><i class="fa fa-pencil"></i></a>&nbsp;');
+				actions.push('<a href="${ctx}/bkp/bkpLeis/delete?id='+row.id+'" class="btnList" title="${text("删除bkp_leis")}" data-confirm="${text("确认要删除该bkp_leis吗？")}"><i class="fa fa-trash-o"></i></a>&nbsp;');
+			<% } %>
+			return actions.join('');
+		}}
+	],
+	// 加载成功后执行事件
+	ajaxSuccess: function(data){
+		
+	}
+});
+</script>

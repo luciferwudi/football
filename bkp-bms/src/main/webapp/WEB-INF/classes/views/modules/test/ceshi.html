@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>测试接口页面</title>
+</head>
+<script src="${ctxStatic}/js/demo/Scripts/jquery-3.5.0.js" type="text/javascript"></script>
+<script>
+    ceshi();
+    function  ceshi() {
+        $.ajax({
+            url: 'www.baidu.com',
+            type:'GET',
+            success:function(result){
+                console.log(result+"========");
+            }
+        });
+    }
+
+
+</script>
+
+
+
+<body>
+
+
+</body>
+</html>

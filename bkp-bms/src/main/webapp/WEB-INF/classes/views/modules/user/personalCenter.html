@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!--    <div style="border:2px solid #666;width:49%;height:450px;float:left" id="chartmain"></div>-->
+
+<!-- import Vue before Element -->
+<script src="${ctxStatic}/js/demo/vue.js"></script>
+<!-- import JavaScript -->
+<script src="${ctxStatic}/js/demo/major.js"></script>
+<!-- import axios -->
+<script src="${ctxStatic}/js/demo/axios.js"></script>
+<!-- import 封装好的get,post的请求 -->
+<script src="${ctxStatic}/js/demo/httpRequest.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="${ctxStatic}/echarts/4.2/echarts.simple.min.js"></script>
+    <script src="${ctxStatic}/echarts/4.2/echarts.min.js"></script>
+</head>
+
+<body>
+<div id="app">
+<div style="border:2px solid #666;width:49%;height:350px;float:left" id="chartmain"></div>
+<div style="border:2px solid #666;width:49%;height:350px;float:left" id="chartmain1"></div>
+<div style="border:2px solid #666;width:49%;height:350px;float:left" id="chartmain2"></div>
+</div>
+<script type="text/javascript">
+
+    new Vue({
+        el: '#app',
+        data() {
+            return {
+                visible: false,
+                flag:false,
+            }
+        },
+        created() {
+            this.loadtb();
+        },
+        methods :{
+            loadtb(){
+                axiosGetRequst("${ctx}/odds/odds/personalCenterHistogram").then(res =>{
+                    //获取dom容器
+                    var myChart = echarts.init(document.getElementById('chartmain'));
+                    if (res.time.length==0){
+
+                    }
+                    option = {
+                        title: {
+                            text: '个人投注',
+                            subtext: '投注数据',
+                            left: 'center'
+                        },
+                        xAxis: {
+                            type: 'category',
+                            data: res.time
+                        },
+                        yAxis: {
+                            type: 'value'
+                        },
+                        series: [{
+                            data: res.money,
+                            type: 'bar',
+                            showBackground: true,
+                            backgroundStyle: {
+                                color: 'rgba(220, 220, 220, 0.8)'
+                            }
+                        }]
+                    };
+                    myChart.setOption(option);
+                });  //下注金额柱状图
+                //中奖率饼状图
+                axiosGetRequst("${ctx}/odds/odds/userWins").then(res =>{
+                    debugger;
+                    if (JSON.stringify(res) == JSON.stringify({})){
+
+                    }
+                    //获取dom容器
+                    var myChart2 = echarts.init(document.getElementById('chartmain2'));
+                    option2 = {
+                        title: {
+                            subtext: '中奖率',
+                            left: 'center'
+                        },
+                        tooltip: {
+                            trigger: 'item',
+                            formatter: '{a} <br/>{b} : {c} ({d}%)'
+                        },
+                        legend: {
+                            orient: 'vertical',
+                            left: 'left',
+                            data: ["中奖","未中奖","待开奖"]
+                        },
+                        series: [
+                            {
+                                name: '中奖率',
+                                type: 'pie',
+                                radius: '55%',
+                                center: ['50%', '60%'],
+                                data: [
+                                    {value: res.zz, name: '中奖'},
+                                    {value: res.wzz, name: '未中奖'},
+                                    {value: res.dkj, name: '待开奖'},
+                                ],
+                                emphasis: {
+                                    itemStyle: {
+                                        shadowBlur: 10,
+                                        shadowOffsetX: 0,
+                                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                    }
+                                }
+                            }
+                        ]
+                    };
+                    myChart2.setOption(option2);
+
+                });
+                axiosGetRequst("${ctx}/odds/odds/personalCenterHistogram").then(res =>{
+                    //获取dom容器
+                    var myChart1 = echarts.init(document.getElementById('chartmain1'));
+                    option1 = {
+                        title: {
+                            // text: '博坎普',
+                            subtext: '投注数据',
+                            left: 'center'
+                        },
+                        xAxis: {
+                            type: 'category',
+                            data: res.time
+                        },
+                        yAxis: {
+                            type: 'value'
+                        },
+                        series: [{
+                            data: res.money,
+                            type: 'line'
+                        }]
+                    };
+                    myChart1.setOption(option1);
+
+                    })
+            }
+        }
+    })
+
+</script>
+</body>
+
+</html>

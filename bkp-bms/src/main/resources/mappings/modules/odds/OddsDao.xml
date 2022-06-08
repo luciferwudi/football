@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jeesite.modules.odds.dao.OddsDao">
+    <resultMap id="BaseResultMap" type="com.jeesite.modules.odds.entity.Odds" >
+        <constructor >
+            <idArg column="id" jdbcType="BIGINT" javaType="java.lang.Long" />
+            <arg column="teamdataid" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="type" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="a" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="d" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="h" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="goalline" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="p_code" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="o_type" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="p_id" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="p_status" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="single" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="allup" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="fixedodds" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="cbt" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="ints" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="vbt" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="h_trend" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="a_trend" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="d_trend" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="l_trend" jdbcType="VARCHAR" javaType="java.lang.String" />
+        </constructor>
+    </resultMap>
+    <update id="updateByTeamdataIdAndType">
+        update odds
+        <set >
+            <if test="a != null" >
+                a = #{a,jdbcType=VARCHAR},
+            </if>
+            <if test="d != null" >
+                d = #{d,jdbcType=VARCHAR},
+            </if>
+            <if test="h != null" >
+                h = #{h,jdbcType=VARCHAR},
+            </if>
+            <if test="goalline != null" >
+                goalline = #{goalline,jdbcType=VARCHAR},
+            </if>
+            <if test="pcode != null" >
+                p_code = #{pcode,jdbcType=VARCHAR},
+            </if>
+            <if test="otype != null" >
+                o_type = #{otype,jdbcType=VARCHAR},
+            </if>
+            <if test="pid != null" >
+                p_id = #{pid,jdbcType=VARCHAR},
+            </if>
+            <if test="pstatus != null" >
+                p_status = #{pstatus,jdbcType=VARCHAR},
+            </if>
+            <if test="single != null" >
+                single = #{single,jdbcType=VARCHAR},
+            </if>
+            <if test="allup != null" >
+                allup = #{allup,jdbcType=VARCHAR},
+            </if>
+            <if test="fixedodds != null" >
+                fixedodds = #{fixedodds,jdbcType=VARCHAR},
+            </if>
+            <if test="cbt != null" >
+                cbt = #{cbt,jdbcType=VARCHAR},
+            </if>
+            <if test="ints != null" >
+                ints = #{ints,jdbcType=VARCHAR},
+            </if>
+            <if test="vbt != null" >
+                vbt = #{vbt,jdbcType=VARCHAR},
+            </if>
+            <if test="htrend != null" >
+                h_trend = #{htrend,jdbcType=VARCHAR},
+            </if>
+            <if test="atrend != null" >
+                a_trend = #{atrend,jdbcType=VARCHAR},
+            </if>
+            <if test="dtrend != null" >
+                d_trend = #{dtrend,jdbcType=VARCHAR},
+            </if>
+            <if test="ltrend != null" >
+                l_trend = #{ltrend,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where  teamdataid=#{teamdataid} and type=#{type}
+    </update>
+
+    <!-- 查询数据
+    <select id="findList" resultType="Odds">
+        SELECT ${sqlMap.column.toSql()}
+        FROM ${sqlMap.table.toSql()}
+        <where>
+            ${sqlMap.where.toSql()}
+        </where>
+        ORDER BY ${sqlMap.order.toSql()}
+    </select> -->
+
+    <select id="selectAllTeamdata" resultType="com.jeesite.modules.teamdata.entity.Teamdata">
+        select * from teamdata  ORDER BY b_date
+    </select>
+    <select id="selectOdds" resultType="com.jeesite.modules.odds.entity.Odds">
+        select * from odds where   teamdataid=#{teamdataid}     and  type=#{type}
+    </select>
+    <select id="selectAllId" resultType="java.lang.String">
+        SELECT teamdataid
+        FROM teamdata
+    </select>
+    <select id="selectByUserCode" resultType="java.lang.String">
+        select createTime FROM bkp_userbets WHERE userCode=#{userCode} and status="0" GROUP BY createTime
+    </select>
+    <select id="selectBycom" resultType="java.lang.Long">
+        select combination FROM bkp_userbets WHERE userCode=#{userCode} and createTime=#{createTime} and status="0" GROUP BY combination
+    </select>
+    <select id="selectByCombination" resultType="com.jeesite.modules.bkp.entity.BkpUserbets">
+        select * from bkp_userbets where  combination=#{combination} and status="0"
+    </select>
+    <select id="selectTeam" resultType="com.jeesite.modules.teamdata.entity.Teamdata">
+        select * from teamdata where num=#{num} and b_date=#{time}
+    </select>
+    <select id="selectExplanation" resultType="com.jeesite.modules.bkp.entity.BkpRecommendeddescription">
+        select * from bkp_recommendeddescription where team=#{team}
+    </select>
+    <select id="queryTid" resultType="java.lang.String">
+        select h_id_dc from teamdata where h_cn_abbr=#{team}
+    </select>
+    <select id="queryTid1" resultType="java.lang.String">
+         select a_id_dc from teamdata where a_cn_abbr=#{team}
+    </select>
+    <select id="selectTeamdata" resultType="com.jeesite.modules.teamdata.entity.Teamdata">
+        select * from teamdata  where  result is not null  AND result !="无效场次" and  DATE_SUB(CURDATE(), INTERVAL 7 DAY) &lt;= date(b_date)
+    </select>
+    <select id="get1" resultType="com.jeesite.modules.odds.entity.Odds">
+        select * from odds where   teamdataid=#{teamdataid}     and  type="hhad"
+    </select>
+
+</mapper>

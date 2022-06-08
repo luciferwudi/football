@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jeesite.modules.sys.dao.EmployeeDao">
+    
+    <!-- 查询数据
+	<select id="findList" resultType="Employee">
+		SELECT ${sqlMap.column.toSql()}
+		FROM ${sqlMap.table.toSql()}
+		<where>
+			${sqlMap.where.toSql()}
+		</where>
+		ORDER BY ${sqlMap.order.toSql()}
+	</select> -->
+
+    <insert id="save" parameterType="com.jeesite.modules.sys.entity.Employee">
+        insert into js_sys_employee
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="empCode != null" >
+                emp_code,
+            </if>
+            <if test="empName != null" >
+                emp_name,
+            </if>
+            <if test="empNameEn != null" >
+                emp_name_en,
+            </if>
+            <if test="empNo != null" >
+                emp_no,
+            </if>
+            <if test="officeCode != null" >
+                office_code,
+            </if>
+            <if test="officeName != null" >
+                office_name,
+            </if>
+            <if test="status != null" >
+                status,
+            </if>
+            <if test="createBy != null" >
+                create_by,
+            </if>
+            <if test="createDate != null" >
+                create_date,
+            </if>
+            <if test="updateBy != null" >
+                update_by,
+            </if>
+            <if test="updateDate != null" >
+                update_date,
+            </if>
+            <if test="remarks != null" >
+                remarks,
+            </if>
+            <if test="corpCode != null" >
+                corp_code,
+            </if>
+            <if test="corpName != null" >
+                corp_name,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="empCode != null" >
+                #{empCode,jdbcType=VARCHAR},
+            </if>
+            <if test="empName != null" >
+                #{empName,jdbcType=VARCHAR},
+            </if>
+            <if test="empNameEn != null" >
+                #{empNameEn,jdbcType=VARCHAR},
+            </if>
+            <if test="empNo != null" >
+                #{empNo,jdbcType=VARCHAR},
+            </if>
+            <if test="officeCode != null" >
+                #{officeCode,jdbcType=VARCHAR},
+            </if>
+            <if test="officeName != null" >
+                #{officeName,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null" >
+                #{status,jdbcType=CHAR},
+            </if>
+            <if test="createBy != null" >
+                #{createBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createDate != null" >
+                #{createDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateBy != null" >
+                #{updateBy,jdbcType=VARCHAR},
+            </if>
+            <if test="updateDate != null" >
+                #{updateDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="remarks != null" >
+                #{remarks,jdbcType=VARCHAR},
+            </if>
+            <if test="corpCode != null" >
+                #{corpCode,jdbcType=VARCHAR},
+            </if>
+            <if test="corpName != null" >
+                #{corpName,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+</mapper>

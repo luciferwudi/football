@@ -1,0 +1,10 @@
+@charset "GB2312";
+/* CSS Document */
+/*×ó²à¸¡¶¯*/
+.m-left-sidebar{width:110px;position:fixed;bottom:20px;line-height:18px;color:#333;left:50%;margin-left:-710px;font-size:12px;text-align:center;}
+.m-left-sidebar span{width:18px;height:18px; background:url(../Images/close.png) no-repeat center center;display:inline-block;position:absolute;left:101px;top:-9px;cursor:pointer;}
+.m-left-sidebar span:hover{background-image:url(../Images/close_hover.png);}
+/*µ¯´°*/
+.g-mask{width:100%;position:fixed;top:0px;filter:alpha(opacity=60);background-color:#000;z-index:1002;left:0px;opacity:0.6;-moz-opacity:0.6;}
+.g-mask-con{position:fixed;z-index:9999;width: 500px;height:465px;top:118px;left:50%;margin-left:-250px;border:none;}
+.u-pop-close{float:right;position: absolute;top:40px;right:0px;cursor:pointer;}

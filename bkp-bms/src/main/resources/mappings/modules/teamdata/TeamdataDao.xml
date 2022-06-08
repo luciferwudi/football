@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jeesite.modules.teamdata.dao.TeamdataDao">
+
+	<!-- 查询数据
+	<select id="findList" resultType="Teamdata">
+		SELECT ${sqlMap.column.toSql()}
+		FROM ${sqlMap.table.toSql()}
+		<where>
+			${sqlMap.where.toSql()}
+		</where>
+		ORDER BY ${sqlMap.order.toSql()}
+	</select> -->
+
+    <select id="findByid" resultType="java.lang.Integer">
+        SELECT count(*) FROM teamdata where id=#{id}
+    </select>
+    <select id="selectByResult" resultType="com.jeesite.modules.teamdata.entity.Teamdata">
+        select * from teamdata where result is null or result="无效场次"
+    </select>
+    <select id="queryData" resultType="java.util.Map">
+        select a.b_date,a.num,a.time,a.l_cn_abbr,a.h_cn_abbr,a.a_cn_abbr,b.a,b.d,b.h,b.type  FROM teamdata a , odds b  WHERE a.teamdataid=b.teamdataid
+AND b.type="had" AND a.b_date=#{time}
+    </select>
+</mapper>

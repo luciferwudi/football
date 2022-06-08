@@ -1,0 +1,219 @@
+<% layout('/layouts/default.html', {title: 'teamdata管理', libs: ['dataGrid']}){ %>
+<div class="main-content">
+	<div class="box box-main">
+		<div class="box-header">
+			<div class="box-title">
+				<i class="fa icon-notebook"></i> ${text('teamdata管理')}
+			</div>
+			<div class="box-tools pull-right">
+				<a href="#" class="btn btn-default" id="btnSearch" title="${text('查询')}"><i class="fa fa-filter"></i> ${text('查询')}</a>
+				<% if(hasPermi('teamdata:teamdata:edit')){ %>
+					<a href="${ctx}/teamdata/teamdata/form" class="btn btn-default btnTool" title="${text('新增teamdata')}"><i class="fa fa-plus"></i> ${text('新增')}</a>
+				<% } %>
+			</div>
+		</div>
+		<div class="box-body">
+
+				<div class="form-group">
+					<label class="control-label">${text('teamdataid')}：</label>
+					<div class="control-inline">
+						<#form:input path="teamdataid" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('时间及次序如周二058')}：</label>
+					<div class="control-inline">
+						<#form:input path="num" maxlength="30" class="form-control width-120"/>
+						<input type="submit" value="Submit" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('时间 如2019-07-29')}：</label>
+					<div class="control-inline">
+						<#form:input path="date" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('当天具体时间 如18')}：</label>
+					<div class="control-inline">
+						<#form:input path="time" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('下注时间')}：</label>
+					<div class="control-inline">
+						<#form:input path="bdate" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('status')}：</label>
+					<div class="control-inline width-120">
+						<#form:select path="status" dictType="sys_search_status" blankOption="true" class="form-control isQuick"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('hot')}：</label>
+					<div class="control-inline">
+						<#form:input path="hot" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('赛事id')}：</label>
+					<div class="control-inline">
+						<#form:input path="lid" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('赛事全称')}：</label>
+					<div class="control-inline">
+						<#form:input path="lcn" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('主队id')}：</label>
+					<div class="control-inline">
+						<#form:input path="hid" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('主队全称')}：</label>
+					<div class="control-inline">
+						<#form:input path="hcn" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('客队id')}：</label>
+					<div class="control-inline">
+						<#form:input path="aid" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('客队全称')}：</label>
+					<div class="control-inline">
+						<#form:input path="acn" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('index_show')}：</label>
+					<div class="control-inline">
+						<#form:input path="indexShow" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('show')}：</label>
+					<div class="control-inline">
+						<#form:input path="show" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('赛事简称')}：</label>
+					<div class="control-inline">
+						<#form:input path="lcnAbbr" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('主队简称')}：</label>
+					<div class="control-inline">
+						<#form:input path="hcnAbbr" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('客队简称')}：</label>
+					<div class="control-inline">
+						<#form:input path="acnAbbr" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('主队赛事及次序如[日超17]')}：</label>
+					<div class="control-inline">
+						<#form:input path="horder" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('客队赛事及次序如[日超9]')}：</label>
+					<div class="control-inline">
+						<#form:input path="aorder" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('h_id_dc')}：</label>
+					<div class="control-inline">
+						<#form:input path="hidDc" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('a_id_dc')}：</label>
+					<div class="control-inline">
+						<#form:input path="aidDc" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('赛事的背景颜色')}：</label>
+					<div class="control-inline">
+						<#form:input path="lbackgroudColor" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('当天天气')}：</label>
+					<div class="control-inline">
+						<#form:input path="weather" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary btn-sm">${text('查询')}</button>
+					<button type="reset" class="btn btn-default btn-sm">${text('重置')}</button>
+				</div>
+			<table id="dataGrid"></table>
+			<div id="dataGridPage"></div>
+		</div>
+	</div>
+</div>
+<% } %>
+<script>
+// 初始化DataGrid对象
+$('#dataGrid').dataGrid({
+	searchForm: $("#searchForm"),
+	columnModel: [
+		{header:'${text("teamdataid")}', name:'teamdataid', index:'a.teamdataid', width:150, align:"left", frozen:true, formatter: function(val, obj, row, act){
+			return '<a href="${ctx}/teamdata/teamdata/form?id='+row.id+'" class="btnList" data-title="${text("编辑teamdata")}">'+(val||row.id)+'</a>';
+		}},
+		{header:'${text("时间及次序如周二58")}', name:'num', index:'a.num', width:150, align:"left"},
+		{header:'${text("时间 如2019-07-29")}', name:'date', index:'a.date', width:150, align:"left"},
+		{header:'${text("当天具体时间 如18")}', name:'time', index:'a.time', width:150, align:"left"},
+		{header:'${text("下注时间")}', name:'bdate', index:'a.b_date', width:150, align:"left"},
+		{header:'${text("status")}', name:'status', index:'a.status', width:150, align:"center", formatter: function(val, obj, row, act){
+			return js.getDictLabel(${@DictUtils.getDictListJson('sys_search_status')}, val, '${text("未知")}', true);
+		}},
+		{header:'${text("hot")}', name:'hot', index:'a.hot', width:150, align:"left"},
+		{header:'${text("赛事id")}', name:'lid', index:'a.l_id', width:150, align:"left"},
+		{header:'${text("赛事全称")}', name:'lcn', index:'a.l_cn', width:150, align:"left"},
+		{header:'${text("主队id")}', name:'hid', index:'a.h_id', width:150, align:"left"},
+		{header:'${text("主队全称")}', name:'hcn', index:'a.h_cn', width:150, align:"left"},
+		{header:'${text("客队id")}', name:'aid', index:'a.a_id', width:150, align:"left"},
+		{header:'${text("客队全称")}', name:'acn', index:'a.a_cn', width:150, align:"left"},
+		{header:'${text("index_show")}', name:'indexShow', index:'a.index_show', width:150, align:"left"},
+		{header:'${text("show")}', name:'show', index:'a.show', width:150, align:"left"},
+		{header:'${text("赛事简称")}', name:'lcnAbbr', index:'a.l_cn_abbr', width:150, align:"left"},
+		{header:'${text("主队简称")}', name:'hcnAbbr', index:'a.h_cn_abbr', width:150, align:"left"},
+		{header:'${text("客队简称")}', name:'acnAbbr', index:'a.a_cn_abbr', width:150, align:"left"},
+		{header:'${text("主队赛事及次序如[日超17]")}', name:'horder', index:'a.h_order', width:150, align:"left"},
+		{header:'${text("客队赛事及次序如[日超9]")}', name:'aorder', index:'a.a_order', width:150, align:"left"},
+		{header:'${text("h_id_dc")}', name:'hidDc', index:'a.h_id_dc', width:100, align:"left"},
+		 {header:'${text("a_id_dc")}', name:'aidDc', index:'a.a_id_dc', width:100, align:"left"},
+		{header:'${text("赛事的背景颜色")}', name:'lbackgroudColor', index:'a.l_backgroud_color', width:150, align:"left"},
+		{header:'${text("当天天气")}', name:'weather', index:'a.weather', width:150, align:"left"},
+		{header:'${text("操作")}', name:'actions', width:120, sortable:false, title:false, formatter: function(val, obj, row, act){
+			var actions = [];
+			<% if(hasPermi('teamdata:teamdata:edit')){ %>
+				actions.push('<a href="${ctx}/teamdata/teamdata/form?id='+row.id+'" class="btnList" title="${text("编辑teamdata")}"><i class="fa fa-pencil"></i></a>&nbsp;');
+				actions.push('<a href="${ctx}/teamdata/teamdata/delete?id='+row.id+'" class="btnList" title="${text("删除teamdata")}" data-confirm="${text("确认要删除该teamdata吗？")}"><i class="fa fa-trash-o"></i></a>&nbsp;');
+			<% } %>
+			return actions.join('');
+		}}
+	],
+	// 加载成功后执行事件
+	ajaxSuccess: function(data){
+		
+	}
+});
+</script>

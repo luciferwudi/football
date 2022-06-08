@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jeesite.modules.bkp.dao.BkpFixedprofitDao">
+	
+	<!-- 查询数据
+	<select id="findList" resultType="BkpFixedprofit">
+		SELECT ${sqlMap.column.toSql()}
+		FROM ${sqlMap.table.toSql()}
+		<where>
+			${sqlMap.where.toSql()}
+		</where>
+		ORDER BY ${sqlMap.order.toSql()}
+	</select> -->
+
+    <select id="userQuery" resultType="com.jeesite.modules.bkp.entity.BkpFixedprofit">
+        select * from bkp_fixedprofit where userCode=#{userCode}   and deleteLogo=1
+--         and to_days(creatTime) = to_days(now())
+    </select>
+    <select id="queryGame" resultType="com.jeesite.modules.teamdata.entity.Teamdata">
+        select * from teamdata where teamdataid=#{teamdataid}
+    </select>
+    <select id="findByid" resultType="com.jeesite.modules.bkp.entity.BkpFixedprofit">
+        select * from bkp_fixedprofit where id=#{id}
+    </select>
+    <select id="selectBets" resultType="java.lang.Integer">
+        select count(*) from bkp_userbets where  gdmsId=#{id} and matchResults="待开奖"
+    </select>
+    <select id="getBypcId" resultType="com.jeesite.modules.bkp.entity.BkpFixedprofit">
+        select * from bkp_fixedprofit where id=(select modeId from bkp_batchrecord where id=#{id})
+    </select>
+    <select id="selectz" resultType="java.lang.Integer">
+    SELECT count(*) FROM teamdata a ,odds b
+    WHERE b.teamdataid=a.teamdataid
+    and b.type=#{type}
+    and a.result=#{name}  AND b.h &gt;=#{h}  and b.h &lt;#{hv}
+    </select>
+    <select id="selectk" resultType="java.lang.Integer">
+    SELECT count(*) FROM teamdata a ,odds b
+    WHERE b.teamdataid=a.teamdataid
+    and b.type=#{type}
+    and a.result=#{name}  AND b.a &gt;=#{h}  and b.a &lt;#{hv}
+    </select>
+</mapper>

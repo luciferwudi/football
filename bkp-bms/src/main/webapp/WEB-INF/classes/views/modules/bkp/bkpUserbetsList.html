@@ -1,0 +1,206 @@
+<% layout('/layouts/default.html', {title: '用户下注表管理', libs: ['dataGrid']}){ %>
+<div class="main-content">
+	<div class="box box-main">
+		<div class="box-header">
+			<div class="box-title">
+				<i class="fa icon-notebook"></i> ${text('用户下注表管理')}
+			</div>
+			<div class="box-tools pull-right" style="display: none">
+				<a href="#" class="btn btn-default" id="btnSearch" title="${text('查询')}"><i class="fa fa-filter"></i> ${text('查询')}</a>
+<!--				<% if(hasPermi('bkp:bkpUserbets:edit')){ %>-->
+<!--					<a href="${ctx}/bkp/bkpUserbets/form" class="btn btn-default btnTool" title="${text('新增用户下注表')}"><i class="fa fa-plus"></i> ${text('新增')}</a>-->
+<!--				<% } %>-->
+			</div>
+		</div>
+		<div class="box-body">
+			<#form:form id="searchForm" model="${bkpUserbets}" action="${ctx}/bkp/bkpUserbets/listData" method="post" class="form-inline hide"
+					data-page-no="${parameter.pageNo}" data-page-size="${parameter.pageSize}" data-order-by="${parameter.orderBy}">
+				<div class="form-group" style="display: none">
+					<label class="control-label">${text('联赛')}：</label>
+					<div class="control-inline">
+						<#form:input path="league" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group" style="display: none">
+					<label class="control-label">${text('比赛时间')}：</label>
+					<div class="control-inline">
+						<#form:input path="bdate" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group" style="display: none">
+					<label class="control-label">${text('次序')}：</label>
+					<div class="control-inline">
+						<#form:input path="num" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group" style="display: none">
+					<label class="control-label">${text('主队')}：</label>
+					<div class="control-inline">
+						<#form:input path="hometeam" maxlength="50" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group" style="display: none">
+					<label class="control-label">${text('客队')}：</label>
+					<div class="control-inline">
+						<#form:input path="awayteam" maxlength="50" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group" style="display: none">
+					<label class="control-label">${text('创建时间')}：</label>
+					<div class="control-inline">
+						<#form:input path="createtime" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group" style="display: none">
+					<label class="control-label">${text('玩法')}：</label>
+					<div class="control-inline">
+						<#form:input path="bettingmethod" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group" style="display: none">
+					<label class="control-label">${text('用户选择')}：</label>
+					<div class="control-inline">
+						<#form:input path="pick" maxlength="50" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group" style="display: none">
+					<label class="control-label">${text('此次比赛结果')}：</label>
+					<div class="control-inline">
+						<#form:input path="matchresults" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('投注金额')}：</label>
+					<div class="control-inline">
+						<#form:input path="betamount" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group" style="display: none">
+					<label class="control-label">${text('盈利预期')}：</label>
+					<div class="control-inline">
+						<#form:input path="earnings" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('倍数')}：</label>
+					<div class="control-inline">
+						<#form:input path="multiple" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group" style="display: none">
+					<label class="control-label">${text('当前批次亏损金额')}：</label>
+					<div class="control-inline">
+						<#form:input path="totalloss" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group" style="display: none">
+					<label class="control-label">${text('扣除亏损盈利比例')}：</label>
+					<div class="control-inline">
+						<#form:input path="profitratioafterdeductinglosses" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group" style="display: none">
+					<label class="control-label">${text('扣除亏损盈利金额')}：</label>
+					<div class="control-inline">
+						<#form:input path="profitafterdeductinglosses" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group" style="display: none">
+					<label class="control-label">${text('当期最大盈利比')}：</label>
+					<div class="control-inline">
+						<#form:input path="currentprofitratio" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group" style="display: none">
+					<label class="control-label">${text('当期最大应力金额')}：</label>
+					<div class="control-inline">
+						<#form:input path="currentprofitamount" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group" style="display: none">
+					<label class="control-label">${text('组合编号')}：</label>
+					<div class="control-inline">
+						<#form:input path="combination" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group" style="display: none">
+					<label class="control-label">${text('真实投注金额')}：</label>
+					<div class="control-inline">
+						<#form:input path="realamount" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group" style="display: none">
+					<label class="control-label">${text('固定盈利模式id')}：</label>
+					<div class="control-inline">
+						<#form:input path="gdmsid" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group" style="display: none">
+					<label class="control-label">${text('批次记录id')}：</label>
+					<div class="control-inline">
+						<#form:input path="pcjlid" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group" style="display: none">
+					<button type="submit" class="btn btn-primary btn-sm">${text('查询')}</button>
+					<button type="reset" class="btn btn-default btn-sm">${text('重置')}</button>
+				</div>
+			</#form:form>
+			<table id="dataGrid"></table>
+			<div id="dataGridPage"></div>
+		</div>
+	</div>
+</div>
+<% } %>
+<script>
+	function initColor(){
+		var lenth=$("#dataGrid tbody").children("tr");
+		for(var i=1;i<lenth.length;i++){
+			var test=lenth.eq(i).children("td").eq(7);//下注结果
+			var v1=lenth.eq(i).children("td").eq(14)[0];
+			var t=test[0];
+			var bb=v1.children[1];
+			var cc=t.textContent;
+			if (cc=="未中注"){
+				t.style.color="blue";
+				bb.style.display="none";
+		}else if (cc=="中注"){
+				t.style.color="red";
+				bb.style.display="none";
+		}else{
+				t.style.color="green";
+		}
+	}
+	}
+// 初始化DataGrid对象
+$('#dataGrid').dataGrid({
+	searchForm: $("#searchForm"),
+	columnModel: [
+		{header:'${text("模式名称")}',name:'gdmsmc',index:'a.gdmsmc', width:150, align:"center"},
+		{header:'${text("当前批次")}',name:'dqpc',index:'a.dqpc', width:150, align:"center"},
+		{header:'${text("当前批次序号")}',name:'dqpcxh',index:'a.dqpcxh', width:150, align:"center"},
+		{header:'${text("创建时间")}', name:'createtime', index:'a.createtime', width:150, align:"left"},
+		{header:'${text("玩法")}', name:'bettingmethod', index:'a.bettingmethod', width:150, align:"left"},
+		{header:'${text("用户选择")}', name:'pick', index:'a.pick', width:150, align:"left"},
+		{header:'${text("此次下注结果")}', name:'tzjg', index:'a.tzjg', width:150, align:"left"},
+		{header:'${text("投注金额")}', name:'betamount', index:'a.betamount', width:150, align:"center"},
+		{header:'${text("此组合盈亏金额(元)")}', name:'dqykje', index:'a.dqykje', width:150, align:"center"},
+		{header:'${text("此组合最高理论盈利金额(元)")}', name:'llzg', index:'a.llzg', width:150, align:"center"},
+		{header:'${text("批次天预计盈利金额(元)")}', name:'pctyj', index:'a.pctyj', width:150, align:"center"},
+		{header:'${text("批次天预计盈利比例")}', name:'pctylbl', index:'a.pctylbl', width:150, align:"center"},
+		{header:'${text("倍数")}', name:'multiple', index:'a.multiple', width:150, align:"center"},
+		{header:'${text("操作")}', name:'actions', width:120, sortable:false, title:false, formatter: function(val, obj, row, act){
+			var actions = [];
+			<% if(hasPermi('bkp:bkpUserbets:edit')){ %>
+				actions.push('<a href="${ctx}/bkp/bkpUserbets/form?id='+row.id+'" class="btnList" title="${text("编辑用户下注表")}"><i class="fa fa-pencil"></i></a>&nbsp;');
+					actions.push('<a href="${ctx}/bkp/bkpUserbets/delete?id='+row.id+'" class="btnList" title="${text("删除用户下注")}" data-confirm="${text("确认要删除下注信息吗？")}"><i class="fa fa-trash-o"></i></a>&nbsp;');
+			<% } %>
+			return actions.join('');
+		}}
+	],
+	// 加载成功后执行事件
+	ajaxSuccess: function(data){
+		initColor()
+	}
+});
+</script>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<link rel="stylesheet" href="${ctxStatic}/js/demo/major.css">
+<script src="${ctxStatic}/jquery/jquery-3.5.0.js"></script>
+<!-- import Vue before Element -->
+<script src="${ctxStatic}/js/demo/vue.js"></script>
+<!-- import JavaScript -->
+<script src="${ctxStatic}/js/demo/major.js"></script>
+<!-- import axios -->
+<script src="${ctxStatic}/js/demo/axios.js"></script>
+<!-- import 封装好的get,post的请求 -->
+<script src="${ctxStatic}/js/demo/httpRequest.js"></script>
+<head>
+    <meta charset="UTF-8">
+
+</head>
+<body>
+ <div id="app">
+     <el-form :inline="true" :model="formInline" class="demo-form-inline">
+         <el-select v-model="formInline.value" placeholder="请选择主客场">
+             <el-option
+                     v-for="item in options"
+                     :key="item.value"
+                     :label="item.label"
+                     :value="item.value">
+             </el-option>
+         </el-select>
+         <el-form-item >
+             <el-input type="number" :min="1" oninput="if(value<1)value=1" v-model="formInline.inputV1" placeholder="请输入赔率"></el-input>
+         </el-form-item>-
+         <el-form-item >
+             <el-input type="number" :min="1" oninput="if(value<1)value=1" v-model="formInline.inputV2" placeholder="请输入赔率"></el-input>
+         </el-form-item>
+         <el-button type="primary" @click="onSubmit">查询</el-button>
+     </el-form>
+     <el-dialog
+             title="查询结果"
+             :visible.sync="dialogVisible"
+             width="30%"
+             :before-close="handleClose">
+         <span>{{result}}</span> <br>
+         <span>比赛结果胜的场次为:{{h}}</span>
+         <span>比赛结果平的场次为:{{d}}</span>
+         <span>比赛结果负的场次为:{{a}}</span>
+         <span>此区域间比赛总数为:{{sum}}</span>
+         <span slot="footer" class="dialog-footer">
+    <el-button @click="dialogVisible = false">取 消</el-button>
+    <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+  </span>
+     </el-dialog>
+ </div>
+
+ <script type="text/javascript">
+
+     new Vue({
+         el: '#app',
+         data() {
+             return {
+                 sum:'',
+                 s:'',// 主客
+                 a:'',//负
+                 d:'',//平
+                 h:'',//胜
+                 result:'',
+                 options: [{
+                     value: '主',
+                     label: '主场'
+                 }, {
+                     value: '客',
+                     label: '客场'
+                 }],
+                 formInline: {
+                     value:'',
+                     inputV1:'',
+                     inputV2:'',
+                 },
+                 dialogVisible: false
+             }
+         },
+         created() {
+
+         },
+         methods :{
+             handleClose(done) {
+                 this.$confirm('确认关闭？')
+                     .then(_ => {
+                         done();
+                     })
+                     .catch(_ => {});
+             },
+             handleInput2(e){
+                 // 通过正则过滤小数点后两位
+                 e.target.value = (e.target.value.match(/^\d*(\.?\d{0,1})/g)[0]) || null
+             },
+             onSubmit() {
+                 if (parseFloat(this.formInline.inputV1)>=parseFloat(this.formInline.inputV2)){
+                     this.$message({
+                         message: '请规范选择',
+                         type: 'warning'
+                     });
+                     return
+                 }
+                 if (this.formInline.value==''){
+                     this.$message({
+                         message: '请选择主客场',
+                         type: 'warning'
+                     });
+                     return
+                 }
+                 var data={
+                     value:this.formInline.value,
+                     inputV1:this.formInline.inputV1,
+                     inputV2:this.formInline.inputV2
+                 }
+                 axiosPostRequst("${ctx}/bkp/bkpLbpl/analysisInterval",data)
+                     .then(res =>{
+                         console.log(res);
+                         this.sum=res.sum;
+                         this.s=this.formInline.value;
+                         this.a=res.a;
+                         this.h=res.h;
+                         this.d=res.d;
+                         this.result=res.result;
+                         this.dialogVisible=true;
+                     })
+             }
+         }
+     })
+
+ </script>
+
+</body>
+</html>

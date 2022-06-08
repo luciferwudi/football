@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jeesite.modules.bkp.dao.BkpCompetitionresultDao">
+	
+	<!-- 查询数据
+	<select id="findList" resultType="BkpCompetitionresult">
+		SELECT ${sqlMap.column.toSql()}
+		FROM ${sqlMap.table.toSql()}
+		<where>
+			${sqlMap.where.toSql()}
+		</where>
+		ORDER BY ${sqlMap.order.toSql()}
+	</select> -->
+
+    <delete id="deleteByCombination">
+        delete from bkp_competitionresult where combination is null
+    </delete>
+    <select id="selectCombination" resultType="java.lang.Object">
+     select Max(combination) from bkp_competitionresult where to_days(creatTime) = to_days(now()) AND howToPlay=#{howToPlay}
+    </select>
+    <select id="queryRecommendation" resultType="com.jeesite.modules.bkp.entity.BkpCompetitionresult">
+         select * from bkp_competitionresult where to_days(creatTime) = to_days(now()) AND howToPlay=#{howtoplay}
+         and combination=(select Max(combination) from bkp_competitionresult where to_days(creatTime) = to_days(now()) AND howToPlay=#{howtoplay})
+    </select>
+</mapper>

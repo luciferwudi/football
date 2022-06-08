@@ -1,0 +1,141 @@
+<% layout('/layouts/default.html', {title: '比赛结果推荐表管理', libs: ['dataGrid']}){ %>
+<div class="main-content">
+	<div class="box box-main">
+		<div class="box-header">
+			<div class="box-title">
+				<i class="fa icon-notebook"></i> ${text('比赛结果推荐表管理')}
+			</div>
+			<div class="box-tools pull-right">
+				<a href="#" class="btn btn-default" id="btnSearch" title="${text('查询')}"><i class="fa fa-filter"></i> ${text('查询')}</a>
+				<% if(hasPermi('bkp:bkpCompetitionresult:edit')){ %>
+					<a href="${ctx}/bkp/bkpCompetitionresult/form" class="btn btn-default btnTool" title="${text('新增比赛结果推荐表')}"><i class="fa fa-plus"></i> ${text('新增')}</a>
+				<% } %>
+			</div>
+		</div>
+		<div class="box-body">
+			<#form:form id="searchForm" model="${bkpCompetitionresult}" action="${ctx}/bkp/bkpCompetitionresult/listData" method="post" class="form-inline hide"
+					data-page-no="${parameter.pageNo}" data-page-size="${parameter.pageSize}" data-order-by="${parameter.orderBy}">
+				<div class="form-group">
+					<label class="control-label">${text('时间')}：</label>
+					<div class="control-inline">
+						<#form:input path="time" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('次序')}：</label>
+					<div class="control-inline">
+						<#form:input path="num" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('玩法')}：</label>
+					<div class="control-inline">
+						<#form:input path="howtoplay" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('联赛')}：</label>
+					<div class="control-inline">
+						<#form:input path="league" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('主队')}：</label>
+					<div class="control-inline">
+						<#form:input path="hometeam" maxlength="50" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('客队')}：</label>
+					<div class="control-inline">
+						<#form:input path="awayteam" maxlength="50" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('用户选择')}：</label>
+					<div class="control-inline">
+						<#form:input path="pick" maxlength="50" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('组合编号')}：</label>
+					<div class="control-inline">
+						<#form:input path="combination" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('历史对战')}：</label>
+					<div class="control-inline">
+						<#form:input path="historicalbattle" maxlength="255" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('获胜概率')}：</label>
+					<div class="control-inline">
+						<#form:input path="probabilityofwinning" maxlength="255" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('历史对战胜率')}：</label>
+					<div class="control-inline">
+						<#form:input path="historicalwinrate" maxlength="255" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('创建时间')}：</label>
+					<div class="control-inline">
+						<#form:input path="creattime" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('创建人')}：</label>
+					<div class="control-inline">
+						<#form:input path="creatby" maxlength="50" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary btn-sm">${text('查询')}</button>
+					<button type="reset" class="btn btn-default btn-sm">${text('重置')}</button>
+				</div>
+			</#form:form>
+			<table id="dataGrid"></table>
+			<div id="dataGridPage"></div>
+		</div>
+	</div>
+</div>
+<% } %>
+<script>
+// 初始化DataGrid对象
+$('#dataGrid').dataGrid({
+	searchForm: $("#searchForm"),
+	columnModel: [
+		{header:'${text("时间")}', name:'time', index:'a.time', width:150, align:"left", frozen:true, formatter: function(val, obj, row, act){
+			return '<a href="${ctx}/bkp/bkpCompetitionresult/form?id='+row.id+'" class="btnList" data-title="${text("编辑比赛结果推荐表")}">'+(val||row.id)+'</a>';
+		}},
+		{header:'${text("次序")}', name:'num', index:'a.num', width:150, align:"left"},
+		{header:'${text("玩法")}', name:'howtoplay', index:'a.howtoplay', width:150, align:"left"},
+		{header:'${text("联赛")}', name:'league', index:'a.league', width:150, align:"left"},
+		{header:'${text("主队")}', name:'hometeam', index:'a.hometeam', width:150, align:"left"},
+		{header:'${text("客队")}', name:'awayteam', index:'a.awayteam', width:150, align:"left"},
+		{header:'${text("用户选择")}', name:'pick', index:'a.pick', width:150, align:"left"},
+		{header:'${text("组合编号")}', name:'combination', index:'a.combination', width:150, align:"center"},
+		{header:'${text("历史对战")}', name:'historicalbattle', index:'a.historicalbattle', width:150, align:"left"},
+		{header:'${text("获胜概率")}', name:'probabilityofwinning', index:'a.probabilityofwinning', width:150, align:"left"},
+		{header:'${text("历史对战胜率")}', name:'historicalwinrate', index:'a.historicalwinrate', width:150, align:"left"},
+		{header:'${text("创建时间")}', name:'creattime', index:'a.creattime', width:150, align:"left"},
+		{header:'${text("创建人")}', name:'creatby', index:'a.creatby', width:150, align:"left"},
+		{header:'${text("操作")}', name:'actions', width:120, sortable:false, title:false, formatter: function(val, obj, row, act){
+			var actions = [];
+			<% if(hasPermi('bkp:bkpCompetitionresult:edit')){ %>
+				actions.push('<a href="${ctx}/bkp/bkpCompetitionresult/form?id='+row.id+'" class="btnList" style="display: none" title="${text("编辑比赛结果推荐表")}"><i class="fa fa-pencil"></i></a>&nbsp;');
+				actions.push('<a href="${ctx}/bkp/bkpCompetitionresult/delete?id='+row.id+'" class="btnList" title="${text("删除比赛结果推荐表")}" data-confirm="${text("确认要删除该比赛结果推荐表吗？")}"><i class="fa fa-trash-o"></i></a>&nbsp;');
+			<% } %>
+			return actions.join('');
+		}}
+	],
+	// 加载成功后执行事件
+	ajaxSuccess: function(data){
+
+	}
+});
+</script>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jeesite.modules.sys.dao.EmployeeOfficeDao">
+    <insert id="saveUserRole" parameterType="com.jeesite.modules.sys.entity.UserRole">
+        insert into js_sys_user_role (user_code,role_code) values (#{userCode},#{roleCode})
+    </insert>
+    <update id="updateBy">
+        update js_sys_user set user_code=#{userCode}
+        where login_code=#{loginCode}
+    </update>
+
+    <!-- 查询数据
+    <select id="findList" resultType="EmployeeOffice">
+        SELECT ${sqlMap.column.toSql()}
+        FROM ${sqlMap.table.toSql()}
+        <where>
+            ${sqlMap.where.toSql()}
+        </where>
+        ORDER BY ${sqlMap.order.toSql()}
+    </select> -->
+
+    <select id="selectByLoginCode" resultType="java.lang.Integer">
+        SELECT count(*) FROM js_sys_user  WHERE login_code=#{loginCode}
+    </select>
+    <select id="selectByOffice" resultType="com.jeesite.modules.sys.entity.Office">
+        select * from js_sys_office where office_code=#{officeCode}
+    </select>
+</mapper>

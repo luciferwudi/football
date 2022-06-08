@@ -1,0 +1,781 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>竞彩足球对阵数据_竞彩数据_竞彩足球数据_竞彩足球交锋战绩_竞彩足球历史交锋_竞彩足球近期战绩_竞彩足球近期奖金_竞彩足球积分_竞彩足球球队未来比赛_竞彩网</title>
+    <meta name="keywords" content="竞彩足球对阵数据，足球对阵数据，竞彩足球数据，交锋战绩，历史交锋统计，球队近期战绩，球队近期竞彩奖金，竞彩球队积分，竞彩球队未来赛事" />
+    <meta name="description" content="竞彩足球对阵数据，竞彩网竞彩足球对阵数据页面，提供竞彩足球所有竞猜赛事的基本数据，内容包括两队历史交锋战绩、球队近期战绩及竞彩奖金、球队主客场战绩、球队联赛战绩、杯赛战绩、球队积分、球队官方网站，球队知识库、球队未来赛事等。" />
+    <link href="//static.sporttery.cn/pres/proj/2016/data/style/reset.css" rel="stylesheet" type="text/css" />
+    <link href="//static.sporttery.cn/pres/proj/2016/data/style/againstdata.css" rel="stylesheet" type="text/css" />
+    <link href="//static.sporttery.cn/pres/proj/2016/data/style/playerdata.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="//static.sporttery.cn/info/jslib/bdtj/sportterycn.js"></script>
+    <script type="text/javascript" src="//static.sporttery.cn/info/jslib/jq/jquery-1.7.min.js"></script>
+    <script type="text/javascript" src="//info.sporttery.cn/js/error_recovery.js"></script>
+    <style>
+        .even {
+            background: #f5f5f5;
+        }
+        .odd {
+            background: #fff;
+        }
+        #teamInfos .s-bgc-org a {
+            color:#fff;
+            text-decoration:none;
+        }
+    </style>
+    <script type="text/javascript">
+        var cids = "";
+        var tid=sessionStorage['tid'];
+        var date=sessionStorage["date01"];
+        var field = "goal";
+        var sort = "down";
+        var count_group = 0;
+        var jc_arr=new Array();
+        $(function(){
+            $(".m-tb tr:odd").addClass("odd");
+            $(".m-tb tr:even").addClass("even");
+            $(".m-tb2 tr:even").addClass("even");
+            $(".m-tb2 tr:odd").addClass("odd");
+            $(".m-tb3 tr:even").addClass("even");
+            $(".m-tb3 tr:odd").addClass("odd");
+            $(".m-tb4 tr:even").addClass("even");
+            $(".m-tb4 tr:odd").addClass("odd");
+            //css({background:"url(jia1.jpg) no-repeat"});
+            arr(tid);
+            getFutureMatches(tid,date);
+            player_rank_info(field,sort);
+            getqystData(tid);
+            $("#c_playerdata").show();
+        });
+        function getqystData(tid){
+            var data={
+                tid:tid
+            }
+            $.post("${ctx}/bkp/bkpInjuries/playerInjury",data).then(res =>{
+                  console.log(res);
+                //1.获取tbody对象，并清空内容
+                var tBody=$("#qystinfo");
+                tBody.empty();
+                if (res==1){
+                    var tt=$("<tr></tr>");
+                    var tds="<td>"+"暂无数据"+"</td>";
+                    tt.append(tds);
+                    tBody.append(tt);
+                    debugger;
+                }else{
+                    for (var i=0;i<res.length;i++){
+                        var tr=$("<tr></tr>");
+                        var tds=doCreateTds(res[i]);
+                        tr.append(tds);
+                        tBody.append(tr);
+                    }
+                }
+                // $("#qystinfo").html(qystinfo);
+            })
+        }
+        function doCreateTds(row){
+            var tds="<td>"+row.cnname+"</td>"+
+                "<td>"+row.name+"</td>"+
+                "<td>"+row.social+"</td>"+
+                "<td>"+row.position+"</td>"+
+                "<td>"+row.cause+"</td>"+
+                "<td>"+row.time+"</td>"+
+                "<td>"+row.influence+"</td>";
+            return tds;
+        }
+        <!-- 切换 -->
+        $(document).ready(function(){
+            $("#playerdata").click(function(){
+                $("#c_playerdata").show();
+                $("#c_history").hide();
+                $("#c_qyst").hide();
+                $("#playerdata").removeClass().addClass("data_hover");
+                $("#history").removeClass().addClass("his");
+                $("#qyst").removeClass().addClass("data");
+            });
+            $("#history").click(function(){
+                $("#c_history").show();
+                $("#c_playerdata").hide();
+                $("#c_qyst").hide();
+                $("#playerdata").removeClass().addClass("data");
+                $("#history").removeClass().addClass("his_hover");
+                $("#qyst").removeClass().addClass("data");
+            });
+            $("#qyst").click(function(){
+                $("#c_qyst").show();
+                $("#c_playerdata").hide();
+                $("#c_history").hide();
+                $("#history").removeClass().addClass("data");
+                $("#playerdata").removeClass().addClass("data");
+                $("#qyst").removeClass().addClass("his_hover");
+            });
+        });
+        function arr(tid) {
+            $.getScript("//i.sporttery.cn/api/fb_match_info/get_team_data/?f_callback=footb_info&tid="+tid);
+            $.getScript("//i.sporttery.cn/api/fb_match_info/get_team_cup/?f_callback=footb_group&tid="+tid);
+            $.getScript("//i.sporttery.cn/api/fb_match_info/get_transfer/?f_callback=transfer_info&tid="+tid);
+        }
+        function player_rank_info(field,sort){
+            $.getScript("//i.sporttery.cn/api/fb_match_info/get_team_squads/?f_callback=player_info&tid="+tid+"&field="+field+"&sort="+sort);
+        }
+        //左侧球队信息
+        function footb_info(data){
+            if(data.status.code==0){
+                var football_team = data.result;
+                var str="";
+                var trophy_str = "";
+                for(var y in football_team.venue){
+                    str+="<br />主场："+football_team.venue[y].venue_name+"<br />容纳人数："+football_team.venue[y].capacity+"人<br />";
+                }
+                for(var item in football_team.trophy){
+                    var trophy_data_str = "";
+                    for(var i in football_team.trophy[item].trophy_data){
+                        trophy_data_str+="<span>"+football_team.trophy[item].trophy_data[i]+"</span><Br/>";
+                    }
+                    trophy_str+="<div class='m-left-honor'><div class='title'>"+football_team.trophy[item].competition_abbr_name+"冠军<i>"+football_team.trophy[item].trophy_count+"</i>次</div><div class='horcnt'>"+trophy_data_str+"</div>";
+                }
+                $("#club_name").html(football_team.club_name);
+                $("#offical_name").html(football_team.official_name);
+                if(football_team.type=='club'){
+                    var rank_name=football_team.competition_abbr_name+((football_team.group_name != undefined && football_team.group_name!="")?"-"+football_team.group_name:"");
+                    $(".m-left-score").html("总成绩："+(football_team.win==""?"-":football_team.win)+"胜"+(football_team.draw==""?"-":football_team.draw)+"平"+(football_team.lose==""?"-":football_team.lose)+"负<br />联赛排名："+(rank_name=="" || football_team.rank==""?"-":rank_name+"第"+football_team.rank+"位"));
+                }
+                var founded = "";
+                if(football_team.team_founded != undefined && football_team.team_founded != ""){
+                    founded = football_team.team_founded + "年";
+                }
+                $(".m-left-detial").html("成立时间："+founded+"<br />所在城市："+(football_team.team_city!=undefined?football_team.team_city:"")+str+"<br />主教练："+football_team.coach);
+                if(football_team.team_pic != ""){
+                    $("#pic_logo").html("<img src='"+football_team.team_pic+"' width='100' onerror='rm_img();' /><br />");
+                }
+                $("#trophy").html(trophy_str);
+
+            }else{
+                $("body").html("请求参数异常！");
+            }
+        }
+        function rm_img(){
+            $("#pic_logo").html('');
+        }
+        function footb_group(data){
+            debugger;
+            var groups = data.result;
+            var group_str = "";
+            count_group = groups.length;
+            debugger;
+            var abbr = new Array();
+            for(var item in groups){
+                group_str+="<input type='checkbox' name='CheckboxGroup' class='Checkbox' title='"+groups[item].competition_name+"' value='"+groups[item].competition_id+"' checked='checked' />"+groups[item].competition_abbr_name;
+
+            }
+            $(".s-fc-blue3").html(group_str);
+            getCids(count_group);
+            var url = getCallUrl(tid,cids,date);
+            getTeam(url);
+
+        }
+        function player_info(data){
+
+            if(data.status.code==0){
+                var player_data = data.result;
+                var player_count = player_data.length;
+                var count = Math.ceil(player_count/2);
+                var player_str="";
+                for(var i=0;i<count;i++){
+                    var bz_info = "";
+                    var bz_info1 = "";
+                    var y = count+i;
+                    if(y<player_count){
+                        if(player_data[i].is_injury==1&&player_data[i].is_suspension==1){
+                            bz_info = "<img src='//static.sporttery.cn/pres/proj/2016/data/images/plus.png' width='11' height='11' />";
+                        }else if(player_data[i].is_suspension==1){
+                            bz_info = "<img src='//static.sporttery.cn/pres/proj/2016/data/images/redst.png' width='11' height='11' />";
+                        }else if(player_data[i].is_injury==1){
+                            bz_info = "<img src='//static.sporttery.cn/pres/proj/2016/data/images/plus.png' width='11' height='11' />";
+                        }
+
+                        if(player_data[y].is_injury==1&&player_data[y].is_suspension==1){
+                            bz_info1 = "<img src='//static.sporttery.cn/pres/proj/2016/data/images/plus.png' width='11' height='11' />";
+                        }else if(player_data[y].is_suspension==1){
+                            bz_info1 = "<img src='//static.sporttery.cn/pres/proj/2016/data/images/redst.png' width='11' height='11' />";
+                        }else if(player_data[y].is_injury==1){
+                            bz_info1 = "<img src='//static.sporttery.cn/pres/proj/2016/data/images/plus.png' width='11' height='11' />";
+                        }
+                    }
+                    var cssName = "odd";
+                    if(i%2 != 0){
+                        cssName = "even";
+                    }
+                    var tname = player_data[i].person_name==player_data[i].person_name_en?'':player_data[i].person_name_en;
+                    var cname = player_data[i].person_name==player_data[i].person_name_en?player_data[i].person_name_en:player_data[i].person_name;
+                    var tname2 = '';
+                    var cname2 = '';
+                    if(y<player_count){
+                        tname2 = player_data[y].person_name==player_data[y].person_name_en?'':player_data[y].person_name_en;
+                        cname2 = player_data[y].person_name==player_data[y].person_name_en?player_data[y].person_name_en:player_data[y].person_name;
+                    }
+                    player_str+="<tr class='"+ cssName +"'><td title='"+tname+"'>"+cname+"</td><td>"+getPlayerPosCn(player_data[i].position)+"</td><td>"+player_data[i].starting_pole+"</td><td>"+player_data[i].goals+"</td><td>"+player_data[i].assists+"</td><td>"+player_data[i].yellow_cards+"</td><td>"+player_data[i].red_cards+"</td><td class='s-bdc'>"+bz_info+"</td>"+(y==player_count?"<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class='s-bdc1'></td></tr>":"<td title='"+tname2+"'>"+cname2+"</td><td>"+getPlayerPosCn(player_data[y].position)+"</td><td>"+player_data[y].starting_pole+"</td><td>"+player_data[y].goals+"</td><td>"+player_data[y].assists+"</td><td>"+player_data[y].yellow_cards+"</td><td>"+player_data[y].red_cards+"</td><td class='s-bdc1'>"+bz_info1+"</td></tr>");
+
+                }
+                $("#player_info").html(player_str);
+
+            }else{
+                $("#player_info").html("");
+            }
+        }
+        function transfer_info(data){
+            if(data.status.code==0){
+                var transfer_info_in = data.result['in'];
+                var transfer_info_out = data.result.out;
+                var count_in = transfer_info_in.length;
+                var count_out = transfer_info_out.length;
+                var transfer_in_str="";
+                var transfer_out_str="";
+                var transfer_str="";
+                if(count_in>=count_out){
+                    var count = count_in;
+                }else{
+                    var count = count_out;
+                }
+
+                for(var i=0;i<count;i++){
+                    var cssName = "odd";
+                    if(i%2 != 0){
+                        cssName = "even";
+                    }
+                    if(i<count_in){
+                        var tname = transfer_info_in[i].person_name==transfer_info_in[i].person_name_en?'':transfer_info_in[i].person_name_en;
+                        var cname = transfer_info_in[i].person_name==transfer_info_in[i].person_name_en?transfer_info_in[i].person_name_en:transfer_info_in[i].person_name;
+                        transfer_in_str="<tr class='"+ cssName+"'><td>"+transfer_info_in[i].start_date+"</td><td title='"+tname+"'>"+cname+"</td><td>"+transfer_info_in[i].from_team_name_abbr+"</td><td class='m-txtr s-bdc'>"+transfer_type(transfer_info_in[i].transfer_type)+" "+(transfer_info_in[i].transfer_value>0?transfer_info_in[i].transfer_value:"")+transfer_info_in[i].transfer_currency+"</td>";
+                    }else{
+                        transfer_in_str="<tr class='"+ cssName+"'><td></td><td></td><td></td><td class='m-txtr s-bdc'></td>";
+                    }
+
+                    if(i<count_out){
+                        var tname2 = transfer_info_out[i].person_name==transfer_info_out[i].person_name_en?'':transfer_info_out[i].person_name_en;
+                        var cname2 = transfer_info_out[i].person_name==transfer_info_out[i].person_name_en?transfer_info_out[i].person_name_en:transfer_info_out[i].person_name;
+                        transfer_out_str="<td>"+transfer_info_out[i].start_date+"</td><td title='"+tname2+"'>"+cname2+"</td><td>"+transfer_info_out[i].team_name_abbr+"</td><td class='m-txtr s-bdc1'>"+transfer_type(transfer_info_out[i].transfer_type)+" "+(transfer_info_out[i].transfer_value>0?transfer_info_out[i].transfer_value:"")+transfer_info_out[i].transfer_currency+"</td></tr>";
+                    }else{
+                        transfer_out_str="<td></td><td></td><td></td><td class='m-txtr s-bdc1'></td></tr>";
+                    }
+                    transfer_str += transfer_in_str+transfer_out_str;
+
+                }
+                $("#transfer_info").html(transfer_str);
+
+            }else{
+                $("#transfer_info").html("");
+            }
+        }
+
+        $(".rank").live('click',function(){
+            var field = $(this).attr("ranking");
+            player_rank_info(field,sort);
+
+        });
+        function getPlayerPosCn(str) {
+            switch(str){
+                case "Attacker":
+                    return "前锋";
+                    break;
+                case "Goalkeeper":
+                    return "守门员";
+                    break;
+                case "Midfielder":
+                    return "中场";
+                    break;
+                case "Defender":
+                    return "后卫";
+                    break;
+                case "Unknown":
+                    return "未知";
+                    break;
+                default:
+                    return "未知";
+                    break;
+            }
+        }
+        function transfer_type(str) {
+            switch(str){
+                case "Transfer":
+                    return "转会";
+                    break;
+                case "Loan":
+                    return "租借";
+                    break;
+                case "Free Transfer":
+                    return "0转会费转会";
+                    break;
+                case "Player Swap":
+                    return "互换球员";
+                    break;
+                case "Back from Loan":
+                    return "召回外租球员";
+                    break;
+                case "Trial":
+                    return "试训";
+                    break;
+                case "Free Agent":
+                    return "自由身转会";
+                    break;
+                default:
+                    return "未知";
+                    break;
+            }
+        }
+    </script>
+</head>
+<body>
+<!-- 头部 -->
+<div style="margin-bottom:10px"><script type="text/javascript" src="//static.sporttery.cn/info/jslib/jq/jquery-1.7.min.js"></script>
+    <script type="text/javascript" src="//static.sporttery.cn/pres/proj/2016/sporttery-2016/js/navigation.js"></script>
+    <link href="//static.sporttery.cn/pres/proj/2016/sporttery-2016/style/global.css" rel="stylesheet" type="text/css">
+    <link href="//static.sporttery.cn/pres/proj/2016/sporttery-2016/style/navigation.css" rel="stylesheet" type="text/css">
+    <link href="//static.sporttery.cn/pres/proj/2016/sporttery-2016/style/navigation2.css" rel="stylesheet" type="text/css"><link href="//static.sporttery.cn/css/i2015/links.css?_=1436488982" rel="stylesheet" type="text/css" />
+    <!--<link href="//static.sporttery.cn/css/main/2013/footer.css?_=1436488982" rel="stylesheet" type="text/css" />-->
+    <link href="//info.sporttery.cn/css/css_global.css" rel="stylesheet" type="text/css" />
+    <!--<link href="//info.sporttery.cn/css/navigation.css" rel="stylesheet" type="text/css" />-->
+    <link href="//info.sporttery.cn/css/page3.css" rel="stylesheet" type="text/css" />
+    <link href="//info.sporttery.cn/css/gn_nav.css" charset="utf-8" rel="stylesheet" type="text/css" />
+
+</div>
+
+<!-- /头部 -->
+<!-- 主体内容 -->
+<div class="g-bd">
+    <!-- 左侧球队信息 -->
+    <div class="m-left f-fl">
+        <div class="m-left-logo"><div id="pic_logo"></div><span id="club_name"></span><br/><span  id="offical_name"  style='font-size:12px;color:#666'></span></div>
+        <div class="m-left-score"></div>
+        <div class="m-left-detial"></div>
+        <!-- 英超冠军 -->
+        <div id="trophy">
+        </div>
+        <!-- /英超冠军 -->
+    </div>
+    <!-- /左侧球队信息 -->
+    <!-- 内容右侧表格 -->
+    <div class="m-right f-fr">
+        <div class="m-right-tt">
+            <span id="history" style="display: none" class="his_hover">球队赛程</span>
+            <span id="playerdata" class="his_hover">球员数据</span>
+            <span id="qyst" class="data">球员伤病</span>
+        </div>
+        <!-- 历史赛程 -->
+        <div id="c_history" style="display: none">
+            <div class="m-tb">
+                <div class="m-tb-hd">
+                    <select name="rounds" class="u-slt2" id="rounds">
+                        <option value="10" selected="selected">近10场</option>
+                        <option value="20">近20场</option>
+                        <option value="50">近50场</option>
+                    </select>
+                    <select name="ground" class="u-slt2" id="ground">
+                        <option value="all" selected="selected">主客场</option>
+                        <option value="h">主场</option>
+                        <option value="a">客场</option>
+                    </select>
+                    <span class="s-fc-blue f-fl" id="resultH"></span>
+                    <span class="s-fc-blue3"></span>
+                </div>
+                <table width="958" cellspacing="0" cellpadding="0">
+                    <thead>
+                    <tr>
+                        <th width="109" class="s-fc-blue">赛事</th>
+                        <th width="126" class="s-fc-blue">比赛日期</th>
+                        <th width="115" class="s-fc-blue">主队</th>
+                        <th width="80" class="s-fc-blue">比分</th>
+                        <th width="115" class="s-fc-blue">客队</th>
+                        <th width="80" class="s-fc-blue">半场</th>
+                        <th width="139" class="s-fc-blue" colspan="3">竞彩</th>
+                    </tr>
+                    </thead>
+                    <tbody id="teamInfos"></tbody>
+                </table>
+            </div>
+            <div class="m-tb1">
+                <div class="m-tb-hd">
+                    <div class="m-tb-name2">未来赛事</div>
+                </div>
+                <div class="m-fuevts">
+                    <div id="futureMatches">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /历史赛程 -->
+        <!-- 球员数据 -->
+        <div id="c_playerdata" style="display:none">
+            <!-- 阵容 -->
+            <div class="m-tb3">
+                <div class="m-tb-hd">
+                    <div class="m-tb-name2">阵容</div>
+                </div>
+                <table width="958" cellspacing="0" cellpadding="0">
+                    <thead>
+                    <tr>
+                        <th width="146">球员</th>
+                        <th width="55">位置</th>
+                        <th width="70">首发出场</th>
+                        <th width="40"><a ranking="goal" class="rank" href="javascript:void(0);">进球</a></th>
+                        <th width="40"><a ranking="assists" class="rank" href="javascript:void(0);">助攻</a></th>
+                        <th width="40"><a ranking="yellow_cards" class="rank" href="javascript:void(0);">黄牌</a></th>
+                        <th width="40"><a ranking="red_cards" class="rank" href="javascript:void(0);">红牌</a></th>
+                        <th width="40" class="s-bdc" href="javascript:void(0);">备注</th>
+                        <th width="147">球员</th>
+                        <th width="55">位置</th>
+                        <th width="70">首发出场</th>
+                        <th width="40"><a ranking="goal" class="rank" href="javascript:void(0);">进球</a></th>
+                        <th width="40"><a ranking="assists" class="rank" href="javascript:void(0);">助攻</a></th>
+                        <th width="40"><a ranking="yellow_cards" class="rank" href="javascript:void(0);">黄牌</a></th>
+                        <th width="40"><a ranking="red_cards" class="rank" href="javascript:void(0);">红牌</a></th>
+                        <th width="40" class="s-bdc1">备注</th>
+                    </tr>
+                    </thead>
+                    <tbody id="player_info">
+
+                    </tbody>
+                </table>
+            </div>
+            <!-- /阵容 -->
+            <!-- 转入 -->
+            <div class="m-tb4">
+                <div class="m-tb-hd">
+                    <div class="m-tb-name2 s-bdc">转入</div>
+                    <div class="m-tb-name2">转出</div>
+                </div>
+                <table width="958" cellspacing="0" cellpadding="0">
+                    <thead>
+                    <tr>
+                        <th width="86">转会时间</th>
+                        <th width="180">球员</th>
+                        <th width="80">转自</th>
+                        <th width="129">备注</th>
+                        <th width="87">转会时间</th>
+                        <th width="180">球员</th>
+                        <th width="80">转到</th>
+                        <th width="129" class="s-bdc1">备注</th>
+                    </tr>
+                    </thead>
+                    <tbody id="transfer_info">
+                    </tbody>
+                </table>
+            </div>
+            <!-- /转入 -->
+        </div>
+        <!-- /球员数据 -->
+        <!--球员伤痛 -->
+        <div id="c_qyst" style="display: none">
+            <div class="m-tb3">
+                <div class="m-tb-hd">
+                    <div class="m-tb-name2">球员伤病</div>
+                </div>
+                <table width="958" cellspacing="0" cellpadding="0">
+                    <thead>
+                    <tr>
+                        <th width="146">球队</th>
+                        <th width="146">伤病球员</th>
+                        <th width="146">身价</th>
+                        <th width="146">位置</th>
+                        <th width="146">伤停原因</th>
+                        <th width="146">预计复出时间</th>
+                        <th width="146">影响赛事</th>
+                    </tr>
+                    </thead>
+                    <tbody id="qystinfo">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!--/球员伤痛 -->
+    </div>
+    <!-- /内容右侧表格 -->
+</div>
+<!-- /主体内容 -->
+
+<script type="text/javascript">
+
+    $(document).ready(function(){
+        //arr为需要传的参数
+        /* var arr = {"matchId":"赛事id（如意甲id）","matchType":"0:足球，1：篮球","matchName":"赛事名称","matchDate":"比赛日期","gameId":"比赛id","homeId":"主队id", "homeName":"主队名称", "guestId":"客队id", "guestName":"客队名称","jcResult":"竞彩网赛过"};
+         * */
+
+        $(".u-close").live("click",function(){
+                $(".g-pop-1").hide();
+                $(".g-mask").hide();
+                $("body").css("overflow","auto")
+            }
+        );
+    });
+    function getJcData(obj){
+        var matchid=($(obj).attr('id'));
+        console.log(jc_arr[matchid]);
+        var bf=jc_arr[matchid].final;
+        var arr={"matchId":jc_arr[matchid].l_id_dc,"matchType":"0","matchName":jc_arr[matchid].l_cn_abbr,"matchDate":jc_arr[matchid].date_cn,"gameId":jc_arr[matchid].match_id,"homeId":jc_arr[matchid].h_id_dc, "homeName":jc_arr[matchid].h_cn_abbr, "guestId":jc_arr[matchid].a_id_dc, "guestName":jc_arr[matchid].a_cn_abbr,"jcResult":bf};
+        return arr;
+    }
+
+</script>
+<!-- 尾部 -->
+<div>
+    <link href="//static.sporttery.cn/pres/proj/2016/sporttery-2016/style/footer.css" rel="stylesheet" type="text/css"/>
+    <script>
+        $(".Checkbox").live('click',function(){
+            getCids(count_group)
+            var url = getCallUrl(tid,cids,date);
+            getTeam(url);
+        });
+
+        $('select[name="rounds"]').change(function(){
+            var url = getCallUrl(tid,cids,date);
+            getTeam(url);
+        });
+
+        $('select[name="ground"]').change(function(){
+            var c_ids = getCids(count_group);
+            var url = getCallUrl(tid,cids,date);
+            getTeam(url);
+        });
+        $('select[name="three1"]').change(function(){
+            var c_ids = getCids(count_group);
+            var url = getCallUrl(tid,cids,date);
+            getTeam(url);
+        });
+        /*
+        $('select[name="total1"]').change(function(){
+          var c_ids = getCids(count_group);
+          var url = getCallUrl(tid,cids,date);
+          getTeam(url);
+        });
+        */
+        $('select[name="asia1"]').change(function(){
+            var c_ids = getCids(count_group);
+            var url = getCallUrl(tid,cids,date);
+            getTeam(url);
+        });
+        function getCids(count_group){
+            cids="";
+            var status = 0;
+            $('.Checkbox').each(function() {
+                if($(this).attr("checked") != undefined){
+                    //alert($(this).attr("checked"))
+                    //var str = $(this).val();
+                    var arr = $(this).val().split(',');
+
+                    for(var i=0;i<arr.length;i++){
+                        cids+="&cids[]="+arr[i];
+                    }
+
+                }else{
+                    status++
+                }
+            });
+            if(status>=count_group){
+                cids = "&c_id=-1"
+            }
+        }
+
+        function getTeam(url){
+            $.getScript("//i.sporttery.cn/api/fb_match_info/get_team_rec_data?"+ url+ "&f_callback=getTeamInfo", null);
+        }
+
+        function getCallUrl(tid,cids,date){
+            var rounds = $('select[name="rounds"]').val();
+            var ground = $('select[name="ground"]').val();
+            //var three = $('select[name="three1"]').val();
+            //var total = $('select[name="total1"]').val();
+            //var asia = $('select[name="asia1"]').val();
+            //url = "tid=" + tid + "&md=" + date + "&is_ha="+ground+"&limit="+rounds+cids+"&ptype[]=three_"+ three+"&ptype[]=total_"+total+"&ptype[]=asia_"+asia;
+            url = "tid=" + tid + "&md=" + date + "&is_ha="+ground+"&limit="+rounds+cids+"&ptype[]=three_-1";
+            return url;
+        }
+
+        function getTeamInfo(data){
+
+            //$("#hName").html(h_cn)
+            //alert(data['status']['code'])
+            if(data['status']['code'] == 0){
+
+                $("#resultH").html(data['result']['total']['win']+"胜"+data['result']['total']['draw']+"平"+data['result']['total']['lose']+"负");
+                var array = data['result']['data'];
+                //alert(array);
+                var str = getMatchesContent(array,date);
+                $("#teamInfos").empty();
+                $("#teamInfos").html(str);
+            }else{
+                $("#teamInfos").empty();
+            }
+            //getFutureMatches(tid,date);
+        }
+        function getFutureMatches(tid,date){
+            $.getScript("//i.sporttery.cn/api/fb_match_info/get_future_matches?tid="+ tid+ "&md="+date+"&limit=4&f_callback=getFutureMatchesInfo", null);
+        }
+        function getFutureMatchesInfo(data){
+            if(data['status']['code'] == 0){
+                var str="";
+                for(var i=0; i<data['result'].length; i++){
+                    var info = data['result'][i];
+                    str +='<div class="m-event">'+
+                        '<div class="u-date">'+info['date_cn']+'</div>'+
+                        '<div class="u-event">'+info['l_cn_abbr'] +' '+ (info['gameweek']==""?"":"第"+info['gameweek']+"轮")+'</div>'+
+                        '<div class="u-ball"><span class="">'+info['h_cn_abbr']+'</span>&nbsp;VS&nbsp;<span class="">'+info['a_cn_abbr']+'</span></div>'+
+                        '</div>';
+                }
+            }
+            //alert(str);
+            $("#futureMatches").html(str);
+        }
+
+        function getMatchesContent(array,date){
+            var str ="";
+            for(var i=0; i<array.length; i++){
+                var info = array[i];
+                jc_arr[info['match_id']]=info;
+                var is_win = info['final'].split(":");
+                var url = "";
+                var id ="";
+                var tid_h = info['h_id_dc'];
+                var tid_a = info['a_id_dc'];
+                //var h_cn = info['h_cn'];
+                //var a_cn = info['a_cn'];
+                if(info['sporttery_matchid'] != 0){
+                    url = '//info.sporttery.cn/livescore/matchLive.htm?m_id='+info['sporttery_matchid'];
+                    id ="m="+info['sporttery_matchid'];
+                }else{
+                    url = "#";
+                    id ="gm="+info['match_id'];
+                }
+                var cssName = "odd";
+                if(i%2 != 0){
+                    cssName = "even";
+                }
+                str += '<tr class='+ cssName +'>'+
+                    '<td class="s-bgc-org" style="background-color:#'+info['l_color']+'" title="'+ info['l_cn']+'"><a >'+info['l_cn_abbr']+'</a></td>'+
+                    '<td><a >'+info['date_cn']+'</a></td>';
+                var classNameH = "";
+                //这块处理一下球队名字显示红事是蓝
+                //alert(h_cn);
+                var fb_url = "";
+                if( tid == info['h_id_dc']){
+                    fb_url = "#";
+                    if(is_win.length >1 ){
+                        if(is_win[0] > is_win[1]){
+                            classNameH ='s-fc-red2';
+                        }else if(is_win[0] == is_win[1]){
+                            classNameH ='s-fc-black';
+                        }else{
+                            classNameH ='s-fc-blue2';
+                        }
+                    }
+                    str +='<td title="'+info['h_cn']+'" class="'+classNameH+'">'+info['h_cn_abbr']+'</td>';
+                    var dis="style='display:none'";
+                    if(info['final']){
+                        dis="";
+                    }
+                    if(url == "#"){
+                        str +=  '<td>'+info['final']+'</td>';
+                    }else{
+                        str += '<td><a>'+info['final']+'</a></td>';
+                    }
+                }else{
+                    var dis="style='display:none'";
+                    if(info['final']){
+                        dis="";
+                    }
+                    // fb_url = "fb_team_info.php?tid="+tid_h;  " class="'+classNameH+'" href="'+fb_url+'"
+                    fb_url="${ctx}/odds/odds/web01";
+                    str +='<td><a title="'+info['h_cn']+'" class=""  >'+info['h_cn_abbr']+'</a></td>';
+                    if(url == "#"){
+                        str +=  '<td>'+info['final']+'</td>';
+                    }else{
+                        str += '<td><a>'+info['final']+'</a></td>';
+                    }
+                }
+
+                //alert(url);
+                var classNameA = "";
+                if( tid == info['a_id_dc']){
+                    if(is_win.length >1 ){
+                        if(is_win[0] > is_win[1]){
+                            classNameA ='s-fc-blue2';
+                        }else if(is_win[0] == is_win[1]){
+                            classNameA ='s-fc-black';
+                        }else{
+                            classNameA ='s-fc-red2';
+                        }
+                    }
+                    str +='<td title="'+info['a_cn']+'" class="'+classNameA+'">'+info['a_cn_abbr']+'</td><td>'+info['half']+'</td>';
+                }else{
+                    // fb_url = "fb_team_info.php?tid="+tid_a;
+                    fb_url="${ctx}/odds/odds/web01";
+                    str +='<td><a  title="'+info['a_cn']+'"  class="" >'+info['a_cn_abbr']+'</a></td><td>'+info['half']+'</td>';
+                }
+                if(info['final'] != ''){
+                    if(is_win[0] > is_win[1] ){
+                        if(info['h'] != ''){
+                            str += '<td class="s-bdc1"><i>'+info['h']+'</i></td>';
+                        }else{
+                            str += '<td class="s-bdc1">'+info['h']+'</td>';
+                        }
+                        str += '<td class="s-bdc1">'+ info['d']+'</td><td>'+info['a']+'</td>';
+                    }else if(is_win[0] == is_win[1]){
+
+                        str += '<td class="s-bdc1">'+info['h']+'</td>';
+                        if(info['d'] != ""){
+                            str += '<td class="s-bdc1"><i>'+ info['d']+'</i></td>';
+                        }else{
+                            str += '<td class="s-bdc1">'+ info['d']+'</td>';
+                        }
+                        str += '<td>'+info['a']+'</td>';
+                    }else if(is_win[0] < is_win[1]){
+                        str += '<td class="s-bdc1">'+info['h']+'</td>'+
+                            '<td class="s-bdc1">'+ info['d']+'</td>';
+                        if(info['a'] != ""){
+                            str += '<td><i>'+info['a']+'</i></td>';
+                        }else{
+                            str += '<td>'+info['a']+'</td>';
+                        }
+                    }else{
+                        str += '<td class="s-bdc1">'+info['h']+'</td>'+
+                            '<td class="s-bdc1">'+ info['d']+'</td>';
+                        str += '<td>'+info['a']+'</td>';
+                    }
+                }else{
+                    str += '<td class="s-bdc1">'+info['h']+'</td><td class="s-bdc1">'+ info['d']+'</td><td>'+info['a']+'</td>';
+                }
+                str += '</tr>';
+            }
+            return str;
+        }
+        // function qdxx1(obj) {
+        //     console.log(obj);
+        //     // sessionStorage["name"]=obj.textContent;
+        //     var team=obj.textContent;
+        //     var data={
+        //         team:team
+        //     }
+        //     console.log(obj.textContent)
+        //     $.post("${ctx}/odds/odds/queryTid",data).then(res =>{
+        //         console.log(res);
+        //         sessionStorage["tid"]=res.tid;
+        //         sessionStorage["date01"]=res.time;
+        //     debugger;
+        //         setTimeout(function(){
+        //             document.location.reload();
+        //         },1000);
+        //     });
+        // }
+
+        function setMatchInfoEmpty(){
+            $("#rounds").val("0");
+            $("#ground").val("0");
+            $("#three1").val("-1");
+            //$("#total1").val("126");
+            $("#asia1").val("229_e");
+        }
+
+    </script>
+</body>
+</html>

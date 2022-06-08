@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--    <div style="border:2px solid #666;width:49%;height:450px;float:left" id="chartmain"></div>-->
+
+<link rel="stylesheet" href="${ctxStatic}/js/demo/major.css">
+<script src="${ctxStatic}/jquery/jquery-3.5.0.js"></script>
+<!-- import Vue before Element -->
+<script src="${ctxStatic}/js/demo/vue.js"></script>
+<!-- import JavaScript -->
+<script src="${ctxStatic}/js/demo/major.js"></script>
+<!-- import axios -->
+<script src="${ctxStatic}/js/demo/axios.js"></script>
+<!-- import 封装好的get,post的请求 -->
+<script src="${ctxStatic}/js/demo/httpRequest.js"></script>
+<head>
+    <meta charset="UTF-8">
+
+</head>
+<body>
+<div id="app">
+    <div class="block">
+        <span class="demonstration">日期选择:</span>
+        <el-date-picker
+                v-model="value1"
+                type="date"
+                @click="riqi"
+                format="yyyy 年 MM 月 dd 日"
+                value-format="yyyy-MM-dd"
+                placeholder="选择日期">
+        </el-date-picker>
+    </div>
+    <div>
+        <table id="dakas" style="border-collapse: collapse;margin: 0 auto;text-align: center;width: 1452px">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <!--            <label><input type="radio" name="tz" id="wf1" value="2串1"  onclick="zuhe(2)">2串1</label>-->
+            <!--            <label><input type="radio" name="tz" id="wf2" value="3串1 " onclick="zuhe(3)">3串1</label>-->
+            <!--            &nbsp;&nbsp;&nbsp;-->
+            <!--            <label><a href="https://guide.leisu.com/" target="_blank">推荐参考</a></label>-->
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <!--            <label><a  onclick="importTheLatestData()" >导入数据</a></label>-->
+            <tr>
+                <td style='border: 1px solid #cad9ea;color: #666;'><label>比赛时间</label></td>
+                <td style='border: 1px solid #cad9ea;color: #666;'><label>次序</label></td>
+                <td style='border: 1px solid #cad9ea;color: #666;'><label>具体时间</label></td>
+                <td style='border: 1px solid #cad9ea;color: #666;'><label>联赛</label></td>
+                <td style='border: 1px solid #cad9ea;color: #666;'><label>主队</label></td>
+                <td style='border: 1px solid #cad9ea;color: #666;'><label>对战</label></td>
+                <td style='border: 1px solid #cad9ea;color: #666;'><label>客队</label></td>
+                <td style='border: 1px solid #cad9ea;color: #666;'><label>胜</label></td>
+                <td style='border: 1px solid #cad9ea;color: #666;'><label>平</label></td>
+                <td style='border: 1px solid #cad9ea;color: #666;'><label>负</label></td>
+            </tr>
+            <tbody id="ce"></tbody>
+        </table>
+    </div>
+</div>
+<script type="text/javascript">
+
+    new Vue({
+        el: '#app',
+        data() {
+            return {
+                value1: '',
+            }
+        },
+        created() {
+
+        },
+        methods :{
+            riqi(){
+                var huang={
+                    time:this.value1
+                }
+                $("input[type=checkbox]").prop("checked",false);
+                axiosPostRequst("${ctx}/teamdata/teamdata/queryData",huang).then(res =>{
+                    var tBody = $("#ce");
+                    if (res.length==0) {
+                    }else {
+                        tBody.empty();
+                        //2.迭代数据并显示在tbody中
+                        for (var i in res) {
+                            //2.1 构建tr对象
+                            var tr = $("<tr></tr>");
+                            //tr.data("rowData",res[i]);
+                            //2.2 构建多个td对象
+                            var tds = this.doCreateTds(res[i]);
+                            //2.3 将td追加到tr中
+                            tr.append(tds);
+                            //2.4 将tr追加到tbody中
+                            tBody.append(tr);
+                        }
+                    }
+                })
+            },
+            doCreateTds(item){
+                var tds =
+                    "<td style='border: 1px solid #cad9ea;color: #666;' >" + "<lable>" + item.b_date+ "</lable>" + "</td>" +
+                    "<td style='border: 1px solid #cad9ea;color: #666;'>" + "<lable>" + item.num + "</lable>" + "</td>" +
+                    "<td style='border: 1px solid #cad9ea;color: #666;'>" + "<lable>" + item.time + "</lable>" + "</td>" +
+                    "<td style='border: 1px solid #cad9ea;color: #666;'>" + "<lable>" + item.l_cn_abbr + "</lable>" + "</td>" +
+                    "<td style='border: 1px solid #cad9ea;color: #666;'>" + "<lable>" + item.h_cn_abbr + "</lable>" + "</td>" +
+                    "<td style='border: 1px solid #cad9ea;color: #666;'>" + "<lable>" + "VS" + "</lable>" + "</td>" +
+                    "<td style='border: 1px solid #cad9ea;color: #666;'>" + "<lable>" + item.a_cn_abbr + "</lable>" + "</td>" +
+                    "<td style='border: 1px solid #cad9ea;color: #666;'>" + "<lable>"+"<input type='checkbox' >"+item.h+"</lable>" + "</td>" +
+                    "<td style='border: 1px solid #cad9ea;color: #666;'>" + "<lable>"+"<input type='checkbox' >" +item.d+"</lable>" + "</td>" +
+                    "<td style='border: 1px solid #cad9ea;color: #666;'>" + "<lable>"+"<input type='checkbox' >" +item.a+"</lable>" + "</td>";
+                return tds;
+            }
+        },
+        watch:{
+            value1:"riqi"
+        }
+    })
+
+</script>
+</body>
+</html>

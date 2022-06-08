@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jeesite.modules.bkp.dao.BkpRecommendeddescriptionDao">
+	
+	<!-- 查询数据
+	<select id="findList" resultType="BkpRecommendeddescription">
+		SELECT ${sqlMap.column.toSql()}
+		FROM ${sqlMap.table.toSql()}
+		<where>
+			${sqlMap.where.toSql()}
+		</where>
+		ORDER BY ${sqlMap.order.toSql()}
+	</select> -->
+
+    <select id="teamQuery" resultType="com.jeesite.modules.bkp.entity.BkpRecommendeddescription">
+        select  * from bkp_recommendeddescription where team=#{team}
+    </select>
+    <select id="selectTeam" resultType="com.jeesite.modules.teamdata.entity.Teamdata">
+        SELECT * FROM `teamdata`   WHERE h_cn_abbr=#{hometeam}
+    </select>
+    <select id="selectATeam" resultType="com.jeesite.modules.teamdata.entity.Teamdata">
+         SELECT * FROM `teamdata`   WHERE a_cn_abbr=#{awayteam}
+    </select>
+</mapper>

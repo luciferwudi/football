@@ -1,0 +1,161 @@
+<% layout('/layouts/default.html', {title: '投注管理', libs: ['dataGrid']}){ %>
+<div class="main-content">
+	<div class="box box-main">
+		<div class="box-header">
+			<div class="box-title">
+				<i class="fa icon-notebook"></i> ${text('投注管理')}
+			</div>
+			<div class="box-tools pull-right">
+				<a href="#" class="btn btn-default" id="btnSearch" title="${text('查询')}"><i class="fa fa-filter"></i> ${text('查询')}</a>
+				<% if(hasPermi('userbets:userbets:edit')){ %>
+					<a href="${ctx}/userbets/userbets/form" class="btn btn-default btnTool" title="${text('新增投注信息')}"><i class="fa fa-plus"></i> ${text('新增')}</a>
+				<% } %>
+			</div>
+		</div>
+		<div class="box-body">
+			<#form:form id="searchForm" model="${userbets}" action="${ctx}/userbets/userbets/listData" method="post" class="form-inline hide"
+					data-page-no="${parameter.pageNo}" data-page-size="${parameter.pageSize}" data-order-by="${parameter.orderBy}">
+<!--				<div class="form-group">-->
+<!--					<label class="control-label">${text('用户id')}：</label>-->
+<!--				</div>-->
+				<div class="form-group">
+					<label class="control-label">${text('投注方式')}：</label>
+					<div class="control-inline width-120">
+						<#form:select path="bettingmethod"  dictType="howToPlay"  blankOption="true" class="form-control"/>
+<!--						<#form:input path="bettingmethod"  class="form-control width-120"/>-->
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label">${text('投注金额（元）')}：</label>
+					<div class="control-inline">
+						<#form:input path="betamount" maxlength="11" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('盈利预期')}：</label>
+					<div class="control-inline width-120">
+						<#form:select path="earnings" dictType="percentage" blankOption="true" class="form-control"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('倍数')}：</label>
+					<div class="control-inline">
+						<#form:input path="multiple" maxlength="11" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('当期盈利比')}：</label>
+					<div class="control-inline">
+						<#form:input path="currentprofitratio" maxlength="50" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('当期盈利金额（元）')}：</label>
+					<div class="control-inline">
+						<#form:input path="currentprofitamount" maxlength="50" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('分批')}：</label>
+					<div class="control-inline width-120">
+						<#form:select path="batch" dictType="batchLoss" blankOption="true" class="form-control"/>
+					</div>
+				</div>
+<!--			<div class="form-group">-->
+<!--				<label class="control-label">${text('此次下注结果')}：</label>-->
+<!--				<div class="control-inline width-120">-->
+<!--					<#form:input path="result"  class="form-control"/>-->
+<!--&lt;!&ndash;					<i style="width:20px;height:20px;border-radius:50%;background-color:green;display: block"></i>&ndash;&gt;-->
+<!--				</div>-->
+<!--			</div>-->
+
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary btn-sm">${text('查询')}</button>
+					<button type="reset" class="btn btn-default btn-sm">${text('重置')}</button>
+				</div>
+			</#form:form>
+			<table id="dataGrid"></table>
+			<div id="dataGridPage">
+			</div>
+		</div>
+	</div>
+</div>
+<% } %>
+<script>
+		function ceshi01(){
+
+		var lenth=$("#dataGrid tbody").children("tr");
+		for (var i=1;i<lenth.length;i++){
+			var test=lenth.eq(i).children("td").eq(8);
+			var v1=lenth.eq(i).children("td").eq(12)[0];
+			var test1=lenth.eq(i).children("td").eq(7);//比赛结果
+			var t1=test1[0].textContent;
+			var flag=true;
+				if (t1.indexOf("胜")>0){
+					flag=false;
+				}else if (t1.indexOf("平")>0){
+					flag=false;
+			    }else if (t1.indexOf("负")>0){
+					flag=false;
+			    }
+			var t=test[0];
+			var bb=v1.children[0];
+			if (flag==false){
+				bb.style.display="none";
+		    }
+			var cc=t.textContent;
+			if (cc=="待开奖"){
+				t.style.color="green";
+			}else if (cc=="中注"){
+				t.style.color="red";
+				bb.style.display="none";
+				debugger;
+			}else{
+				t.style.color="blue";
+				bb.style.display="none";
+			debugger;
+			}
+		}
+	}
+// 初始化DataGrid对象
+$('#dataGrid').dataGrid({
+	searchForm: $("#searchForm"),
+	columnModel: [
+		{header:'${text("投注方式")}', name:'bettingmethod', index:'a.bettingmethod', width:150, align:"left"},
+		{header:'${text("创建时间")}', name:'creattime', index:'a.creattime', width:150, align:"center"},
+		{header:'${text("投注金额（元）")}', name:'betamount', index:'a.betamount', width:150, align:"center"},
+		{header:'${text("盈利预期")}', name:'earnings', index:'a.earnings', width:150, align:"center", formatter: function(val, obj, row, act){
+			return js.getDictLabel(${@DictUtils.getDictListJson('percentage')}, val, '${text("未知")}', true);
+		}},
+		{header:'${text("倍数")}', name:'multiple', index:'a.multiple', width:150, align:"center"},
+		{header:'${text("选中结果")}',name:'selectresult',index:'a.selectresult' ,    width:150, align:"center"},
+		{header:'${text("比赛结果")}',name:'matchResults',index:'a.matchResults' ,    width:150, align:"center"},
+		{header:'${text("此次下注结果")}',name:'result',index:'a.result' ,  width:150, align:"center" },
+		// {header:'${text("之前亏损金额（元）")}', name:'totalloss', index:'a.totalloss', width:150, align:"left"},
+		// {header:'${text("扣除亏损盈利比例")}', name:'profitratioafterdeductinglosses', index:'a.profitratioafterdeductinglosses', width:150, align:"left"},
+		// {header:'${text("扣除亏损盈利金额（元）")}', name:'profitafterdeductinglosses', index:'a.profitafterdeductinglosses', width:150, align:"left"},
+		{header:'${text("当期盈利比")}', name:'currentprofitratio', index:'a.currentprofitratio', width:150, align:"left"},
+		{header:'${text("当期盈利金额（元）")}', name:'currentprofitamount', index:'a.currentprofitamount', width:150, align:"left"},
+		// {header:'${text("用户选择结果")}', name:'selectresult', index:'a.selectresult', width:150, align:"left"},
+		{header:'${text("分批")}', name:'batch', index:'a.batch', width:150, align:"center", formatter: function(val, obj, row, act){
+			return js.getDictLabel(${@DictUtils.getDictListJson('batchLoss')}, val, '${text("未知")}', true);
+		}},
+		{header:'${text("操作")}', name:'actions', width:120, sortable:false, title:false, formatter: function(val, obj, row, act){
+			var actions = [];
+			<% if(hasPermi('userbets:userbets:edit')){ %>
+				actions.push('<a href="${ctx}/userbets/userbets/form?id='+row.id+'" class="btnList" title="${text("编辑投注信息")}"><i class="fa fa-pencil"></i></a>&nbsp;');
+				actions.push('<a href="${ctx}/userbets/userbets/delete?id='+row.id+'" class="btnList" title="${text("删除userbets")}" data-confirm="${text("确认要删除该userbets吗？")}"><i class="fa fa-trash-o"></i></a>&nbsp;');
+			<% } %>
+			return actions.join('');
+		}}
+	],
+	// 加载成功后执行事件
+	ajaxSuccess: function(data){
+		ceshi01()
+	}
+
+
+});
+
+</script>

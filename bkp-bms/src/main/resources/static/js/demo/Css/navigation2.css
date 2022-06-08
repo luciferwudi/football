@@ -1,0 +1,19 @@
+/*非首页导航*/
+.u-on{background:#c80404;}
+.header-nav li.u-play{width:280px;text-align:center;background-color: #c80404;display: inline-block;margin-left:0;padding-left:0;}
+ .header-nav li.u-play a{_margin-top:0px}
+ .header-nav li.u-play em{_margin-top:18px;}
+.header-nav li{margin-left:4px;}
+.header-nav li.u-w76{width:76px;}
+/*玩法展开*/
+.header-nav .sub-menu2{display:none;position:absolute; left:0px; top:45px;height:502px;background:#f7f5f5;border:1px solid #c5c6c6;font:normal 14px/30px "微软雅黑"; z-index:999}
+.header-nav .all-wrap .sub-menu2 a{color:#333; display:inline-block;}
+.header-nav .all-wrap .sub-menu2 a:hover{color:#e30000; background:#f7f5f5}
+.sub-menu2 li{ overflow:hidden; padding-top:10px;padding-left:0;margin-left:6px; width:272px;}
+.sub-menu2 .FloatL{ width:34px}
+.sub-menu2 .FloatR{ font-size:14px; width:220px; text-align:left;line-height:26px; margin-top:4px; position:relative}
+.sub-menu2 .FloatR .lot-link a{ margin-right:10px;}
+.sub-menu2 .FloatR .lot-link img{margin-top:10px;}
+.sub-menu2 .FloatR em{ position:absolute; left:75px; top:-13px; background:url(../Images/todlot.png) no-repeat; width:53px; height:21px}
+
+

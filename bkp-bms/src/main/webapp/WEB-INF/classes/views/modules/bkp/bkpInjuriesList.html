@@ -1,0 +1,99 @@
+<% layout('/layouts/default.html', {title: '球队球员伤痛表管理', libs: ['dataGrid']}){ %>
+<div class="main-content">
+	<div class="box box-main">
+		<div class="box-header">
+			<div class="box-title">
+				<i class="fa icon-notebook"></i> ${text('球队球员伤痛表管理')}
+			</div>
+			<div class="box-tools pull-right">
+				<a href="#" class="btn btn-default" id="btnSearch" title="${text('查询')}"><i class="fa fa-filter"></i> ${text('查询')}</a>
+				<% if(hasPermi('bkp:bkpInjuries:edit')){ %>
+					<a href="${ctx}/bkp/bkpInjuries/form" class="btn btn-default btnTool" title="${text('新增球队球员伤痛表')}"><i class="fa fa-plus"></i> ${text('新增')}</a>
+				<% } %>
+			</div>
+		</div>
+		<div class="box-body">
+			<#form:form id="searchForm" model="${bkpInjuries}" action="${ctx}/bkp/bkpInjuries/listData" method="post" class="form-inline hide"
+					data-page-no="${parameter.pageNo}" data-page-size="${parameter.pageSize}" data-order-by="${parameter.orderBy}">
+				<div class="form-group">
+					<label class="control-label">${text('teamdata表里面未缩写的队名')}：</label>
+					<div class="control-inline">
+						<#form:input path="cnname" maxlength="255" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('球员名字')}：</label>
+					<div class="control-inline">
+						<#form:input path="name" maxlength="255" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('身价')}：</label>
+					<div class="control-inline">
+						<#form:input path="social" maxlength="50" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('球员定位')}：</label>
+					<div class="control-inline">
+						<#form:input path="position" maxlength="50" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('伤停原因')}：</label>
+					<div class="control-inline">
+						<#form:input path="cause" maxlength="255" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('预计复出时间')}：</label>
+					<div class="control-inline">
+						<#form:input path="time" maxlength="100" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('影响赛事')}：</label>
+					<div class="control-inline">
+						<#form:input path="influence" maxlength="100" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary btn-sm">${text('查询')}</button>
+					<button type="reset" class="btn btn-default btn-sm">${text('重置')}</button>
+				</div>
+			</#form:form>
+			<table id="dataGrid"></table>
+			<div id="dataGridPage"></div>
+		</div>
+	</div>
+</div>
+<% } %>
+<script>
+// 初始化DataGrid对象
+$('#dataGrid').dataGrid({
+	searchForm: $("#searchForm"),
+	columnModel: [
+		{header:'${text("teamdata表里面未缩写的队名")}', name:'cnname', index:'a.cnname', width:150, align:"left", frozen:true, formatter: function(val, obj, row, act){
+			return '<a href="${ctx}/bkp/bkpInjuries/form?id='+row.id+'" class="btnList" data-title="${text("编辑球队球员伤痛表")}">'+(val||row.id)+'</a>';
+		}},
+		{header:'${text("球员名字")}', name:'name', index:'a.name', width:150, align:"left"},
+		{header:'${text("身价")}', name:'social', index:'a.social', width:150, align:"left"},
+		{header:'${text("球员定位")}', name:'position', index:'a.position', width:150, align:"left"},
+		{header:'${text("伤停原因")}', name:'cause', index:'a.cause', width:150, align:"left"},
+		{header:'${text("预计复出时间")}', name:'time', index:'a.time', width:150, align:"left"},
+		{header:'${text("影响赛事")}', name:'influence', index:'a.influence', width:150, align:"left"},
+		{header:'${text("操作")}', name:'actions', width:120, sortable:false, title:false, formatter: function(val, obj, row, act){
+			var actions = [];
+			<% if(hasPermi('bkp:bkpInjuries:edit')){ %>
+				actions.push('<a href="${ctx}/bkp/bkpInjuries/form?id='+row.id+'" class="btnList" title="${text("编辑球队球员伤痛表")}"><i class="fa fa-pencil"></i></a>&nbsp;');
+				actions.push('<a href="${ctx}/bkp/bkpInjuries/delete?id='+row.id+'" class="btnList" title="${text("删除球队球员伤痛表")}" data-confirm="${text("确认要删除该球队球员伤痛表吗？")}"><i class="fa fa-trash-o"></i></a>&nbsp;');
+			<% } %>
+			return actions.join('');
+		}}
+	],
+	// 加载成功后执行事件
+	ajaxSuccess: function(data){
+		
+	}
+});
+</script>

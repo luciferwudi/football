@@ -1,0 +1,648 @@
+<!doctype html>
+<html> 
+ <head> 
+  <meta charset="gb2312"> 
+  <title>维尔茨赛程_维尔茨阵容_维尔茨球员名单</title> 
+  <meta name="Keywords" content="维尔茨,维尔茨阵容,维尔茨转会,维尔茨球队资料,维尔茨球员名单"> 
+  <meta name="Description" content="500彩票网为您提供维尔茨足球俱乐部最新首发阵容及比赛数据，完整的维尔茨比赛赛程数据，准确的队徽、主教练，球员等信息，维尔茨动态一网打尽！"> 
+  <meta name="mobile-agent" content="format=html5;url=https://live.m.500.com/team/football/7389/gl"> 
+  <link rel="canonical" href="https://liansai.500.com/team/7389/"> 
+  <link href="https://www.500cache.com/public/css/global.css?v=20141127" type="text/css" rel="stylesheet"> 
+  <link href="https://www.500cache.com/liansai/css/liansai.css?v=20141127" type="text/css" rel="stylesheet"> 
+  <base href="https://liansai.500.com/"> 
+ </head> 
+ <body> 
+  <script type="text/javascript">
+var pagestarttime=+new Date();
+var _configs = _configs || {};
+_configs.public_js = "https://www.500cache.com/public/js";
+_configs.base_cache = _configs.public_js.replace(/\/public\/js/, "");
+</script> 
+  <link href="https://www.500cache.com/public/css/top_v2.css?v=20200327001" rel="stylesheet" type="text/css">  
+  <script type="text/javascript" src="https://www.500cache.com/public/js/public/core_jq.js"></script> 
+  <script type="text/javascript" src="https://www.500cache.com/public/js/public/top_v2.js?v=20200629001"></script> <!--登录弹出层--> 
+  <div class="new_tips_box" id="loginform" style="display:none;"> 
+   <div class="tips_title"> 
+    <h2 class="tips_title_text">用户登录</h2> <a class="tips_close" id="flclose">关闭</a> 
+   </div> 
+   <div class="tips_content"> 
+    <form class="tips_form" method="post" action="" target="loginIframe" id="toploginform"> 
+     <div class="dl_tips" id="loginerrdiv" style="display:none;">
+      <b class="dl_err"></b><span id="loginerrmsg"></span>
+     </div> 
+     <table cellspacing="0" cellpadding="0" border="0" width="100%" id="loginformtable"> 
+      <tbody>
+       <tr> 
+        <td width="58">用户名：</td> 
+        <td width="205"><input type="text" class="tips_txt" id="lu" name="u" placeholder="用户名/手机号码"></td> 
+        <td><a rel="nofollow" target="_blank" tabindex="-1" onclick="stat4home('08071101','dlc_mfzc')" class="font_size12 gray">免费注册</a><a class="icon-gift" target="_blank"></a></td> 
+       </tr> 
+       <tr> 
+        <td>密&nbsp;&nbsp;码：</td> 
+        <td><input class="tips_txt" type="password" id="lp" name="p"></td> 
+        <td><a class="font_size12 gray" rel="nofollow" target="_blank" tabindex="-1">忘记密码</a></td> 
+       </tr> 
+       <tr> 
+        <td>验证码：</td> 
+        <td colspan="2"><input class="tips_yzm" type="text" id="yzmtext" name="c" style="ime-mode:disabled;"><span class="tips_yzm_notice" id="yzm_tips"><span></span></span><img alt="验证码" id="yzmimg" height="25px" class="yzm_img"><a id="login_yzm_refresh" class="font_size12 yzm_btn">换一张</a></td> 
+       </tr> 
+       <tr> 
+        <td> <input name="r" type="hidden" value="1"> <input type="hidden" name="t" value="4"> <input name="pwdlevel" id="pwdlevel" type="hidden" value=""> <input name="rw" type="hidden" value="/public/login.php?callback=parent.loginafter"> </td> 
+        <td colspan="2"><a class="btn_orange" id="floginbtn">登录</a> &nbsp; <a class="font_size12 gray" style="color:gray;position:absolute;display:inline-block;line-height:30px;" target="_blank">如何开启手机号登录？</a></td> 
+       </tr> 
+      </tbody>
+     </table> 
+    </form> 
+   </div> <iframe src="" name="loginIframe" id="loginIframe" style="display:none;"></iframe> 
+  </div> 
+  <link href="https://www.500cache.com/public/css/dxt/topmenuheader.css?v=20151210" rel="stylesheet">   
+  <script>
+$(function(){
+if(!document.getElementsByClassName){document.getElementsByClassName=function(e,d){var c=(d||document).getElementsByTagName("*");var f=new Array();for(var b=0;b<c.length;b++){var h=c[b];var g=h.className.split(" ");for(var a=0;a<g.length;a++){if(g[a]==e){f.push(h);break}}}return f}};
+if(document.cookie.indexOf('fromtc')==-1){var bar = document.getElementById('top_nav');/*transition style,after it will be unified*/document.getElementsByClassName('div_m')[0].style.width = '1180px';bar.style.height = '34px';bar.style.fontSize = '12px';}
+var yu = location.host.split(".").shift(),l = document.getElementsByClassName('nav-list')[0].getElementsByTagName('a'),lotlist = document.getElementById('nav-lott'),header = document.getElementById('nav'),headernav = document.getElementsByClassName('jNavDrop');
+for(i=0;i<l.length;i++){if(l[i].href.indexOf(yu)>0){l[i].parentNode.className  = l[i].parentNode.className + ' cur';}}
+lotlist.onmouseover = function(){header.className.indexOf('nav-lott-on')==-1?(header.className =  header.className +' nav-lott-on') :''; }
+lotlist.onmouseout = function(){header.className =  header.className.replace(' nav-lott-on',''); }
+for(i=0;i<headernav.length;i++){headernav[i].onmouseover = function(){this.className.indexOf('on')==-1?(this.className =  this.className +' on') :''; };headernav[i].onmouseout = function(){this.className =  this.className.replace(' on',''); }}
+})
+</script> 
+  <div class="lwrap"> 
+   <div class="lmain"> 
+    <div class="lmain_in clearfix">  <!-- lpage_race_head end --> 
+     <div class="lsnav_qdnav clearfix"> 
+      <h2 class="lsnav_qdnav_name">维尔茨堡踢球者</h2> 
+      <ul class="lsnav_qdnav_list clearfix"> 
+       <li class="on"><a>首页</a></li> 
+       <li><a>赛程</a></li> 
+       <li><a>阵容</a></li> 
+      </ul> 
+     </div> <!-- lteam_select_box end --> 
+     <div class="clearfix"> 
+      <div class="lcontent"> 
+       <div class="lqiud_summary clearfix"> 
+        <div class="itm_logo"> 
+         <img alt="维尔茨堡踢球者" src="https://liansai.500.com/static/soccerdata/images/TeamPic/teamsignnew_7389.png"> 
+         <div class="itm_tit">
+           维尔茨堡踢球者 
+          <div class="itm_name_en">
+           Wurzburger Kickers
+          </div> 
+         </div> 
+        </div> 
+        <div class="itm_bd"> 
+         <table> 
+          <tbody>
+           <tr> 
+            <td width="146">成立时间：1907</td> 
+            <td>球场容量：0人</td> 
+           </tr> 
+           <tr> 
+            <td>国家地区：德国</td> 
+            <td>球场：</td> 
+           </tr> 
+           <tr> 
+            <td>所在城市：</td> 
+            <td>球队身价：€ 660万</td> 
+           </tr> 
+          </tbody>
+         </table> 
+        </div> 
+       </div> <!-- lqiud_summary end --> 
+       <div class="lcol"> 
+        <div class="lcol_hd lborder"> 
+         <div class="lcol_tit_r"> <a target="_blank">查看完整</a> 
+         </div> 
+         <h3 class="lcol_tit">近期战绩</h3> 
+        </div> 
+        <div class="lcol_bd"> 
+         <table class="lcur_race_list ltable jTrHover"> 
+          <thead> 
+           <tr> 
+            <th width="84">赛事</th> 
+            <th>比赛时间</th> 
+            <th width="90" class="td_lteam"><span>主队</span></th> 
+            <th width="90">比分</th> 
+            <th width="90" class="td_rteam"><span>客队</span></th> 
+            <th width="60">赛果</th> 
+            <th width="60">盘路</th> 
+            <th width="60">大小</th> 
+            <th width="60">分析</th> 
+           </tr> 
+          </thead> 
+          <tbody class="jTrInterval"> 
+           <tr> 
+            <td><a target="_blank">德乙</a></td> 
+            <td class="td_time">2020-09-26</td> 
+            <td class="td_lteam"><a target="_blank">杜塞尔</a></td> 
+            <td> <span class="lred">1</span>:0 &nbsp;(0:0) </td> 
+            <td class="td_rteam"><a target="_blank" style="color:#a00000">维尔茨</a></td> 
+            <td><span class="lred"><span class="lblue">负</span></span></td> 
+            <td>走盘</td> 
+            <td>小</td> 
+            <td class="last"><a title="杜塞尔VS维尔茨数据分析" target="_blank">析</a></td> 
+           </tr> 
+           <tr> 
+            <td><a target="_blank">德乙</a></td> 
+            <td class="td_time">2020-09-19</td> 
+            <td class="td_lteam"><a target="_blank" style="color:#a00000">维尔茨</a></td> 
+            <td> 0:<span class="lred">3</span> &nbsp;(0:0) </td> 
+            <td class="td_rteam"><a target="_blank">奥 厄</a></td> 
+            <td><span class="lred"><span class="lblue">负</span></span></td> 
+            <td>输</td> 
+            <td>大</td> 
+            <td class="last"><a title="维尔茨VS奥 厄数据分析" target="_blank">析</a></td> 
+           </tr> 
+           <tr> 
+            <td><a target="_blank">德国杯</a></td> 
+            <td class="td_time">2020-09-15</td> 
+            <td class="td_lteam"><a target="_blank" style="color:#a00000">维尔茨</a></td> 
+            <td> 2:<span class="lred">3</span> &nbsp;(0:1) </td> 
+            <td class="td_rteam"><a target="_blank">汉诺威</a></td> 
+            <td><span class="lred"><span class="lblue">负</span></span></td> 
+            <td>输</td> 
+            <td>大</td> 
+            <td class="last"><a title="维尔茨VS汉诺威数据分析" target="_blank">析</a></td> 
+           </tr> 
+           <tr> 
+            <td><a target="_blank">球会友谊</a></td> 
+            <td class="td_time">2020-08-15</td> 
+            <td class="td_lteam"><a target="_blank">美因茨</a></td> 
+            <td> <span class="lred">6</span>:0 &nbsp;(4:0) </td> 
+            <td class="td_rteam"><a target="_blank" style="color:#a00000">维尔茨</a></td> 
+            <td><span class="lred"><span class="lblue">负</span></span></td> 
+            <td>-</td> 
+            <td>大</td> 
+            <td class="last"><a title="美因茨VS维尔茨数据分析" target="_blank">析</a></td> 
+           </tr> 
+           <tr> 
+            <td><a target="_blank">球会友谊</a></td> 
+            <td class="td_time">2020-08-12</td> 
+            <td class="td_lteam"><a target="_blank">柏林联</a></td> 
+            <td> <span class="lred">2</span>:0 &nbsp;(1:0) </td> 
+            <td class="td_rteam"><a target="_blank" style="color:#a00000">维尔茨</a></td> 
+            <td><span class="lred"><span class="lblue">负</span></span></td> 
+            <td>-</td> 
+            <td>小</td> 
+            <td class="last"><a title="柏林联VS维尔茨数据分析" target="_blank">析</a></td> 
+           </tr> 
+           <tr> 
+            <td><a target="_blank">德丙联</a></td> 
+            <td class="td_time">2020-07-04</td> 
+            <td class="td_lteam"><a target="_blank" style="color:#a00000">维尔茨</a></td> 
+            <td> <span class="lgreen">2</span>:<span class="lgreen">2</span> &nbsp;(1:1) </td> 
+            <td class="td_rteam"><a target="_blank">哈雷斯</a></td> 
+            <td><span class="lred"><span class="lgreen">平</span></span></td> 
+            <td>-</td> 
+            <td>大</td> 
+            <td class="last"><a title="维尔茨VS哈雷斯数据分析" target="_blank">析</a></td> 
+           </tr> 
+           <tr> 
+            <td><a target="_blank">德丙联</a></td> 
+            <td class="td_time">2020-07-02</td> 
+            <td class="td_lteam"><a target="_blank">维多利</a></td> 
+            <td> <span class="lred">5</span>:1 &nbsp;(0:0) </td> 
+            <td class="td_rteam"><a target="_blank" style="color:#a00000">维尔茨</a></td> 
+            <td><span class="lred"><span class="lblue">负</span></span></td> 
+            <td>-</td> 
+            <td>大</td> 
+            <td class="last"><a title="维多利VS维尔茨数据分析" target="_blank">析</a></td> 
+           </tr> 
+           <tr> 
+            <td><a target="_blank">德丙联</a></td> 
+            <td class="td_time">2020-06-27</td> 
+            <td class="td_lteam"><a target="_blank" style="color:#a00000">维尔茨</a></td> 
+            <td> <span class="lred">3</span>:1 &nbsp;(2:0) </td> 
+            <td class="td_rteam"><a target="_blank">罗斯托</a></td> 
+            <td><span class="lred"><span class="lred">胜</span></span></td> 
+            <td>-</td> 
+            <td>大</td> 
+            <td class="last"><a title="维尔茨VS罗斯托数据分析" target="_blank">析</a></td> 
+           </tr> 
+           <tr> 
+            <td><a target="_blank">德丙联</a></td> 
+            <td class="td_time">2020-06-24</td> 
+            <td class="td_lteam"><a target="_blank">乌丁根</a></td> 
+            <td> 1:<span class="lred">2</span> &nbsp;(1:1) </td> 
+            <td class="td_rteam"><a target="_blank" style="color:#a00000">维尔茨</a></td> 
+            <td><span class="lred"><span class="lred">胜</span></span></td> 
+            <td>-</td> 
+            <td>大</td> 
+            <td class="last"><a title="乌丁根VS维尔茨数据分析" target="_blank">析</a></td> 
+           </tr> 
+           <tr> 
+            <td><a target="_blank">德丙联</a></td> 
+            <td class="td_time">2020-06-20</td> 
+            <td class="td_lteam"><a target="_blank" style="color:#a00000">维尔茨</a></td> 
+            <td> <span class="lred">3</span>:0 &nbsp;(0:0) </td> 
+            <td class="td_rteam"><a target="_blank">卓尼特</a></td> 
+            <td><span class="lred"><span class="lred">胜</span></span></td> 
+            <td>-</td> 
+            <td>大</td> 
+            <td class="last"><a title="维尔茨VS卓尼特数据分析" target="_blank">析</a></td> 
+           </tr> 
+          </tbody> 
+         </table> 
+        </div> 
+       </div> <!-- 当前赛事 end --> 
+       <div class="lcur_chart"> 
+        <table class="lwfull"> 
+         <tbody>
+          <tr> 
+           <td width="280" class="lcur_chart_spf"> 
+            <div id="chartCurSPF" class="lcur_chart_spf_pie"></div> <p>近10场<br>胜平负统计</p> </td> 
+           <td class="lcur_chart_zj"> <p><b>维尔茨</b> 近10场战绩 <span class="lred">3胜</span><span class="lgreen">1平</span><span class="lblue">6负</span> 进<span class="lred">13球</span>失<span class="lblue">24球</span></p> 
+            <div class="lcur_chart_zj_pie"> <span class="itm_f"><i></i></span> <span class="itm_f"><i></i></span> <span class="itm_f"><i></i></span> <span class="itm_f"><i></i></span> <span class="itm_f"><i></i></span> <span class="itm_p"><i></i></span> <span class="itm_f"><i></i></span> <span class="itm_s"><i></i></span> <span class="itm_s"><i></i></span> <span class="itm_s last"><i></i></span> <b class="itm_jin">最近</b> <b class="itm_yuan">最远</b> <b class="itm_chang">10场比赛</b> 
+            </div> </td> 
+          </tr> 
+         </tbody>
+        </table> 
+       </div> <!-- 统计图 end --> 
+      </div> <!-- 左侧主内容 end --> 
+      <div class="lsidebar"> 
+       <div class="lbox"> 
+        <div class="lbox_hd lborder1"> <a target="_blank" class="lbox_tit_r">查看完整</a> 
+         <h3 class="lbox_tit">联赛排名</h3> 
+        </div> 
+        <div class="lbox_bd"> 
+         <table class="lstable2 llianspm_list_s ltc jTrHover	"> 
+          <thead> 
+           <tr> 
+            <th>排名</th> 
+            <th width="65" class="ltl">队伍</th> 
+            <th width="26">赛</th> 
+            <th width="26">胜</th> 
+            <th width="26">平</th> 
+            <th width="26">负</th> 
+            <th width="35">积分</th> 
+           </tr> 
+          </thead> 
+          <tbody> 
+           <tr> 
+            <td>14</td> 
+            <td class="ltl"><a target="_blank" title="达姆施">达姆施</a></td> 
+            <td>2</td> 
+            <td>0</td> 
+            <td>1</td> 
+            <td>1</td> 
+            <td>1</td> 
+           </tr> 
+           <tr> 
+            <td>15</td> 
+            <td class="ltl"><a target="_blank" title="不伦瑞">不伦瑞</a></td> 
+            <td>2</td> 
+            <td>0</td> 
+            <td>1</td> 
+            <td>1</td> 
+            <td>1</td> 
+           </tr> 
+           <tr> 
+            <td>16</td> 
+            <td class="ltl"><a target="_blank" title="帕德博">帕德博</a></td> 
+            <td>1</td> 
+            <td>0</td> 
+            <td>0</td> 
+            <td>1</td> 
+            <td>0</td> 
+           </tr> 
+           <tr> 
+            <td>17</td> 
+            <td class="ltl"><a target="_blank" title="卡尔斯">卡尔斯</a></td> 
+            <td>1</td> 
+            <td>0</td> 
+            <td>0</td> 
+            <td>1</td> 
+            <td>0</td> 
+           </tr> 
+           <tr class="cur"> 
+            <td>18</td> 
+            <td class="ltl"><a target="_blank" title="维尔茨">维尔茨</a></td> 
+            <td>2</td> 
+            <td>0</td> 
+            <td>0</td> 
+            <td>2</td> 
+            <td>0</td> 
+           </tr> 
+          </tbody> 
+         </table> 
+        </div> 
+       </div> <!-- 联赛排名 end --> 
+       <div class="lbox"> 
+        <div class="lbox_hd lborder1"> 
+         <h3 class="lbox_tit">未来赛事</h3> 
+        </div> 
+        <div class="lbox_bd"> 
+         <table class="lstable2 lweilss_list_s ltc jTrHover"> 
+          <thead> 
+           <tr> 
+            <th>比赛时间</th> 
+            <th width="144">对阵</th> 
+            <th width="30">分析</th> 
+           </tr> 
+          </thead> 
+          <tbody> 
+           <tr> 
+            <td>2020-10-03</td> 
+            <td class="lteam_s"> <a target="_blank" title="维尔茨堡踢球者" class="ltr">维尔茨</a> <i>vs</i> <a target="_blank" title="菲尔特" class="ltl">菲尔特</a></td> 
+            <td class="last"><a title="维尔茨堡踢球者VS菲尔特数据分析" target="_blank">析</a></td> 
+           </tr> 
+           <tr> 
+            <td>2020-10-17</td> 
+            <td class="lteam_s"> <a target="_blank" title="维尔茨堡踢球者" class="ltr">维尔茨</a> <i>vs</i> <a target="_blank" title="基尔高士丁" class="ltl">基 尔</a></td> 
+            <td class="last"><a title="维尔茨堡踢球者VS基尔高士丁数据分析" target="_blank">析</a></td> 
+           </tr> 
+           <tr> 
+            <td>2020-10-24</td> 
+            <td class="lteam_s"> <a target="_blank" title="汉堡" class="ltr">汉 堡</a> <i>vs</i> <a target="_blank" title="维尔茨堡踢球者" class="ltl">维尔茨</a></td> 
+            <td class="last"><a title="汉堡VS维尔茨堡踢球者数据分析" target="_blank">析</a></td> 
+           </tr> 
+           <tr> 
+            <td>2020-10-31</td> 
+            <td class="lteam_s"> <a target="_blank" title="维尔茨堡踢球者" class="ltr">维尔茨</a> <i>vs</i> <a target="_blank" title="波鸿" class="ltl">波 鸿</a></td> 
+            <td class="last"><a title="维尔茨堡踢球者VS波鸿数据分析" target="_blank">析</a></td> 
+           </tr> 
+           <tr> 
+            <td>2020-11-07</td> 
+            <td class="lteam_s"> <a target="_blank" title="海登海姆" class="ltr">海 登</a> <i>vs</i> <a target="_blank" title="维尔茨堡踢球者" class="ltl">维尔茨</a></td> 
+            <td class="last"><a title="海登海姆VS维尔茨堡踢球者数据分析" target="_blank">析</a></td> 
+           </tr> 
+          </tbody> 
+         </table> 
+        </div> 
+       </div> <!-- 未来赛事 end --> 
+       <div class="lbox"> 
+        <div class="lbox_hd lborder1"> <a target="_blank" class="lbox_tit_r">全部球队</a> 
+         <h3 class="lbox_tit">其他球队</h3> 
+        </div> 
+        <div class="lbox_bd"> 
+         <table class="lqitqd_list_s"> 
+          <tbody>
+           <tr> 
+            <td> <a> <img src="https://liansai.500.com/static/soccerdata/images/TeamPic/teamsignnew_575.png"> <span>奥 厄</span> </a> </td> 
+            <td> <a> <img src="//www.500cache.com/liansai/images/500logo.png"> <span>奥斯纳</span> </a> </td> 
+            <td> <a> <img src="https://liansai.500.com/static/soccerdata/images/TeamPic/teamsignnew_1915.png"> <span>基 尔</span> </a> </td> 
+           </tr> 
+           <tr> 
+            <td> <a> <img src="https://liansai.500.com/static/soccerdata/images/TeamPic/teamsignnew_5315.png"> <span>海 登</span> </a> </td> 
+            <td> <a> <img src="https://liansai.500.com/static/soccerdata/images/TeamPic/teamsignnew_862.png"> <span>汉诺威</span> </a> </td> 
+            <td> <a> <img src="https://liansai.500.com/static/soccerdata/images/TeamPic/teamsignnew_3716.png"> <span>桑德豪</span> </a> </td> 
+           </tr> 
+           <tr> 
+            <td> <a> <img src="https://liansai.500.com/static/soccerdata/images/TeamPic/teamsignnew_860.png"> <span>汉 堡</span> </a> </td> 
+            <td> <a> <img src="https://liansai.500.com/static/soccerdata/images/TeamPic/teamsignnew_781.png"> <span>杜塞尔</span> </a> </td> 
+            <td> <a> <img src="https://liansai.500.com/static/soccerdata/images/TeamPic/teamsignnew_794.png"> <span>菲尔特</span> </a> </td> 
+           </tr> 
+          </tbody>
+         </table> 
+        </div> 
+       </div> <!-- 联赛排名 end --> 
+      </div> <!-- 右侧边栏 end --> 
+     </div> 
+     <div class="lqiudzr"> 
+      <div class="lcol_hd lborder"> 
+       <h3 class="lcol_tit">上一场球队阵容</h3> 
+      </div> 
+      <div class="lcol_bd clearfix"> 
+       <div class="lqiudzr_l"> 
+        <h4 class="itm_tit">杜塞尔<i>1:0</i><span class="red">维尔茨</span></h4> 
+        <p class="itm_time">德乙 2020-09-26</p> 
+        <div class="lzhenrong"> 
+         <p class="lzhenrong_zx" style="width: 95px;">阵型：4-4-2</p> 
+         <div class="lzhenrong_main"> 
+          <div style="top:10px;left:260px;" class="itm"> <a target="_blank" class="itm_img"> <img style="width: 32px;" src="https://liansai.500.com/static/soccerdata/images/CharacterPic/characterpic1_843.png"> </a> <a target="_blank" title="吉费尔" class="itm_name">吉费尔</a> 
+          </div> 
+          <div style="top:120px;left:140px;" class="itm"> <a target="_blank" class="itm_img"> <img style="width: 32px;" src="https://liansai.500.com/static/soccerdata/images/CharacterPic/characterpic1_45073.png"> </a> <a target="_blank" title="弗莱克尔" class="itm_name">弗莱克尔</a> 
+          </div> 
+          <div style="top:120px;left:220px;" class="itm"> <a class="itm_img"> <img style="width: 32px;" title="" src="//www.500cache.com/liansai/images/notfound.png"> </a> 
+          </div> 
+          <div style="top:120px;left:300px;" class="itm"> <a target="_blank" class="itm_img"> <img style="width: 32px;" src="https://liansai.500.com/static/soccerdata/images/CharacterPic/characterpic1_35317.png"> </a> <a target="_blank" title="道格拉斯" class="itm_name">道格拉斯</a> 
+          </div> 
+          <div style="top:120px;left:380px;" class="itm"> <a target="_blank" class="itm_img"> <img style="width: 32px;" src="https://liansai.500.com/static/soccerdata/images/CharacterPic/characterpic1_1103.png"> </a> <a target="_blank" title="费克" class="itm_name">费克</a> 
+          </div> 
+          <div style="top:230px;left:140px;" class="itm"> <a class="itm_img"> <img style="width: 32px;" title="" src="//www.500cache.com/liansai/images/notfound.png"> </a> 
+          </div> 
+          <div style="top:230px;left:220px;" class="itm"> <a target="_blank" class="itm_img"> <img style="width: 32px;" title="" src="//www.500cache.com/liansai/images/notfound.png"> </a> <a target="_blank" title="托科" class="itm_name">托科</a> 
+          </div> 
+          <div style="top:230px;left:300px;" class="itm"> <a target="_blank" class="itm_img"> <img style="width: 32px;" title="" src="//www.500cache.com/liansai/images/notfound.png"> </a> <a target="_blank" title="松斯德莫尔" class="itm_name">松斯德莫尔</a> 
+          </div> 
+          <div style="top:230px;left:380px;" class="itm"> <a target="_blank" class="itm_img"> <img style="width: 32px;" title="" src="//www.500cache.com/liansai/images/notfound.png"> </a> <a target="_blank" title="达维德·科帕奇" class="itm_name">达维德·科帕奇</a> 
+          </div> 
+          <div style="top:340px;left:220px;" class="itm"> <a class="itm_img"> <img style="width: 32px;" title="" src="//www.500cache.com/liansai/images/notfound.png"> </a> 
+          </div> 
+          <div style="top:340px;left:300px;" class="itm"> <a target="_blank" class="itm_img"> <img style="width: 32px;" title="" src="//www.500cache.com/liansai/images/notfound.png"> </a> <a target="_blank" title="萨利乌·萨内" class="itm_name">萨利乌·萨内</a> 
+          </div> 
+         </div> 
+         <p class="lzhengrong_tb">替补席： <a target="_blank">维斯塔彭</a> <a target="_blank">H.汉森</a> <a target="_blank">赫尔曼</a> </p> 
+        </div> 
+       </div> <!-- lqiudzr_l end --> 
+       <div class="lqiudzr_r lqiudmd"> 
+        <h4 class="itm_tit">球员名单</h4> 
+        <dl class="itm itm_smy"> 
+         <dt>
+          守门员
+         </dt> 
+         <dd>
+          <em>33.</em><a title="维斯塔彭" target="_blank">维斯塔彭</a>
+         </dd> 
+         <dd>
+          <em>1.</em><a title="吉费尔" target="_blank">吉费尔</a>
+         </dd> 
+        </dl> 
+        <dl class="itm itm_hw"> 
+         <dt>
+          后卫
+         </dt> 
+         <dd>
+          <em>34.</em><a title="朗斯塔特" target="_blank">朗斯塔特</a>
+         </dd> 
+         <dd>
+          <em>19.</em><a title="道格拉斯" target="_blank">道格拉斯</a>
+         </dd> 
+         <dd>
+          <em>28.</em><a title="费克" target="_blank">费克</a>
+         </dd> 
+         <dd>
+          <em>14.</em><a title="H.汉森" target="_blank">H.汉森</a>
+         </dd> 
+        </dl> 
+        <dl class="itm itm_zc"> 
+         <dt>
+          中场
+         </dt> 
+         <dd>
+          <em>29.</em><a title="达维德·科帕奇" target="_blank">达维德·科帕</a>
+         </dd> 
+         <dd>
+          <em>12.</em><a title="松斯德莫尔" target="_blank">松斯德莫尔</a>
+         </dd> 
+         <dd>
+          <em>10.</em><a title="斯陶德" target="_blank">斯陶德</a>
+         </dd> 
+         <dd>
+          <em>27.</em><a title="托科" target="_blank">托科</a>
+         </dd> 
+         <dd>
+          <em>38.</em><a title="赫尔曼" target="_blank">赫尔曼</a>
+         </dd> 
+         <dd>
+          <em>23.</em><a title="弗莱克尔" target="_blank">弗莱克尔</a>
+         </dd> 
+        </dl> 
+        <dl class="itm itm_qf"> 
+         <dt>
+          前锋
+         </dt> 
+         <dd>
+          <em>11.</em><a title="萨利乌·萨内" target="_blank">萨利乌·萨内</a>
+         </dd> 
+        </dl> 
+       </div> <!-- lqiudzr_r end --> 
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+  </div> 
+  <link rel="stylesheet" href="https://www.500cache.com/public/css/footer.css?v=20181019">  
+  <div class="footer-keywords">  
+  </div> 
+  <script type="text/javascript" src="https://www.500cache.com/public/js/jquery/jquery.min.js"></script> 
+  <script>
+/* 底部关键词 */
+$(function(){
+	$('.btn-keywords').click(function(){    
+		if($(this).attr('data-fold') == 0){
+			$(this).html('+ 更多');
+			$('.footer-keywords-list').animate({
+				'height':20
+			});
+			$(this).attr('data-fold',1);
+		} else{
+			$(this).html('- 收起');
+			$('.footer-keywords-list').animate({
+				'height':60
+			});
+			$(this).attr('data-fold',0);
+		}
+	});
+});
+</script> <!-- Baidu Button BEGIN --> 
+  <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=6678073"></script> 
+  <script type="text/javascript" id="bdshell_js"></script> 
+  <script type="text/javascript">
+var https ='https:' == document.location.protocol;
+if(!https){
+	document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+}
+</script> <!-- Baidu Button END --> <!-- 用户战绩调整 begin --> <span class="fu_icon_layer record_tips"> <span style="left: 6px;" class="fu_icon_top"></span> <span style="width: auto;" class="fu_icon_con new_record"></span> </span> <!-- 用户战绩调整 end--> 
+  <script type="text/javascript" src="https://www.500cache.com/public/js/stats.js?v=123"></script> <!--底部链接  --> <!--友情链接  --> <!--微信新版--> 
+  <ul class="wx_up_btn" id="tip-weixin"> 
+   <li class="last"><a id="btn-back2top" class="up_btn1" title="返回顶部" style="display:none;"></a></li> 
+  </ul> 
+  <script type="text/javascript">
+// 微信
+(function(window){
+    var $ = window.jQuery,
+        docElem = window.document.documentElement,
+        $win = $(window),
+        $body = $("html,body"),
+        box = $("#box-weixin"),
+        tip = $("#tip-weixin"),
+        btn = $("#btn-weixin"),
+        back2top = $("#btn-back2top"),
+        both = box.add(tip),
+        atFirstScreen = true,
+        visible = isVisible(),
+        easing = $.easing;
+    function isVisible() {
+        return docElem.clientWidth >= 1280;
+    }
+    $win.load(function() {
+        if (visible) {
+            tip.show();
+        }else{
+            both.hide();
+        }
+    }).scroll(function(){
+        var atFS = $win.scrollTop() < 800;
+        if (atFS ^ atFirstScreen) {
+            back2top.toggle(! (atFirstScreen = atFS));
+        }
+    }).resize(function(){
+        if (visible ^ isVisible()) {
+            if (visible = ! visible) {
+                tip.show();
+            } else {
+                both.hide();
+            }
+        }
+    });
+    back2top.click(function(){
+        $body.animate({
+            scrollTop: 0
+        }, 300, "easeInCubic");
+    });
+    // easeInCubic
+    if (! ("easeInCubic" in easing)) {
+        easing.easeInCubic = function (x, t, b, c, d) {
+            return c*(t/=d)*t*t + b;
+        };
+    }
+	
+    var oMain = $(".lmain").eq(0), nLeft, oBackold = $("#lbackoldWrap"), nDocH = $(document).height(), nWinH = $(window).height(), nBackoldH = oBackold.height()+3, nFootH = 224;
+	function fnResetPos(){
+	    nLeft=( $(window).width()+oMain.width() )/2;
+	    nWinH = $(window).height();
+	    $(oBackold).css("left",nLeft);
+	    if(!-[1,]&&!window.XMLHttpRequest){ 
+	        oBackold.css({"position":"absolute","left":nLeft,"top":$(window).height()-nBackoldH});
+	    }
+	};
+	fnResetPos();
+	$(window).resize(function(){fnResetPos();});
+	$(window).scroll(function(){
+	    if( $(window).scrollTop() <= nDocH-nWinH-nFootH ){
+	        $(oBackold).css({"top":"","bottom":0,"position":"fixed"});
+	    } else {
+	        $(oBackold).css({"top":nDocH-nFootH-nBackoldH,"bottom":"","position":"absolute"});
+	    }
+	});
+})(window);
+</script> <!--饼形图 begin--> 
+  <script type="text/javascript" src="https://www.500cache.com/liansai/js/amcharts.js?v=20141127"></script> 
+  <script type="text/javascript" src="https://www.500cache.com/liansai/js/pie.js?v=20141127"></script> 
+  <script type="text/javascript" src="https://www.500cache.com/liansai/js/common.js?v=20141127"></script> 
+  <script>
+AmCharts.makeChart("chartCurSPF", {
+    "type": "pie",
+    "theme": "none",
+    "dataProvider": [{
+        "title": "胜",
+        "value": "30"
+    }, {
+        "title": "负",
+        "value":  "60"
+    }, {
+        "title": "平",
+        "value": "10"
+    }],
+    "titleField": "title",
+    "valueField": "value",
+    "labelRadius": 5,
+
+    "radius": "40%",
+    "innerRadius": "78%",
+    "labelTickAlpha": "0",
+    "labelText": "[[title]][[value]]%",
+    "pullOutRadius": 0,
+    "balloonText": "",
+    "startDuration": "",
+    "startAngle": "360",
+    "colors":['#FF0000','#0000FF','#009900'],
+    "fontColor":['#FF0000','#009900','#0000FF'],
+    "fontSize":14
+});
+var _lname="维尔茨", _lurl=location.href;
+</script> 
+  <script type="text/javascript" src="https://www.500cache.com/liansai/js/laisaistorage.js?v=20141127"></script> <!--饼形图 end-->  
+ </body>
+</html>

@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>测试页面</title>
+    <!--引入外部的js文件-->
+    <!--<script type="text/javascript" src="js/足球竞赛.js" ></script>-->
+    <script>
+        var demo=document.getElementById("anniu")
+    </script>
+    <style>
+        #head{
+            width: 100%;
+            height: 45px;
+            background-color: rgb(227, 0, 0);
+            position: relative;
+            z-index: 100;
+            font: 16px / 45px 微软雅黑;
+        }
+        #head a{
+            color: #FFFFFF;
+            text-align: center;
+            float: left;
+
+        }
+        ul{
+            display: block;
+            list-style-type: disc;
+            margin: 0px 361.5px;
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+            padding-inline-start: 40px;
+        }
+        ul,li{
+            list-style: none outside none;
+        }
+        .login.all-wrap{
+            background-color: #f1f1f1;
+        }
+        .all-wrap {
+            width: 1180px;
+            margin: 0 auto;
+            background-color: #FFF;
+        }
+        .login {
+            width: 100%;
+            height: 27px;
+            line-height: 27px;
+            color: #999999;
+            background-color: #f1f1f1;
+            border-bottom: 1px solid #e5e5e5;
+            padding: 0px;
+        }
+        .login a {
+            margin: 0 10px;
+            color: #999999;
+            text-decoration: none;
+        }
+        body {
+            font: 12px Arial, "宋体";
+            color: #333333;
+            min-width: 1180px;
+        }
+        .wrap {
+            width: 1180px;
+            margin: auto;
+            background: #FFF;
+            position: relative;
+            z-index: 9;
+        }
+        #container {
+            margin-top: 16px;
+        }
+        table {
+            display: table;
+            border-collapse: separate;
+            box-sizing: border-box;
+            border-spacing: 2px;
+            border-color: grey;
+        }
+        tbody {
+            display: table-row-group;
+            vertical-align: middle;
+            border-color: inherit;
+        }
+        tr {
+            display: table-row;
+            vertical-align: inherit;
+            border-color: inherit;
+        }
+        td {
+            display: table-cell;
+            vertical-align: inherit;
+        }
+        #tabDiv .selTab {
+            background-color: #e8f6ff;
+            font-weight: bold;
+            text-decoration: none;
+            color: #003f94;
+        }
+        #tabList a {
+            display: inline-block;
+            border: solid 1px #c9e1f0;
+            border-bottom: none;
+            background-color: #FFFFFF;
+            height: 28px;
+            line-height: 28px;
+            padding-left: 16px;
+            padding-right: 16px;
+            margin-right: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            color: #003f94;
+        }
+        #noticeSpan {
+            float: right;
+            line-height: 28px;
+            margin-right: 8px;
+            overflow: hidden;
+        }
+        a:link, a:visited {
+            color: #333333;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        #toolDiv {
+            height: 30px;
+            line-height: 30px;
+            background-color: #e8f6ff;
+            padding-left: 6px;
+            color: #003f94;
+            border: solid 1px #c9e1f0;
+        }
+        #headerTr {
+            color: #003f94;
+            background-color: #e8f6ff;
+            height: 50px;
+            width: 1180px;
+            border-left: solid 1px #c9e1f0;
+            z-index: 98;
+            border-bottom: solid 1px #c9e1f0;
+        }
+        #headerTr td {
+            border-right: solid 1px #c9e1f0;
+            text-align: center;
+        }
+        #headerTr .oddsHeader {
+            width: 99px;
+            text-align: center;
+            background-image: url(./images/listArrow.gif);
+            background-repeat: no-repeat;
+            background-position: 60px center;
+            cursor: pointer;
+        }
+        #headerTr span {
+            display: inline-block;
+        }
+        #uOddsListbox {
+            cursor: pointer;
+            height: 18px;
+        }
+        #headerTr .uoOption {
+            width: 44px;
+            font-weight: normal;
+            font-size: 12px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+        table {
+            display: table;
+            border-collapse: separate;
+            box-sizing: border-box;
+            border-spacing: 2px;
+            border-color: grey;
+        }
+
+        }
+        #sel_pan {
+            width: 1180px;
+            position: relative;
+            background-color: #666666;
+            /* z-index: 100; */
+            /* overflow: hidden; */
+        }
+        #selDetailBtn {
+            position: relative;
+            background-position: left top;
+            background-repeat: no-repeat;
+            width: 116px;
+            height: 40px;
+            cursor: pointer;
+            z-index: 100;
+            background-image: url(//info.sporttery.cn/football/images/lotbg.jpg);
+        }
+        #selDetailDiv {
+            border-top: solid 2px #CCCCCC;
+        }
+        #selDetailDiv {
+            position: absolute;
+            display: none;
+            left: 0px;
+            bottom: 71px;
+            z-index: 99;
+            text-align: left;
+            width: 380px;
+        }
+        #selDetailTbl {
+            border: solid 2px #CCCCCC;
+            background-color: #FFFFFF;
+            border-top: none;
+        }
+        #optionHeader {
+            width: 578px;
+            color: #FFFFFF;
+        }
+        input[type="radio" i] {
+            background-color: initial;
+            cursor: default;
+            -webkit-appearance: radio;
+            box-sizing: border-box;
+            margin: 3px 3px 0px 5px;
+            padding: initial;
+            border: initial;
+        }
+        input {
+            -webkit-writing-mode: horizontal-tb !important;
+            text-rendering: auto;
+            color: -internal-light-dark-color(black, white);
+            letter-spacing: normal;
+            word-spacing: normal;
+            text-transform: none;
+            text-indent: 0px;
+            text-shadow: none;
+            display: inline-block;
+            text-align: start;
+            -webkit-appearance: textfield;
+            background-color: -internal-light-dark-color(rgb(255, 255, 255), rgb(59, 59, 59));
+            -webkit-rtl-ordering: logical;
+            cursor: text;
+            margin: 0em;
+            font: 400 13.3333px Arial;
+            padding: 1px 2px;
+            border-width: 2px;
+            border-style: inset;
+            border-color: -internal-light-dark-color(rgb(118, 118, 118), rgb(195, 195, 195));
+            border-image: initial;
+        }
+        #optionTip {
+            font-size: 12px;
+            color: #FFE38B;
+            overflow: hidden;
+            white-space: nowrap;
+            height: 14px;
+            line-height: 14px;
+            margin-left: 10px;
+            vertical-align: bottom;
+        }
+        label {
+            cursor: default;
+        }
+        #optionList {
+            color: #FFFFFF;
+        }
+        #sel_pan .subAddBtn {
+            background-color: #FFFFFF;
+            border: solid 1px #CCCCCC;
+            color: #EC8B00;
+            font-weight: bold;
+            width: 20px;
+        }
+        #times {
+            width: 18px;
+            height: 15px;
+            border: solid 1px #CCCCCC;
+            text-align: center;
+        }
+        #sel_pan .subAddBtn {
+            background-color: #FFFFFF;
+            border: solid 1px #CCCCCC;
+            color: #EC8B00;
+            font-weight: bold;
+            width: 20px;
+        }
+        #consume {
+            color: #FFE38B;
+            font-weight: bold;
+        }
+        #bonusTd {
+            font-size: 12px;
+            line-height: 22px;
+            color: #FFFFFF;
+        }
+        #bonus {
+            color: #FFE38B;
+            font-weight: bold;
+        }
+        }
+        #detailBtn {
+            width: 95px;
+            height: 32px;
+            border: none;
+            background-color: #FF6000;
+            color: #FFFFFF;
+            font-size: 16px;
+            border-bottom: solid 2px #C34900;
+            cursor: pointer;
+        }
+
+        #viewDetailDiv {
+            position: absolute;
+            display: none;
+            bottom: 71px;
+            right: 0px;
+            border: solid 2px #CCCCCC;
+            background-color: #FFFFFF;
+            text-align: center;
+            width: 620px;
+            z-index: 104;
+        }
+        #viewDetailDiv td {
+            border-bottom: solid 1px #CCCCCC;
+            border-right: solid 1px #CCCCCC;
+        }
+        #detailClose {
+            display: inline-block;
+            float: right;
+            border: solid 1px #FF0000;
+            color: #ff0000;
+            cursor: pointer;
+            font-size: 13px;
+            width: 16px;
+        }
+        #detailBtn {
+            width: 95px;
+            height: 32px;
+            border: none;
+            background-color: #FF6000;
+            color: #FFFFFF;
+            font-size: 16px;
+            border-bottom: solid 2px #C34900;
+            cursor: pointer;
+        }
+
+        #printBtn {
+            float: right;
+            margin-right: 3px;
+        }
+        #mmSpan {
+            color: red;
+            display: none;
+        }
+        #QRcode {
+            color: #fed701;
+            font-size: 12px;
+            position: relative;
+            bottom: -7px;
+            right: -2px;
+            height: 39px;
+            line-height: 16px;
+            background-image: url(../images/shadow.png);
+            padding-left: 2px;
+        }
+        .codeLogo {
+            position: absolute;
+            display: none;
+            width: 168px;
+            height: 193px;
+            background-image: url(../images/QRcode.png);
+            top: -195px;
+            right: 0;
+            z-index: 100001;
+        }
+        b {
+            font-weight: bold;
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="login" style="width: 1903px;height: 28px;color: #F1F1F1;">
+    <div class="all-wrap">
+        <div class="FloatL" style="color: #999999;font:宋体;float: left;">中国体育彩票竞猜游戏官方信息发布平台</div>
+        <div class="FloatR" style="float: right;display: inline;">
+            <a href="">责任彩票</a>
+            <a href="">帮助中心</a>"
+            <a href="">网站导航</a>
+        </div>
+    </div>
+</div>
+
+<div id="head">
+    <ul>
+        <li><a style="margin-left: 319px;">全部游戏
+            <em class="triangle-nav"></em>
+        </a></li>
+        <li><a style="width: 60px;">首页</a></li>
+        <li><a style="width: 80px;">责任彩票</a></li>
+        <li><a style="width: 90px;">联赛资料</a></li>
+        <li><a style="width: 80px;">竞彩资讯</a></li>
+        <li><a style="width: 90px;">受注赛程</a></li>
+        <li><a style="width: 90px;">比分直播</a></li>
+        <li><a style="width: 90px;">赛果开奖</a></li>
+        <li><a style="width: 80px;">乐透数字</a></li>
+        <li><a style="width: 80px;">传统足彩</a></li>
+        <li><a style="width: 80px;">帮助中心</a></li>
+    </ul>
+</div>
+<div class="wrap">
+    <div id="container">
+        <table cellpadding="0" cellspacing="0" width="100%">
+            <tbody>
+            <tr id="tabDiv">
+                <td id="tabList">
+                    <a class="selTab" style="border-bottom:none;">胜平负/让球胜平负</a>
+                    <a href="cal_crs.htm">比 分</a>
+                    <a href="cal_ttg.htm">总进球数</a>
+                    <a href="cal_hafu.htm">半全场胜平负</a>
+                    <a href="//info.sporttery.cn/mixed/mixed.htm?gameIndex=0">混合过关</a>
+                </td>
+                <td id="noticeSpan" align="right" valign="bottom">
+                    <a href="//info.sporttery.cn/football/match_list.php" style="color:#4e91ea" target="_blank">[足球受注赛程]</a>
+                    &nbsp;&nbsp;
+                    <a href="//info.sporttery.cn/football/match_interim.php" style="color:#4e91ea" target="_blank">[足球暂定赛程]</a>
+                    &nbsp;&nbsp;
+                    <a href="//info.sporttery.cn/iframe/lottery_notice.php" style="color:#4e91ea" target="_blank">[赛事公告]</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div id="toolDiv">
+					<span style="float: right;line-height:28px; display:inline-block;">
+						&nbsp;竞彩奖金更新时间：
+						<span id="updateTime">2020-07-27 10:18:01</span>
+						<a href="javascript:void(0)" id="updateBtn">[刷新]</a>
+					</span>
+            <a href="//www.sporttery.cn/football/jcjq/2014/1021/123944.html" target="_blank" style="float:right;color:#4e91ea;">[ 使用说明 ]</a>
+            <span id="mFilterBtn">&nbsp;赛事筛选</span>
+            <input id="singlePass" type="checkbox">
+            <label for="singlePass">仅显示单关   </label>
+            共隐藏
+            <label id="hideCount">0</label>
+            场赛事&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input id="hadCkb" checked="checked" type="checkbox">
+            <label for="hadCkb">胜平负</label>
+            <input id="hhadCkb" checked="checked" type="checkbox">
+            <label for="hhadCkb">让球胜平负</label>
+        </div>
+        <table id="headerTr" cellpadding="0" cellspacing="0" style="position: relative;">
+            <tbody>
+            <tr>
+                <td style="width: 48px;">
+								<span id="codeHeader" class="headerList" original-title="点击排序">
+									赛事
+									<br />
+									编号
+								</span>
+                </td>
+                <td style="width: 74px;">
+                    <span>赛事</span>
+                </td>
+                <td style="width: 97px;">
+                    <span>开赛<br>时间</span>
+                </td>
+                <td style="width: 300px;">主队 VS 客队</td>
+                <td style="width: 62px;">让球<br>
+                    <select id="rqList"><option>全部</option><option>-1</option><option>+1</option></select>
+                </td>
+                <td style="width:300px;">
+                    <span id="hHeader" class="oddsHeader" original-title="">胜</span>
+                    <span id="dHeader" class="oddsHeader" original-title="">平</span>
+                    <span id="aHeader" class="oddsHeader" original-title="">负</span>
+                </td>
+                <td style="width: 74px;">数据</td>
+                <td style="width: 135px; vertical-align: bottom;">
+                    <span style="cursor: default;" id="uOddsListbox">支持率</span><br>
+                    <span class="uoOption tLine rLine">胜</span><span class="uoOption tLine rLine">平</span>
+                    <span class="uoOption tLine">负</span>
+                </td>
+                <td style="width: 80px;">重要提示</td>
+            </tr>
+            </tbody>
+        </table>
+        <table id="mainTbl" cellpadding="0" cellspacing="0" width="100%">
+            <tbody>
+            <tr><td class="bDateTd" colspan="9" bindex="1">周日 2020-07-26&nbsp;&nbsp;&nbsp;共<label>1</label>场比赛&nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" class="bDateHide">[隐藏]</a></td></tr>
+
+            </tbody>
+        </table>
+    </div>
+
+    <div id="sel_pan"style="position: fixed; bottom: 0px;background-color: #666666;">
+        <table width="1180" align="center">
+            <tbody>
+            <tr>
+                <td align="center">
+                    <div>
+                        <div id="selDetailBtn">
+										<span style="margin-top:8px; display:inline-block; font-weight:bold;">
+											已选<span id="selCount">0</span>场</span><br>(设胆)
+                        </div>
+                        <div id="selDetailDiv">
+                            <table id="selDetailTbl" cellpadding="0" cellspacing="0"></table>
+                        </div>
+                    </div>
+                </td>
+                <td style="padding-bottom:5px;width:631px;">
+                    <div style="padding: 5px 0 3px 0; color:#FFE38B; font-size:14px; font-weight:bold;">本页面目前仅提供奖金计算功能，更多便捷服务将在将来开通。</div>
+                    <div id="optionHeader"><b>过关方式：</b>
+                        <input type="radio" index="0" name="optionType" checked="">M串N
+                        <input index="1" type="radio" name="optionType">自由过关
+                        <label id="optionTip" style="width: auto;"></label>
+                    </div>
+                    <div><span id="optionList" count="0"></span></div>
+                </td>
+                <td>
+                    <input type="button" id="subBtn" class="subAddBtn" value="-">
+                    <input id="times" type="text" value="1">
+                    <input type="button" id="addBtn" class="subAddBtn" value="+">
+                    <label style="color:#FFFFFF;"> 倍</label>
+                    <br>
+                    <font color="#FFFFFF" style="white-space: nowrap;">[最高50倍]</font>
+                </td>
+                <td id="bonusTd">投注金额：
+                    <span id="consume">0</span>元<br>
+                    理论最高奖金:
+                    <br/>
+                    <span id="bonus">0.00</span>元
+                </td>
+                <td>
+                    <input type="button" id="detailBtn" value="奖金详情" >
+                    <div id="viewDetailDiv">
+                        <table cellspacing="0" cellpadding="6" width="100%">
+                            <tbody>
+                            <tr>
+                                <td colspan="4">
+                                    <a id="detailClose" style="text-decoration:none;" href="javascript:void(0);">×</a>
+                                    <a id="printBtn" href="javascript:void(0);">打印</a>
+                                    <span id="mmSpan"></span>
+                                </td>
+                            </tr>
+                            <tr style="font-weight:bold;">
+                                <td style="width:38px;border-right:none;">注号</td>
+                                <td style="width:100px;border-right:none;">过关方式</td>
+                                <td id="dch" style="width:380px;border-right:none;">注项内容</td>
+                                <td id="dBTd" style="width:50px;">奖金</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div id="detailList">
+                            <table id="viewDetailTbl" width="100%" cellpadding="6" cellspacing="0"></table>
+                        </div>
+                    </div>
+                </td>
+                <td style="width: 90px;">
+                    <div id="QRcode">更多购彩者方案<br>尽在中国竞彩
+                        <span class="codeLogo"></span>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <table id="filterTbl" cellpadding="0" cellspacing="0" style="display: none;">
+
+        <tbody>
+        <tr>
+            <td id="filterHeader" style="width:68px; height:17px; line-height:17px; background-image:url(images/lotbg.jpg); background-position:left -129px; background-repeat:no-repeat;"></td>
+            <td id="filterResize" style="width: 323px;">&nbsp;</td>
+        </tr>
+        <tr style="background-color:#FFFFFF;">
+            <td style="border-left:solid 1px #CCCCCC;">&nbsp;按日期筛选</td>
+            <td style="height:24px; border-top:solid 1px #CCCCCC; border-right:solid 1px #CCCCCC; text-align:right;">
+							<span id="filterCloseBtn" style="display:inline-block; width:16px; line-height:16px; text-align:center; cursor:pointer; color:#F69090; border:solid 1px #F69090;">
+								<font style="vertical-align: inherit;">
+									<font style="vertical-align: inherit;">×</font>
+								</font>
+							</span>
+            </td>
+        </tr>
+        <tr>
+            <td id="dFilterList" style="background-color:#FFFFFF; border-left:solid 1px #CCCCCC; border-right:solid 1px #CCCCCC; padding:6px;" colspan="2">
+                <input type="checkbox" checked="checked"> 全部
+                <input type="checkbox" checked="checked"> 周日
+                <input type="checkbox" checked="checked"> 周一
+            </td>
+        </tr>
+        <tr style="background-color:#FFFFFF;">
+            <td style="border-left:solid 1px #CCCCCC;">&nbsp;按赛事筛选</td>
+            <td style="height:24px; border-right:solid 1px #CCCCCC;">&nbsp;</td>
+        </tr>
+        <tr>
+            <td id="mFilterList" style="background-color:#FFFFFF; border-left:solid 1px #CCCCCC; border-right:solid 1px #CCCCCC; border-bottom:solid 1px #CCCCCC; padding:6px;" colspan="2">
+                <input type="checkbox" checked="checked">
+                <label style="width:100px;display:inline-block;">全部</label>
+                <br>
+                <input type="checkbox" checked="checked">
+                <label style="width:100px;display:inline-block;">
+                    <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">杯赛</font>
+                    </font>
+                </label>
+                <input type="checkbox" checked="checked">
+                <label style="width:100px;display:inline-block;">
+                    <font style="vertical-align: inherit;">
+                        <font style="vertical-align: inherit;">澳大利亚超级联赛</font>
+                    </font>
+                </label>
+                <input type="checkbox" checked="checked">
+                <label style="width:100px;display:inline-block;">
+                    <font style="vertical-align: inherit;">
+                        <font style="vertical-align: inherit;">瑞典超级联赛</font>
+                    </font>
+                </label>
+                <br>
+                <input type="checkbox" checked="checked">
+                <label style="width:100px;display:inline-block;">
+                    <font style="vertical-align: inherit;">
+                        <font style="vertical-align: inherit;">英格兰冠军联赛</font>
+                    </font>
+                </label>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div id="oddsChgDiv" curid=""></div>
+    <div id="animateFrame"></div>
+    <div id="sortList" oddsstr="" style="display: none; top: -174px; left: -361.5px;">
+
+        <a href="javascript:void(0)">胜平负↑</a>
+        <br>
+        <a href="javascript:void(0)">胜平负↓</a>
+        <br>
+        <a href="javascript:void(0)">让球胜平负↑</a>
+        <br>
+        <a href="javascript:void(0)">让球胜平负↓</a>
+    </div>
+    <div style="border:solid 1px #e5e5e5; background-color:#f2f2f2; padding:7px;color:#999999;">
+        <ul style="padding-left:20px; margin-left:0px; line-height:26px;"><b>竞彩足球投注提示：</b>
+            <li>1、让球只适合“让球胜平负”游戏，“+”为客让主，“-”为主让客。</li>
+            <li style="color:#C80000">2、页面中过关投注固定奖金仅供参考，实际奖金以出票时刻奖金为准。投注区显示的中奖金额=每1元对应中奖奖金。</li>
+            <li>3、过关投注完场显示的奖金仅指比赛截止投注时的过关奖金，仅供参考，派奖奖金以方案详情中出票时刻的奖金为准。</li>
+            <li>4、2或3场过关投注，单注最高奖金限额20万元；4或5场过关投注，单注最高奖金限额50万元；6场和6场以上过关投注，单注最高奖金限额100万元。</li>
+        </ul>
+    </div>
+    <div id="newIndicate"></div>
+
+</div>
+
+</body>
+</html>

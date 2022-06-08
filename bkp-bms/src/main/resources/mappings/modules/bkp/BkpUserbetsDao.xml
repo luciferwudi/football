@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jeesite.modules.bkp.dao.BkpUserbetsDao">
+	
+	<!-- 查询数据
+	<select id="findList" resultType="BkpUserbets">
+		SELECT ${sqlMap.column.toSql()}
+		FROM ${sqlMap.table.toSql()}
+		<where>
+			${sqlMap.where.toSql()}
+		</where>
+		ORDER BY ${sqlMap.order.toSql()}
+	</select> -->
+
+    <select id="selectAllNullMatchResults" resultType="com.jeesite.modules.bkp.entity.BkpUserbets">
+         select * from bkp_userbets where matchResults="待开奖"
+         <if test="userCode !=null">
+             and userCode=#{userCode}
+         </if>
+         and status="0"
+    </select>
+    <select id="selectCombination" resultType="java.util.Map">
+        select combination,createTime FROM bkp_userbets  where userCode=#{userCode} and `status`="0" GROUP BY combination,createTime ORDER BY createTime DESC
+    </select>
+    <select id="selectByCombination" resultType="com.jeesite.modules.bkp.entity.BkpUserbets">
+    SELECT * FROM bkp_userbets WHERE combination=#{combination} and status="0"
+    </select>
+    <select id="getById" resultType="com.jeesite.modules.bkp.entity.BkpUserbets">
+        select * from bkp_userbets where pcjlId=#{pcjlid}
+    </select>
+    <select id="getBygdylId" resultType="java.lang.Integer">
+        select betAmount from  bkp_userbets where gdmsId=#{gdmsId}
+    </select>
+    <select id="getByGdmsid" resultType="com.jeesite.modules.bkp.entity.BkpFixedprofit">
+        select * from bkp_fixedprofit where id=#{gdmsid}
+    </select>
+    <select id="selectCombinationAndPcjlid" resultType="java.util.Map">
+        select combination,createTime FROM bkp_userbets  where userCode=#{userCode}  and pcjlId=#{pcjlid} and status="0"  GROUP BY combination,createTime ORDER BY createTime DESC
+    </select>
+    <select id="selectByGdylmsId" resultType="java.lang.String">
+        select  description  from bkp_fixedprofit where id=#{id}
+    </select>
+    <select id="selectByPcjlId" resultType="java.lang.Integer">
+        select  batch from bkp_batchrecord where id=#{id}
+    </select>
+    <select id="selectById" resultType="java.lang.Long">
+        select combination FROM bkp_userbets  where pcjlId=#{pcjlid} GROUP BY combination
+    </select>
+    <select id="findById" resultType="java.lang.Long">
+        select combination from bkp_userbets where id=#{id}
+    </select>
+</mapper>

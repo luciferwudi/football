@@ -1,0 +1,35 @@
+/*导航*/
+.login{width:100%;height:27px; line-height:27px;color:#999999; background-color:#f1f1f1; border-bottom:1px solid #e5e5e5; padding:0px}
+.login a{ margin:0 10px;color:#999999; text-decoration:none}
+.login a:hover{color:#e30000; text-decoration:underline}
+.login a.red{ color:#e30000}
+.login .triangle{ background:url(../Images/triangle.gif) no-repeat; width:7px; height:4px;display:inline-block; margin-left:2px; margin-bottom:3px; vertical-align:middle}
+.login a.mlr{margin:0 20px 0 0px}
+.header-top{ height:85px; color:#999999}
+.header-top .mtb{ margin:15px 0 11px 0; height:59px; line-height:24px}
+.header-top .f16{ font-size:16px; margin-left:5px}
+.header-nav{width:100%; height:45px; background-color:#e30000;font:normal 16px/45px "微软雅黑"; position:relative; z-index:100}
+.header-nav li{ float:left; position:relative; display:inline; width:80px; text-align:center; margin-left:20px}
+.header-nav li.home{ width:60px;}
+.header-nav .all-wrap li a{ color:#FFF; display:block; text-decoration:none;outline:none;}
+.header-nav .all-wrap li a:hover{background-color:#c80404;}
+.header-nav .all-wrap .tri{width:90px; padding-left:10px; text-align:left }
+.header-nav .all-wrap .tri a{ _margin-top:0px}
+.header-nav .all-wrap .tri a em{ _margin-top:18px}
+.header-nav .triangle-nav{ background:url(../Images/triangle_nav.gif) no-repeat; width:9px; height:5px;display:inline-block; margin-left:5px; margin-bottom:3px; vertical-align:middle}
+.header-nav .active{ color:#333; background-color:#c80404; height:45px;}
+.header-nav .active .triangle-nav{ background:url(../Images/triangle_nav1.gif) no-repeat;}
+.header-nav .sub-menu{display: none; position: absolute;top:45px;left: 0; width:100px; background-color:#e30000;font:normal 14px/30px "微软雅黑"; text-align:center; z-index:999}
+.header-nav .sub-menu li{ text-align:center; float:none; line-height:30px;margin:0px; padding:0}
+.header-nav .sub-menu li a:hover{ background-color:#c80404}
+
+.navwid{ width:1180px; margin:0 auto}
+.login .all-wrap{ background-color:#f1f1f1;}
+.header-nav .all-wrap{ background-color:#e30000;}
+
+/* 二级导航下增加公告 */
+.g-position{text-align:center;position:absolute;width:100%;height:0;z-index:99;}
+.g-notice2020{position:relative;display:inline-block;margin-top:15px;padding:8px 60px;max-width:1050px;text-align:left;color:#499bf4;font:normal 16px/30px "微软雅黑";background:url("../Images/tips.png") #fff no-repeat 30px center;background-size:20px;border-radius:5px;-moz-box-shadow:0px 0px 8px #afbccc; -webkit-box-shadow:0px 0px 8px #afbccc; box-shadow:0px 0px 8px #afbccc;display:none;}
+.g-notice2020 a{color:#499bf4;cursor:pointer;}
+.g-notice2020 a:hover{color:#2e71cc;text-decoration:underline;}
+.u-close2020{position:absolute;top:50%;right:20px;margin-top:-9px;width:18px;cursor:pointer;}

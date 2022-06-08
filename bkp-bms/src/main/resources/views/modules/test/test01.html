@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="${ctxStatic}/js/demo/major.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试vue,element</title>
+</head>
+<body>
+<div id="app">
+    <el-table
+            :data="tableData"
+            border
+            style="width: 1452px">
+        <el-table-column
+                label="选择"
+                width="70">
+            <template scope="scope">
+                <el-checkbox @change="ceshi(scope)" :value="xxxz" ref="checks"></el-checkbox>
+
+            </template>
+        </el-table-column>
+
+        <el-table-column
+                prop="bDate"
+                label="比赛日期"
+                width="150">
+        </el-table-column>
+        <el-table-column
+                prop="num"
+                label="次序"
+                width="120">
+        </el-table-column>
+        <el-table-column
+                prop="time"
+                label="具体时间"
+                width="120">
+        </el-table-column>
+        <el-table-column
+                prop="lcnAbbr"
+                label="联赛"
+                width="120">
+        </el-table-column>
+        <el-table-column
+                prop="hcnAbbr"
+                label="主队"
+                width="200">
+        </el-table-column>
+        <el-table-column
+                label="对战"
+                width="120">
+            VS
+        </el-table-column>
+        <el-table-column
+
+                prop="acnAbbr"
+                label="客队"
+                width="200">
+        </el-table-column>
+        <el-table-column
+                prop="result"
+                label="不让球"
+                width="200">
+
+        </el-table-column>
+        <el-table-column
+                prop="min"
+                label="赔率"
+                width="150">
+        </el-table-column>
+
+
+    </el-table>
+
+</div>
+</body>
+<!-- import Vue before Element -->
+<script src="${ctxStatic}/js/demo/vue.js"></script>
+<!-- import JavaScript -->
+<script src="${ctxStatic}/js/demo/major.js"></script>
+<!-- import axios -->
+<script src="${ctxStatic}/js/demo/axios.js"></script>
+<!-- import 封装好的get,post的请求 -->
+<script src="${ctxStatic}/js/demo/httpRequest.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data() {
+            return {
+                aa:0,
+                checkAll: [],
+                visible: false,
+                value1: true,
+                xxxz:{aa:"ww"},
+                datas:[],
+                tableData: [],
+                hobby2:[]
+            }
+        },
+        created() {
+            this.getData01();
+
+        },
+        methods:{
+            getData01(){
+                // var dat={"aa":"bb","cc":"dd"};
+                // var da="我想"
+                // var da={
+                //     aa:"aa",
+                //     bb:"bb"
+                // };
+                axiosGetRequst("/js/test01/getce1").then( res=>{
+                    console.log("========"+JSON.stringify(res))
+                    // this.tableData=res;
+                debugger;
+                })
+                var da={
+                   aa:"测试",
+                   bb:"bb"
+                }
+                axiosPostRequst("/js/test01/getce",da).then( res=>{
+                    console.log("========"+JSON.stringify(res))
+                    // this.tableData=res;
+                debugger;
+                })
+            },
+            handleClick(row) {
+                console.log(row);
+            },
+            ceshi(row){
+               console.log(this.$refs.checks);
+                console.log(row.row)
+            }
+        }
+    })
+</script>
+
+</html>

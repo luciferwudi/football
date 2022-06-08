@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jeesite.modules.bkp.dao.BkpLbplDao">
+	
+	<!-- 查询数据
+	<select id="findList" resultType="BkpLbpl">
+		SELECT ${sqlMap.column.toSql()}
+		FROM ${sqlMap.table.toSql()}
+		<where>
+			${sqlMap.where.toSql()}
+		</where>
+		ORDER BY ${sqlMap.order.toSql()}
+	</select> -->
+
+    <select id="selectGroupByTime" resultType="java.lang.String">
+        SELECT date FROM `teamdata`  GROUP BY date
+    </select>
+    <select id="selectz" resultType="java.lang.Integer">
+    SELECT count(*) FROM bkp_lbpl
+    WHERE result=#{result}  AND h &gt;=#{a1}  and h &lt;#{a2}
+    </select>
+    <select id="selectk" resultType="java.lang.Integer">
+    SELECT count(*) FROM bkp_lbpl
+    WHERE result=#{result}  AND a &gt;=#{a1}  and a &lt;#{a2}
+    </select>
+</mapper>

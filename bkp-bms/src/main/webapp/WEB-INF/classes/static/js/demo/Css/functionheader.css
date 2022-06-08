@@ -1,0 +1,22 @@
+@charset "gb2312";
+/*µ¼º½Çø*/
+.NavBox{height:28px;background:#b40000;line-height:28px;color:#ffe38e}
+.Home{width:50px;height:28px;background:#970100;display:inline-block;text-align:center}
+.NavBox a{color:#ffe38e;text-decoration:none}
+.NavBox a:hover{color:#ff8150;text-decoration:underline}
+
+/*LOGOÇø*/
+.LogoBox{height:52px;padding:18px 20px 0 0}
+.Logo{margin:-9px 0 0 0}
+.ToolsBar{width:557px;height:31px;background:#fff8e2;border:1px #fde3cc solid;line-height:33px;}
+.ToolsBar_FB{color:#009403;background:url(../Images/toolsbar_fb.jpg) no-repeat left center;padding-left:22px;margin-left:5px}
+.ToolsBar_FB a{color:#009403;text-decoration:none}
+.ToolsBar_FB a:hover{color:#004802;text-decoration:underline}
+.ToolsBar_BK{color:#cd6323;background:url(../Images/toolsbar_bk.jpg) no-repeat left center;padding-left:22px;margin-left:10px}
+.ToolsBar_BK a{color:#cd6323;text-decoration:none}
+.ToolsBar_BK a:hover{color:#923700;text-decoration:underline}
+.Main_LBox{width:260px;margin-top:5px}
+.Main_RBox{width:740px;margin-top:5px}
+.FloatL{float:left;display:inline}
+.FloatR{float:right;display:inline}
+

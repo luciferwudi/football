@@ -1,0 +1,74 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<!--<script src="${ctxStatic}/js/demo/Scripts/jquery-1.7.min.js" type="text/javascript"></script>-->
+<!--<script src="${ctxStatic}/echarts/4.2/echarts.simple.min.js"></script>-->
+<script src="${ctxStatic}/jquery/jquery-3.5.0.js"></script>
+<script type="text/javascript">
+    $(function () {
+        // f1();
+        var ff=sessionStorage["type"];
+        if (JSON.stringify(ff)==JSON.stringify("sy")){
+            f1();
+        }else if (JSON.stringify(ff)==JSON.stringify("sc")){
+            teamfixture();
+        }
+    });
+    function teamfixture() {
+        sessionStorage["type"]="sc";
+        debugger;
+        var data={
+            id:sessionStorage["id"]
+        }
+        if (data.aa==0){
+        }else{
+            $.post("teamfixture",data).then(res =>{
+            debugger;
+                var data={
+                    team:sessionStorage["teamname"]
+                }
+                $.post("${ctx}/odds/odds/queryTid",data).then(res =>{
+                    debugger;
+                    console.log(JSON.stringify(res))
+                    sessionStorage['tid']=res.tid;
+                    sessionStorage['date01']=res.time;
+                })
+                debugger;
+                $("html").html(res.ce);
+            })
+        }
+    }
+
+    function f1() {
+        sessionStorage["type"]="sy";
+                var data={
+                    aa:sessionStorage["id"]
+                }
+                if (data.aa==0){
+                }else{
+                    $.post("${ctx}/odds/odds/ce",data).then(res =>{
+                        debugger;
+                        var data={
+                            team:sessionStorage["teamname"]
+                        }
+                        $.post("${ctx}/odds/odds/queryTid",data).then(res =>{
+                            console.log(JSON.stringify(res))
+                            sessionStorage['tid']=res.tid;
+                            sessionStorage['date01']=res.time;
+                        })
+                        $("html").html(res.ce);
+                    })
+                }
+
+    }
+</script>
+<body>
+<div>
+
+
+</div>
+
+</body>
+</html>

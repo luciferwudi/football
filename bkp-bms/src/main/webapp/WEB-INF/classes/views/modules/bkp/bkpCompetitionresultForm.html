@@ -1,0 +1,300 @@
+<% layout('/layouts/default.html', {title: '比赛结果推荐表管理', libs: ['validate']}){ %>
+<div class="main-content">
+	<div class="box box-main">
+		<div class="box-header with-border">
+			<div class="box-title">
+				<i class="fa icon-note"></i> ${text(bkpCompetitionresult.isNewRecord ? '新增比赛结果推荐表' : '编辑比赛结果推荐表')}
+			</div>
+			<div class="box-tools pull-right">
+				<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+			</div>
+		</div>
+		<#form:form id="inputForm" model="${bkpCompetitionresult}" action="${ctx}/bkp/bkpCompetitionresult/save" method="post" class="form-horizontal">
+			<div class="box-body">
+				<table id="dakas" style="border-collapse: collapse;margin: 0 auto;text-align: center;width: 1452px">
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<label><input type="radio" name="tz" id="wf1" value="2串1"  onclick="zuhe(2)">2串1</label>
+					<label><input type="radio" name="tz" id="wf2" value="3串1 " onclick="zuhe(3)">3串1</label>
+					&nbsp;&nbsp;&nbsp;
+					<label><a href="https://guide.leisu.com/" target="_blank">推荐参考</a></label>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<label><a  onclick="importTheLatestData()" >导入数据</a></label>
+					<tr>
+						<td style='border: 1px solid #cad9ea;color: #666;'><label>比赛时间</label></td>
+						<td style='border: 1px solid #cad9ea;color: #666;'><label>次序</label></td>
+						<td style='border: 1px solid #cad9ea;color: #666;'><label>具体时间</label></td>
+						<td style='border: 1px solid #cad9ea;color: #666;'><label>联赛</label></td>
+						<td style='border: 1px solid #cad9ea;color: #666;'><label>主队</label></td>
+						<td style='border: 1px solid #cad9ea;color: #666;'><label>对战</label></td>
+						<td style='border: 1px solid #cad9ea;color: #666;'><label>客队</label></td>
+						<td style='border: 1px solid #cad9ea;color: #666;'><label>胜</label></td>
+						<td style='border: 1px solid #cad9ea;color: #666;'><label>平</label></td>
+						<td style='border: 1px solid #cad9ea;color: #666;'><label>负</label></td>
+						<td style='border: 1px solid #cad9ea;color: #666;'><label>推荐结果</label></td>
+					</tr>
+				</table>
+<!--				<div class="form-unit">${text('基本信息')}</div>-->
+<!--				<#form:hidden path="id"/>-->
+				<div class="row" style="display: none">
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('时间')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="time" maxlength="30" class="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('次序')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="num" maxlength="30" class="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('玩法')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="howtoplay" maxlength="30" id="wf" class="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('联赛')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="league" maxlength="30" class="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('主队')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="hometeam" maxlength="50" class="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('客队')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="awayteam" maxlength="50" class="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('用户选择')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="pick" maxlength="50" class="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('历史对战')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="historicalbattle" maxlength="255" class="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('获胜概率')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="probabilityofwinning" maxlength="255" class="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('历史对战胜率')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="historicalwinrate" maxlength="255" class="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('创建时间')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="creattime" maxlength="30" class="form-control"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label class="control-label col-sm-4" title="">
+								<span class="required hide">*</span> ${text('创建人')}：<i class="fa icon-question hide"></i></label>
+							<div class="col-sm-8">
+								<#form:input path="creatby" maxlength="50" class="form-control"/>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="box-footer">
+				<div class="row">
+					<div class="col-sm-offset-2 col-sm-10">
+						<% if (hasPermi('bkp:bkpCompetitionresult:edit')){ %>
+							<button type="submit" class="btn btn-sm btn-primary" id="btnSubmit" onclick="bc()"><i class="fa fa-check"></i> ${text('保 存')}</button>&nbsp;
+						<% } %>
+						<button type="button" class="btn btn-sm btn-default" id="btnCancel" onclick="js.closeCurrentTabPage()"><i class="fa fa-reply-all"></i> ${text('关 闭')}</button>
+					</div>
+				</div>
+			</div>
+		</#form:form>
+	</div>
+</div>
+<% } %>
+<script>
+	$(function () {
+		getTeamData();
+	});
+	var howToPlay = 0;
+	var list=[];
+	function importTheLatestData(){
+		$.get("/js/test01/ceshi").then(res =>{console.log("res========"+res);alert(res)})
+	}
+	function bc() {
+		$.ajaxSetup({
+			async : false
+		});
+		var wf=$("#wf").val();
+		var combination=0;
+		var data={
+			howToPlay:wf
+		}
+			$.post("${ctx}/bkp/bkpCompetitionresult/selectCombination",data).then(res =>{
+            console.log(res);
+			if (res==""){
+				combination=1;
+			}else{
+				combination=res+1;
+			}
+			debugger;
+			var aa=$("input[type='checkbox']:checked").parent("lable").parent("td").parent("tr");
+			for (var i=0;i<aa.length;i++){
+				var time=$(aa[i]).children("td")[0].textContent;//时间
+				var num=$(aa[i]).children("td")[1].textContent;//次序
+				var league=$(aa[i]).children("td")[3].textContent;//联赛
+				var homeTeam=$(aa[i]).children("td")[4].textContent;
+				var awayTeam=$(aa[i]).children("td")[6].textContent;
+				var pick="";
+				var win=$($($(aa[i]).children("td")[7]).children("lable")).children("input")[0].checked;//胜
+				if (win==true){
+					pick+="胜";
+				}
+				var ping=$($($(aa[i]).children("td")[8]).children("lable")).children("input")[0].checked;//平
+				if (ping==true){
+					pick+="平";
+				}
+				var ping=$($($(aa[i]).children("td")[9]).children("lable")).children("input")[0].checked;//负
+				if (ping==true){
+					pick+="负";
+				}
+				var BkpCompetitionresult={
+					time:time,
+					num:num,
+					howtoplay:wf,
+					league:league,
+					combination:combination,
+					hometeam:homeTeam,
+					awayteam:awayTeam,
+					pick:pick
+				}
+				$.post("${ctx}/bkp/bkpCompetitionresult/saveResult",BkpCompetitionresult).then(res =>{
+				});
+				$.post("${ctx}/bkp/bkpRecommendeddescription/queryls",BkpCompetitionresult).then(res =>{
+					//推荐说明
+				});
+			}
+
+		});
+		 // var result=JSON.stringify(list);
+	}
+
+	function check(obj) {
+		var aa=$("input[type='checkbox']:checked").parent("lable").parent("td").parent("tr");
+		if (aa.length>howToPlay){
+			alert("只能选择"+howToPlay+"场");
+			$(obj).prop("checked", false);
+			return;
+		}
+		debugger;
+	}
+	function zuhe(obj) {
+		if (obj==2){
+			howToPlay=2;
+			$("#wf").val("2串1")
+		}else if (obj==3){
+			howToPlay=3;
+			$("#wf").val("3串1");
+		}
+		$("input[type='checkbox']").removeAttr("checked");//取消全选
+	}
+	function getTeamData(){
+		$.get("/js/test01/minimumOdds").then(res =>{
+			$("#wf1").attr("checked",true);
+			$("#wf").val("2串1");
+			howToPlay=2;
+			var tBody = $("#dakas");
+			//2.迭代数据并显示在tbody中
+			for (var i in res) {
+				//2.1 构建tr对象
+				var tr = $("<tr></tr>");
+				//tr.data("rowData",res[i]);
+				//2.2 构建多个td对象
+				var tds = doCreateTds(res[i]);
+				//2.3 将td追加到tr中
+				tr.append(tds);
+				//2.4 将tr追加到tbody中
+				tBody.append(tr);
+			}
+		})
+	}
+	function doCreateTds(item){
+		var tds =
+				"<td style='border: 1px solid #cad9ea;color: #666;' >" + "<lable>" + item.bDate+ "</lable>" + "</td>" +
+				"<td style='border: 1px solid #cad9ea;color: #666;'>" + "<lable>" + item.num + "</lable>" + "</td>" +
+				"<td style='border: 1px solid #cad9ea;color: #666;'>" + "<lable>" + item.time + "</lable>" + "</td>" +
+				"<td style='border: 1px solid #cad9ea;color: #666;'>" + "<lable>" + item.lcnAbbr + "</lable>" + "</td>" +
+				"<td style='border: 1px solid #cad9ea;color: #666;'>" + "<lable>" + item.hcnAbbr + "</lable>" + "</td>" +
+				"<td style='border: 1px solid #cad9ea;color: #666;'>" + "<lable>" + "VS" + "</lable>" + "</td>" +
+				"<td style='border: 1px solid #cad9ea;color: #666;'>" + "<lable>" + item.acnAbbr + "</lable>" + "</td>" +
+				"<td style='border: 1px solid #cad9ea;color: #666;'>" + "<lable>"+"<input type='checkbox' onclick='check(this)'>"+item.H+"</lable>" + "</td>" +
+				"<td style='border: 1px solid #cad9ea;color: #666;'>" + "<lable>"+"<input type='checkbox' onclick='check(this)'>" +item.D+"</lable>" + "</td>" +
+				"<td style='border: 1px solid #cad9ea;color: #666;'>" + "<lable>"+"<input type='checkbox' onclick='check(this)'>" +item.A+"</lable>" + "</td>"+
+				"<td style='border: 1px solid #cad9ea;color: #666;'>" + "<lable>" + item.tjjg + "</lable>" + "</td>";
+		return tds;
+	}
+
+
+
+$("#inputForm").validate({
+	submitHandler: function(form){
+		js.ajaxSubmitForm($(form), function(data){
+			js.showMessage(data.message);
+			if(data.result == Global.TRUE){
+				js.closeCurrentTabPage(function(contentWindow){
+					contentWindow.page();
+				});
+			}
+		}, "json");
+    }
+});
+</script>

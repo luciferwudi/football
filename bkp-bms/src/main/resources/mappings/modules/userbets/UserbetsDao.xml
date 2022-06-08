@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jeesite.modules.userbets.dao.UserbetsDao">
+	
+	<!-- 查询数据
+	<select id="findList" resultType="Userbets">
+		SELECT ${sqlMap.column.toSql()}
+		FROM ${sqlMap.table.toSql()}
+		<where>
+			${sqlMap.where.toSql()}
+		</where>
+		ORDER BY ${sqlMap.order.toSql()}
+	</select> -->
+
+    <select id="selectByResult" resultType="com.jeesite.modules.userbets.entity.Userbets">
+        SELECT * FROM `userbets`  WHERE result = "待开奖"
+    </select>
+</mapper>

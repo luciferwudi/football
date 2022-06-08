@@ -1,0 +1,190 @@
+<% layout('/layouts/default.html', {title: 'odds管理', libs: ['dataGrid']}){ %>
+<div class="main-content">
+	<div class="box box-main">
+		<div class="box-header">
+			<div class="box-title">
+				<i class="fa icon-notebook"></i> ${text('odds管理')}
+			</div>
+			<div class="box-tools pull-right">
+				<a href="#" class="btn btn-default" id="btnSearch" title="${text('查询')}"><i class="fa fa-filter"></i> ${text('查询')}</a>
+				<% if(hasPermi('odds:odds:edit')){ %>
+					<a href="${ctx}/odds/odds/form" class="btn btn-default btnTool" title="${text('新增odds')}"><i class="fa fa-plus"></i> ${text('新增')}</a>
+				<% } %>
+			</div>
+		</div>
+		<div class="box-body">
+			<#form:form id="searchForm" model="${odds}" action="${ctx}/odds/odds/listData" method="post" class="form-inline hide"
+					data-page-no="${parameter.pageNo}" data-page-size="${parameter.pageSize}" data-order-by="${parameter.orderBy}">
+				<div class="form-group">
+					<label class="control-label">${text('和teamdata对应的')}：</label>
+					<div class="control-inline">
+						<#form:input path="teamdataid" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('类型 had和hhad')}：</label>
+					<div class="control-inline">
+						<#form:input path="type" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('负的赔率')}：</label>
+					<div class="control-inline">
+						<#form:input path="a" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('d平的赔率')}：</label>
+					<div class="control-inline">
+						<#form:input path="d" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('h胜的赔率')}：</label>
+					<div class="control-inline">
+						<#form:input path="h" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('goalline')}：</label>
+					<div class="control-inline">
+						<#form:input path="goalline" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('p_code')}：</label>
+					<div class="control-inline">
+						<#form:input path="pcode" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('类型')}：</label>
+					<div class="control-inline">
+						<#form:input path="otype" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('p_id')}：</label>
+					<div class="control-inline">
+						<#form:input path="pid" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('p_status')}：</label>
+					<div class="control-inline">
+						<#form:input path="pstatus" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('single')}：</label>
+					<div class="control-inline">
+						<#form:input path="single" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('allup')}：</label>
+					<div class="control-inline">
+						<#form:input path="allup" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('让球')}：</label>
+					<div class="control-inline">
+						<#form:input path="fixedodds" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('cbt')}：</label>
+					<div class="control-inline">
+						<#form:input path="cbt" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('ints')}：</label>
+					<div class="control-inline">
+						<#form:input path="ints" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('vbt')}：</label>
+					<div class="control-inline">
+						<#form:input path="vbt" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('胜的上升还是下降')}：</label>
+					<div class="control-inline">
+						<#form:input path="htrend" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('负的箭头')}：</label>
+					<div class="control-inline">
+						<#form:input path="atrend" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('平的箭头')}：</label>
+					<div class="control-inline">
+						<#form:input path="dtrend" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('l_trend')}：</label>
+					<div class="control-inline">
+						<#form:input path="ltrend" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary btn-sm">${text('查询')}</button>
+					<button type="reset" class="btn btn-default btn-sm">${text('重置')}</button>
+				</div>
+			</#form:form>
+			<table id="dataGrid"></table>
+			<div id="dataGridPage"></div>
+		</div>
+	</div>
+</div>
+<% } %>
+<script>
+// 初始化DataGrid对象
+$('#dataGrid').dataGrid({
+	searchForm: $("#searchForm"),
+	columnModel: [
+		{header:'${text("和teamdata对应的")}', name:'teamdataid', index:'a.teamdataid', width:150, align:"left", frozen:true, formatter: function(val, obj, row, act){
+			return '<a href="${ctx}/odds/odds/form?id='+row.id+'" class="btnList" data-title="${text("编辑odds")}">'+(val||row.id)+'</a>';
+		}},
+		{header:'${text("类型 had和hhad")}', name:'type', index:'a.type', width:150, align:"left"},
+		{header:'${text("负的赔率")}', name:'a', index:'a.a', width:150, align:"left"},
+		{header:'${text("d平的赔率")}', name:'d', index:'a.d', width:150, align:"left"},
+		{header:'${text("h胜的赔率")}', name:'h', index:'a.h', width:150, align:"left"},
+		{header:'${text("goalline")}', name:'goalline', index:'a.goalline', width:150, align:"left"},
+		{header:'${text("p_code")}', name:'pcode', index:'a.p_code', width:150, align:"left"},
+		{header:'${text("类型")}', name:'otype', index:'a.o_type', width:150, align:"left"},
+		{header:'${text("p_id")}', name:'pid', index:'a.p_id', width:150, align:"left"},
+		{header:'${text("p_status")}', name:'pstatus', index:'a.p_status', width:150, align:"left"},
+		{header:'${text("single")}', name:'single', index:'a.single', width:150, align:"left"},
+		{header:'${text("allup")}', name:'allup', index:'a.allup', width:150, align:"left"},
+		{header:'${text("让球")}', name:'fixedodds', index:'a.fixedodds', width:150, align:"left"},
+		{header:'${text("cbt")}', name:'cbt', index:'a.cbt', width:150, align:"left"},
+		{header:'${text("ints")}', name:'ints', index:'a.ints', width:150, align:"left"},
+		{header:'${text("vbt")}', name:'vbt', index:'a.vbt', width:150, align:"left"},
+		{header:'${text("胜的上升还是下降")}', name:'htrend', index:'a.h_trend', width:150, align:"left"},
+		{header:'${text("负的箭头")}', name:'atrend', index:'a.a_trend', width:150, align:"left"},
+		{header:'${text("平的箭头")}', name:'dtrend', index:'a.d_trend', width:150, align:"left"},
+		{header:'${text("l_trend")}', name:'ltrend', index:'a.l_trend', width:150, align:"left"},
+		{header:'${text("操作")}', name:'actions', width:120, sortable:false, title:false, formatter: function(val, obj, row, act){
+			var actions = [];
+			<% if(hasPermi('odds:odds:edit')){ %>
+				actions.push('<a href="${ctx}/odds/odds/form?id='+row.id+'" class="btnList" title="${text("编辑odds")}"><i class="fa fa-pencil"></i></a>&nbsp;');
+				actions.push('<a href="${ctx}/odds/odds/delete?id='+row.id+'" class="btnList" title="${text("删除odds")}" data-confirm="${text("确认要删除该odds吗？")}"><i class="fa fa-trash-o"></i></a>&nbsp;');
+			<% } %>
+			return actions.join('');
+		}}
+	],
+	// 加载成功后执行事件
+	ajaxSuccess: function(data){
+		
+	}
+});
+</script>

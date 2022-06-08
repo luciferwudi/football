@@ -1,0 +1,88 @@
+@charset "GB2312";
+@import url(ljcwgray.css);
+body{font: 12px Arial, "宋体";color:#333333; min-width:1180px}
+body, ul, ol, li, img, div, th, td, a, h1, h2, h3, p{border:0 none;margin:0;padding:0;}
+ul,li{list-style:none outside none;}
+a:link,a:visited{ color:#333333; text-decoration:none; cursor:pointer;}
+a:hover{color:#e30000; text-decoration:underline} 
+.FloatL{float:left;display:inline;}
+.FloatR{float:right;display:inline;}
+.clear{ height:0px; overflow:hidden; clear:both; zoom:1}
+.all-wrap{ width:1180px; margin:0 auto; background-color:#FFF}
+
+/* footer */
+.footer{ width:100%; height:170px; background-color:#f1f1f1; text-align:center; color:#999999; margin-top:40px;  line-height:24px; clear:both}
+.footer a,select{ color:#999999;}
+.rel_links{ padding:10px 0 5px}
+
+/* 面包屑 */
+.g-nav{height:32px;line-height:32px;color:#999;}
+.g-nav a{color:#999;}
+.g-nav a:hover{color:#e30000;}
+
+/* 侧边栏 */
+.sidebar{position: fixed;bottom:20px;left: 50%;margin-left: 609px;z-index: 998; _position:absolute}
+/*.sidebar a{ position:relative; display:block; width:64px; height:63px; background-image:url(../Images/rcode.jpg); background-repeat:no-repeat; text-decoration:none}*/
+.sidebar a{ position:relative; display:block; width:64px; height:63px; background-image:url(../Images/rcode.png); background-repeat:no-repeat; text-decoration:none}/*体彩app*/
+.sidebar .side-code{ background-position:0 -63px; }
+.sidebar .side-ser{ background-position:0 -126px;}
+.sidebar .side-back{background-position:0 -189px;}
+.sidebar .side-top{ background-position:0 -253px;}
+.sidebar .side-app{ background-position:0 0; height: 63px;}
+.sidebar .side-jbts{ background-position:0 -315px;}
+.sidebar a.side-top:hover,.sidebar a.side-back:hover,.sidebar a.side-app:hover,.sidebar a.side-jbts:hover{background-image:url(../Images/rcode_cur.png);}/*体彩app*/
+/*.sidebar a.side-top:hover,.sidebar a.side-back:hover{background-image:url(../Images/rcode_cur.jpg);}*/
+.app-pop{ position:absolute; top:-20px; right:65px; background:url(../Images/app-pop.png) no-repeat; width:157px; height:150px; display:none}/*体彩app*/
+.code-pop{ position:absolute; top:-20px; right:63px; background:url(../Images/code-pop.png) no-repeat; width:154px; height:132px; display:none}
+.service_pop{ position:absolute; top:-20px; right:65px; background:url(../Images/service_pop.png) no-repeat; width:157px; height:122px; display:none}
+.service_pop .ser-btn{ width:60px; height:20px; text-align:center; line-height:21px; font-size:12px; background-color:#74abf5; border-bottom:1px solid #3368af; border-right:1px solid #3368af; font-family:"微软雅黑"; color:#FFF; padding:0; margin:82px 0 0 38px; cursor:pointer;}
+.service_pop .ser-btn:hover{ background-color:#4987db}
+.sidebar a.rcode_cur{background-image:url(../Images/rcode_cur.png); }/*体彩app*/
+/*.sidebar a.rcode_cur{background-image:url(../Images/rcode_cur.jpg); }*/
+/* 分页 */
+.m-page{margin:0 auto; border:0;background:#fff; display:table}
+.m-page td{border:0;padding:15px 0;background:#fff;}
+.m-page ul{height:23px;line-height:23px;}
+.m-page ul li { font-size:12px; line-height:23px; text-align:center;float:left;margin:0 2px; }
+.m-page a{ text-decoration:none;display:block;}
+.m-page .u-result{margin-left:10px;}
+.m-page li.u-pg1,.m-page li.u-pg4{width:55px;height:23px;background:url(../Images/u-pg1.jpg) no-repeat center center;}
+.m-page li.u-pg2{width:24px;height:23px;background:url(../Images/u-pg2.jpg) no-repeat center center;}
+.m-page li.u-pg3{width:24px;height:23px;background:#999; color:#FFF}
+.m-page li.u-pg3 a{color:#fff; color:#FFF}
+.m-page li.u-pg1:hover a,.m-page li.u-pg2:hover a{background:#999; color:#fff;}
+.m-page li.u-pg1:hover,.m-page li.u-pg2:hover{background:#999;}
+.m-page li.u-pg4 a:hover{ color:#333}
+
+/* 无数据页面优化 */
+.u-tipsnone{width:60px;margin-top:55px!important;}
+.u-tipsnoneDetail{font-size:12px;color:#999;line-height:40px;margin-bottom:40px;}
+
+/*销售时间*/
+.sales-time-table {
+    width: 100%;
+    font: 12px/26px arial;
+    color: #333;
+    background: #fff;
+    border-right: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+.sales-time-table td {
+    padding: 10px 0;
+    text-align: left;
+    white-space: nowrap;
+    border-top: 1px solid #eee;
+}
+.sales-time-table td:first-child {
+    width: 36px;
+    line-height: 20px;
+    font-size: 12px;
+    text-align: center;
+    background: #eee;
+}
+.sales-time-table td:nth-child(2) {
+    padding-left: 5%;
+}
+
+
+

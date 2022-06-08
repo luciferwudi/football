@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jeesite.modules.bkp.dao.BkpBatchrecordDao">
+	
+	<!-- 查询数据
+	<select id="findList" resultType="BkpBatchrecord">
+		SELECT ${sqlMap.column.toSql()}
+		FROM ${sqlMap.table.toSql()}
+		<where>
+			${sqlMap.where.toSql()}
+		</where>
+		ORDER BY ${sqlMap.order.toSql()}
+	</select> -->
+
+
+    <update id="updateById">
+        update  bkp_batchrecord set startTime=#{startTime}, dqzt=#{zt}
+        where id=#{id}
+    </update>
+    <update id="updateBy">
+         update  bkp_batchrecord set dqzt=#{dqzt}
+         where id=#{id}
+    </update>
+    <select id="selectById" resultType="com.jeesite.modules.bkp.entity.BkpFixedprofit">
+        select * from bkp_fixedprofit where id=#{id}
+    </select>
+    <select id="selectMin" resultType="com.jeesite.modules.bkp.entity.BkpBatchrecord">
+        select * from bkp_batchrecord  where batch =(select min(batch) from bkp_batchrecord where modeId=#{modeid} and dqzt &lt;2) AND modeId=#{modeid}
+        and dqzt &lt;2
+    </select>
+    <select id="selectPcxh" resultType="java.lang.Object">
+        select MAX(pcxh) FROM bkp_userbets WHERE pcjlId=#{id} and status=0
+    </select>
+    <select id="selectCreateTime" resultType="java.lang.String">
+        select createTime from   bkp_userbets where pcjlId=#{pcjlid} and pcxh=#{pcxh}  and status=0
+    </select>
+    <select id="selectBystartTime" resultType="com.jeesite.modules.bkp.entity.BkpBatchrecord">
+        select * from bkp_batchrecord where  modeId=#{id}  and startTime  is not null
+    </select>
+    <select id="selectBypcjlId" resultType="java.lang.String">
+        select combination from bkp_userbets WHERE pcjlId=#{pcjlId} and status=0 GROUP BY combination
+    </select>
+    <select id="getById" resultType="com.jeesite.modules.bkp.entity.BkpBatchrecord">
+        select * from bkp_batchrecord where id=#{pcjlid}
+    </select>
+    <select id="selectByUserCode" resultType="com.jeesite.modules.bkp.entity.BkpBatchrecord">
+        select * from bkp_batchrecord where userCode=#{usercode} and startTime is not null and endTime is null
+    </select>
+    <select id="selectByModeId" resultType="com.jeesite.modules.bkp.entity.BkpBatchrecord">
+        select * from bkp_batchrecord where startTime is not null and endTime is null and modeId=#{modeId}
+    </select>
+    <select id="findPage1" resultType="com.jeesite.modules.bkp.entity.BkpBatchrecord">
+       select   *  from bkp_batchrecord
+       <where>
+           dqzt="1" or dqzt="2"
+        <if test="userCode != null">
+          and  userCode = #{userCode}
+        </if>
+        <if test="id != null">
+            AND id =#{id}
+        </if>
+        <if test="modeid != null">
+            AND modeId =#{modeid}
+        </if>
+        <if test="preprofit != null">
+           AND preProfit =#{preprofit}
+        </if>
+        <if test="profitamount != null">
+        AND profitAmount =#{profitamount}
+        </if>
+        order by batch
+    </where>
+
+    </select>
+    <select id="findList1" resultType="com.jeesite.modules.bkp.entity.BkpBatchrecord">
+        SELECT ${sqlMap.column.toSql()}
+        FROM ${sqlMap.table.toSql()}
+        <where>
+            ${sqlMap.where.toSql()}
+           and (a.dqzt="1" or a.dqzt="2")
+        </where>
+        ORDER BY ${sqlMap.order.toSql()}
+    </select>
+    <select id="selectByDqzt" resultType="com.jeesite.modules.bkp.entity.BkpBatchrecord">
+        select * from bkp_batchrecord where status=0 and modeId=#{modeid} and dqzt!="2"
+    </select>
+</mapper>

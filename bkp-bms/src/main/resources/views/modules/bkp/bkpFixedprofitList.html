@@ -1,0 +1,314 @@
+<% layout('/layouts/default.html', {title: '固定盈利模式管理', libs: ['dataGrid']}){ %>
+<link rel="stylesheet" href="${ctxStatic}/js/demo/major.css">
+<div class="main-content">
+	<div class="box box-main">
+		<div id="app">
+			<el-dialog  title="固定盈利"  :visible.sync="dialogFormVisible" :append-to-body="true" :close-on-click-modal="false">
+				<el-form  :model="form" :rules="rules" ref="form">
+					<el-form-item label="月固定盈利金额:" :label-width="formLabelWidth" prop="monthamount">
+						<el-input style="width: 250px" v-model="form.monthamount" ></el-input>   (此模式下预想的收益)
+					</el-form-item>
+					<el-form-item label="分批:" :label-width="formLabelWidth"  >
+						<el-input-number  v-model="form.batch" controls-position="right"  :min="1" :max="15" ></el-input-number> (风险把控，分批越高风险越少)
+					</el-form-item>
+					<el-form-item label="历史亏损金额:" :label-width="formLabelWidth" >
+						<el-input style="width: 250px" v-model="form.totalloss" ></el-input>(带入亏损 ，如果没有可以不填)
+					</el-form-item>
+					<el-form-item label="当前模式名称:" :label-width="formLabelWidth" prop="description">
+						<el-input style="width: 250px" v-model="form.description" ></el-input>(给您当前的模式起个名字吧)
+					</el-form-item>
+
+				</el-form>
+				<div slot="footer" class="dialog-footer">
+					<el-button @click="dialogFormVisible = false">取 消</el-button>
+					<el-button type="primary" @click="savegdylms('form')">保 存</el-button>
+				</div>
+			</el-dialog>
+			</span>
+			</el-dialog>
+		<div class="box-header">
+			<div class="box-title">
+				<i class="fa icon-notebook"></i> ${text('固定盈利模式')}
+			</div>
+			<div class="box-tools pull-right">
+				<a href="#" class="btn btn-default" id="btnSearch" title="${text('查询')}"><i class="fa fa-filter"></i> ${text('查询')}</a>
+				<% if(hasPermi('bkp:bkpFixedprofit:edit')){ %>
+					<a  id="xzz" @click="dk()" style="background-color:#f4f4f4;color: #444;border-color: #ddd;border-radius: 4px;box-shadow: none;border: 1px solid transparent;
+                    display: inline-block;padding: 6px 12px;margin-bottom: 0;font-size: 14px;font-weight: 400;line-height: 1.42857143;
+                    text-align: center;white-space: nowrap;vertical-align: middle;touch-action: manipulation;cursor: pointer;user-select: none;background-image: none;
+"><i class="fa fa-plus" ></i> ${text('新增')}</a>
+				<% } %>
+			</div>
+		</div>
+		</div>
+		<div class="box-body">
+			<#form:form id="searchForm" model="${bkpFixedprofit}" action="${ctx}/bkp/bkpFixedprofit/listData" method="post" class="form-inline hide"
+					data-page-no="${parameter.pageNo}" data-page-size="${parameter.pageSize}" data-order-by="${parameter.orderBy}">
+				<div class="form-group" style="display: none">
+					<label class="control-label">${text('用户标识')}：</label>
+					<div class="control-inline">
+						<#form:input path="usercode" maxlength="50" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('每月固定盈利金额')}：</label>
+					<div class="control-inline">
+						<#form:input path="monthamount" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group" style="display: none">
+					<label class="control-label">${text('分批')}：</label>
+					<div class="control-inline">
+						<#form:input path="batch" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('历史亏损金额')}：</label>
+					<div class="control-inline">
+						<#form:input path="totalloss" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group" style="display: none">
+					<label class="control-label">${text('如进行中 已完成')}：</label>
+					<div class="control-inline width-120">
+						<#form:select path="status" dictType="sys_search_status" blankOption="true" class="form-control isQuick"/>
+					</div>
+				</div>
+				<div class="form-group" style="display: none">
+					<label class="control-label">${text('开始时间')}：</label>
+					<div class="control-inline">
+						<#form:input path="starttime" maxlength="50" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group" style="display: none">
+					<label class="control-label">${text('结束时间')}：</label>
+					<div class="control-inline">
+						<#form:input path="endtime" maxlength="50" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group" style="display: none">
+					<label class="control-label">${text('当前模式结束实际盈利金额')}：</label>
+					<div class="control-inline">
+						<#form:input path="profitamount" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group" style="display: none">
+					<label class="control-label">${text('亏损分批找回')}：</label>
+					<div class="control-inline">
+						<#form:input path="retrieveinbatches" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group" style="display: none">
+					<label class="control-label">${text('0 失效 1有效')}：</label>
+					<div class="control-inline">
+						<#form:input path="deletelogo" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group" style="display: none">
+					<label class="control-label">${text('周期')}：</label>
+					<div class="control-inline">
+						<#form:input path="cycle" maxlength="30" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label">${text('当前固定模式描述')}：</label>
+					<div class="control-inline">
+						<#form:input path="description" maxlength="50" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group" style="display: none">
+					<label class="control-label">${text('创建时间')}：</label>
+					<div class="control-inline">
+						<#form:input path="creattime" maxlength="50" class="form-control width-120"/>
+					</div>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary btn-sm">${text('查询')}</button>
+					<button type="reset" class="btn btn-default btn-sm">${text('重置')}</button>
+				</div>
+			</#form:form>
+			<table id="dataGrid"></table>
+			<div id="dataGridPage"></div>
+		</div>
+
+	</div>
+</div>
+<% } %>
+<!-- import Vue before Element -->
+<script src="${ctxStatic}/js/demo/vue.js"></script>
+<!-- import JavaScript -->
+<script src="${ctxStatic}/js/demo/major.js"></script>
+<!-- import axios -->
+<script src="${ctxStatic}/js/demo/axios.js"></script>
+<!-- import 封装好的get,post的请求 -->
+<script src="${ctxStatic}/js/demo/httpRequest.js"></script>
+<script>
+	new Vue({
+		el: '#app',
+		data() {
+			var validatePass = (rule, value, callback) => {
+				const age= /^[0-9]*$/;
+				if (value === '') {
+					callback(new Error('请输入预盈利金额'));
+				}else if (!age.test(value)){
+					callback(new Error('只能填入数字'));
+				} else {
+					callback();
+				}
+			};
+			var validate3 = (rule, value, callback) => {
+				if (value === '') {
+					this.form.totalloss=0;
+					callback();
+				} else {
+					callback();
+				}
+			};
+			var validate4 = (rule, value, callback) => {
+				if (value === '') {
+					callback(new Error('请填写此模式名称'));
+				} else {
+					callback();
+				}
+			};
+			return{
+				form: {
+					monthamount: 1000,
+					batch: 5,
+					totalloss: 0,
+					cycle: 30,
+					description:"",
+				},
+				rules:{
+					monthamount: [
+						{ validator: validatePass ,trigger: 'blur' }
+					],
+					totalloss: [
+						{ validator: validate3 ,trigger: 'blur'}
+					],
+					description:[
+						{ validator: validate4,trigger: 'blur' }
+					],
+				},
+				dialogTableVisible: false,
+				dialogFormVisible: false,
+				formLabelWidth: '150px',
+				formLabelWidth1: '30px',
+			}
+		},
+		created() {
+              this.addDate();
+		},
+		methods:{
+             dk(){
+             	this.dialogFormVisible=true;
+             	debugger;
+			 },
+			addDate() {
+				nowDate = new Date();
+				let date = {
+					year: nowDate.getFullYear(),
+					month: nowDate.getMonth() + 1,
+					date: nowDate.getDate(),
+				}
+				this.form.description=date.month+"月"+date.date+"固定盈利模式";
+			},
+			savegdylms(formName){
+				console.log(this.form);
+				this.$refs[formName].validate((valid) => {
+					if (valid) {
+						axiosPostRequst("${ctx}/bkp/bkpFixedprofit/save1",this.form).then(res =>{
+							console.log(res);
+							this.gdmsid=res.id;
+							var batch=res.batch;
+							var cycle=res.cycle;
+							var monthamount=res.monthamount;//月预盈利金额
+							var totalloss=res.totalloss;//亏损金额
+							var retrieveinbatches=res.retrieveinbatches;//分批找回亏损找回
+						debugger;
+							this.$message.success("保存成功");
+							this.dialogFormVisible = false
+							for (var i=0;i<batch;i++){
+								var data={
+									batch:i+1,
+									modeid:this.gdmsid,
+									preprofit:monthamount/batch+totalloss/retrieveinbatches,//当期预盈利金额
+									description:this.form.description,
+									fpyl:((monthamount/batch+totalloss/retrieveinbatches)/(cycle/batch)).toFixed(2)
+								}
+								axiosPostRequst("${ctx}/bkp/bkpBatchrecord/save1",data).then(res =>{
+								})
+							}
+							setTimeout(function(){
+								document.location.reload();
+							},1000);
+						})
+					} else {
+						this.$message.error("注册失败");
+						return false;
+					}
+				});
+			},
+		}
+	})
+</script>
+<script>
+	function initValue(){
+		var lenth=$("#dataGrid tbody").children("tr");
+	debugger;
+		for(var i=1;i<lenth.length;i++){
+			var test=lenth.eq(i).children("td").eq(11);
+		debugger;
+			var t=test[0];
+			var cc=t.textContent;
+		debugger;
+			if (cc=="0"){
+				t.textContent="结束";
+			}else if (cc=="1"){
+				t.textContent="进行中";
+			}
+		}
+		//查询这个用户是否有正在进行中的
+		$.get("${ctx}/bkp/bkpFixedprofit/userQuery").then(res => {
+			var aa=$("#xzz")[0];
+			debugger;
+			if (JSON.stringify(res)==JSON.stringify("")){
+				aa.style.display="inline";
+			}else{
+				aa.style.display="none";
+			}
+			debugger;
+		})
+	}
+// 初始化DataGrid对象
+$('#dataGrid').dataGrid({
+	searchForm: $("#searchForm"),
+	columnModel: [
+		{header:'${text("模式名称")}', name:'description', index:'a.description', width:150, align:"left"},
+		{header:'${text("每月固定盈利金额(元)")}', name:'monthamount', index:'a.monthamount', width:150, align:"left"},
+		{header:'${text("历史亏损金额(元)")}', name:'totalloss', index:'a.totalloss', width:150, align:"left"},
+		{header:'${text("分批")}', name:'batch', index:'a.batch', width:150, align:"center"},
+		{header:'${text("开始时间")}', name:'starttime', index:'a.starttime', width:150, align:"left"},
+		{header:'${text("结束时间")}', name:'endtime', index:'a.endtime', width:150, align:"left"},
+		{header:'${text("已投注金额(元)")}',name:'ytzje', index:'a.ytzje', width:150, align:"left"},
+		{header:'${text("实际盈亏金额(元)")}', name:'profitamount', index:'a.profitamount', width:150, align:"left"},
+		{header:'${text("周期")}', name:'cycle', index:'a.cycle', width:150, align:"left"},
+		{header:'${text("创建时间")}', name:'creattime', index:'a.creattime', width:150, align:"left"},
+		{header:'${text("当前状态")}', name:'deletelogo', index:'a.deletelogo', width:150, align:"left"},
+		{header:'${text("批次详情")}', name:'pcxq', index:'a.pcxq', width:150, align:"left",frozen:true,formatter: function(val, obj, row, act){
+				return '<a href="${ctx}/bkp/bkpBatchrecord/form1?modeid='+row.id+'" class="btnList" data-title="${text("批次记录")}">'+(val||row.id)+'</a>';}
+		},
+		{header:'${text("操作")}', name:'actions', width:120, sortable:false, title:false, formatter: function(val, obj, row, act){
+			var actions = [];
+			<% if(hasPermi('bkp:bkpFixedprofit:edit')){ %>
+				actions.push('<a href="${ctx}/bkp/bkpFixedprofit/form?id='+row.id+'" class="btnList" title="${text("编辑固定盈利模式")}"><i class="fa fa-pencil"></i></a>&nbsp;');
+			<% } %>
+			return actions.join('');
+		}}
+	],
+	// 加载成功后执行事件
+	ajaxSuccess: function(data){
+		initValue()
+	}
+});
+</script>
