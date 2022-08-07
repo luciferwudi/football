@@ -108,7 +108,7 @@ public class BkpUserbetsController extends BaseController {
             bkpUserbets.setCreatetime(smf.format(date));
             Long pcjlid = bkpUserbets.getPcjlid();
             //查询是否已有数据
-            //测试室生死时速
+            //测试分支分支分支
             System.out.println("pcjlid" + pcjlid);
             List<BkpUserbets> list = bkpUserbetsService.getById(pcjlid);
             System.out.println(list.size() + "list.size");
